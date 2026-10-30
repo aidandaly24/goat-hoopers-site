@@ -1,0 +1,470 @@
+{
+  "baselineRejected": "fd9df4514b81eedd9e965be0a3c0828f4152e368",
+  "status": "Revised source frozen and root captures complete; independent visual gate pending",
+  "concepts": [
+    {
+      "id": "01",
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-personal-20/01/app.js",
+          "sha256": "442f023116533e5fa157a22be54a222ec008014b1290f8852d4eb2a97ccdaa4e",
+          "bytes": 27885
+        },
+        {
+          "path": "qa/homepage-personal-20/01/index.html",
+          "sha256": "b603fe07ecc9b1d84fc122a8e3a96a89fb1195d55da61bfb095453f46384d988",
+          "bytes": 798
+        },
+        {
+          "path": "qa/homepage-personal-20/01/style.css",
+          "sha256": "135f8e140f4830c54b18c6d16cb86da8aa658f8d61a927c58dbb2f3c52e5c4fc",
+          "bytes": 28466
+        }
+      ],
+      "fullCaptures": [
+        {
+          "persona": "reaves",
+          "stage": "designed",
+          "full": {
+            "path": "qa/homepage-personal-20/01/review/reaves-designed-desktop-full.jpg",
+            "bytes": 397246,
+            "sha256": "caa8121d811eebc4f8d4985938a2f450f7acc3c96aabb241a414e4100a259f85",
+            "width": 1440,
+            "height": 3427,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1700
+              },
+              {
+                "y": 1700,
+                "height": 1700
+              },
+              {
+                "y": 3400,
+                "height": 27
+              }
+            ],
+            "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
+          }
+        },
+        {
+          "persona": "neural",
+          "stage": "designed",
+          "full": {
+            "path": "qa/homepage-personal-20/01/review/neural-designed-desktop-full.jpg",
+            "bytes": 390700,
+            "sha256": "dd4360307e5a27cece5722219c253693b73f5715a87da3a1eff55ea8be231a76",
+            "width": 1440,
+            "height": 3347,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1700
+              },
+              {
+                "y": 1700,
+                "height": 1647
+              }
+            ],
+            "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
+          }
+        },
+        {
+          "persona": "guest",
+          "stage": "designed",
+          "full": {
+            "path": "qa/homepage-personal-20/01/review/guest-designed-desktop-full.jpg",
+            "bytes": 391484,
+            "sha256": "12376dfb88f07c2af66a3ebd2a4ac8307078c4b64dac70ca4c574d67a490980c",
+            "width": 1440,
+            "height": 3334,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1700
+              },
+              {
+                "y": 1700,
+                "height": 1634
+              }
+            ],
+            "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
+          }
+        },
+        {
+          "persona": "reaves",
+          "stage": "structure",
+          "full": {
+            "path": "qa/homepage-personal-20/01/review/reaves-structure-desktop-full.jpg",
+            "bytes": 261144,
+            "sha256": "b884557adf6373a056165222870b3dbc1c3bdeb5cabb22e62fb282c7be875afe",
+            "width": 1440,
+            "height": 3427,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1700
+              },
+              {
+                "y": 1700,
+                "height": 1700
+              },
+              {
+                "y": 3400,
+                "height": 27
+              }
+            ],
+            "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
+          }
+        }
+      ],
+      "firstFoldCaptures": [
+        {
+          "persona": "reaves",
+          "stage": "first-fold",
+          "image": {
+            "path": "qa/homepage-personal-20/01/review/reaves-desktop-first-fold.jpg",
+            "bytes": 154489,
+            "sha256": "c8c514243e3463a0f2900ac8358f4ed722f7d8a6b7e7e33b73cce992d9940632",
+            "width": 1440,
+            "height": 1000,
+            "quality": 91
+          }
+        },
+        {
+          "persona": "neural",
+          "stage": "first-fold",
+          "image": {
+            "path": "qa/homepage-personal-20/01/review/neural-desktop-first-fold.jpg",
+            "bytes": 152300,
+            "sha256": "3e692aa4bfdb59efeb73495721e414763d28c888576bbec9fa7bdfcc0627c7d1",
+            "width": 1440,
+            "height": 1000,
+            "quality": 91
+          }
+        },
+        {
+          "persona": "guest",
+          "stage": "first-fold",
+          "image": {
+            "path": "qa/homepage-personal-20/01/review/guest-desktop-first-fold.jpg",
+            "bytes": 153684,
+            "sha256": "88da28e076591ffbcfd593473f41c03cc37aaeead6ab4ad8d1dbce5c106f5f47",
+            "width": 1440,
+            "height": 1000,
+            "quality": 91
+          }
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-personal-20/02/app.js",
+          "sha256": "84e741c81779c1523a10bb8607cad54cea841baf4d68adb7f4cadfdb5937b311",
+          "bytes": 27809
+        },
+        {
+          "path": "qa/homepage-personal-20/02/index.html",
+          "sha256": "cdfcb5e0efaf58bbbebd2cfa14b21a357a02d46618ba09212cbea3a48741a03d",
+          "bytes": 880
+        },
+        {
+          "path": "qa/homepage-personal-20/02/styles.css",
+          "sha256": "7252565a6ac1bf22720f1d9e39599f84e79ddff0a95acb1226699b11874dca75",
+          "bytes": 19239
+        }
+      ],
+      "fullCaptures": [
+        {
+          "persona": "reaves",
+          "stage": "designed",
+          "full": {
+            "path": "qa/homepage-personal-20/02/review/reaves-designed-desktop-full.jpg",
+            "bytes": 328489,
+            "sha256": "3c48aed8d4c0397c2fcc426036d768f6c4e4e7c05538176d8f6972d316a28622",
+            "width": 1440,
+            "height": 2809,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1700
+              },
+              {
+                "y": 1700,
+                "height": 1109
+              }
+            ],
+            "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
+          }
+        },
+        {
+          "persona": "neural",
+          "stage": "designed",
+          "full": {
+            "path": "qa/homepage-personal-20/02/review/neural-designed-desktop-full.jpg",
+            "bytes": 315026,
+            "sha256": "8647f596441552c135146cad90ee262c8c2352309f8cfc7f23987ccc8eb70833",
+            "width": 1440,
+            "height": 2809,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1700
+              },
+              {
+                "y": 1700,
+                "height": 1109
+              }
+            ],
+            "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
+          }
+        },
+        {
+          "persona": "guest",
+          "stage": "designed",
+          "full": {
+            "path": "qa/homepage-personal-20/02/review/guest-designed-desktop-full.jpg",
+            "bytes": 271496,
+            "sha256": "dd16d51429cdb0e6caf1ed49f0fa8b34f6a103db0efa1a15af142eeccf4fefee",
+            "width": 1440,
+            "height": 2225,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1700
+              },
+              {
+                "y": 1700,
+                "height": 525
+              }
+            ],
+            "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
+          }
+        },
+        {
+          "persona": "reaves",
+          "stage": "structure",
+          "full": {
+            "path": "qa/homepage-personal-20/02/review/reaves-structure-desktop-full.jpg",
+            "bytes": 271181,
+            "sha256": "3fd92429634445725eea7890b7c5bd72f136e85b8c4cf11ea0cc49b65938f9cd",
+            "width": 1440,
+            "height": 2809,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1700
+              },
+              {
+                "y": 1700,
+                "height": 1109
+              }
+            ],
+            "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
+          }
+        }
+      ],
+      "firstFoldCaptures": [
+        {
+          "persona": "reaves",
+          "stage": "first-fold",
+          "image": {
+            "path": "qa/homepage-personal-20/02/review/reaves-desktop-first-fold.jpg",
+            "bytes": 124746,
+            "sha256": "e33dff625a97f40fb2f23afd328de168c58d0b2fc24eb263111165439132fb88",
+            "width": 1440,
+            "height": 1000,
+            "quality": 91
+          }
+        },
+        {
+          "persona": "neural",
+          "stage": "first-fold",
+          "image": {
+            "path": "qa/homepage-personal-20/02/review/neural-desktop-first-fold.jpg",
+            "bytes": 117820,
+            "sha256": "0e0ea17b099728845d8e26f8f5f7fe47a0e2371201026cacc13645f06c01f749",
+            "width": 1440,
+            "height": 1000,
+            "quality": 91
+          }
+        },
+        {
+          "persona": "guest",
+          "stage": "first-fold",
+          "image": {
+            "path": "qa/homepage-personal-20/02/review/guest-desktop-first-fold.jpg",
+            "bytes": 147689,
+            "sha256": "8b5b883e80d225d845bc0d40312533c253c5b1e30b8da7bee6bb4099726dab70",
+            "width": 1440,
+            "height": 1000,
+            "quality": 91
+          }
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-personal-20/03/index.html",
+          "sha256": "dbe56616568b2fec7219e4327de1113f4a819444f07562f0e40444fa910e414d",
+          "bytes": 4992
+        },
+        {
+          "path": "qa/homepage-personal-20/03/script.js",
+          "sha256": "69eee851dd0b92e776e0f7d462c9d323d15c5661a7af51799d89bfaf6f7b281c",
+          "bytes": 34667
+        },
+        {
+          "path": "qa/homepage-personal-20/03/style.css",
+          "sha256": "76d3df4e684114aca052349d2edca224d021d046956b4a4756ca6896d0e06bf9",
+          "bytes": 27892
+        }
+      ],
+      "fullCaptures": [
+        {
+          "persona": "reaves",
+          "stage": "designed",
+          "full": {
+            "path": "qa/homepage-personal-20/03/review/reaves-designed-desktop-full.jpg",
+            "bytes": 341798,
+            "sha256": "da2b24a366a474f3a8a38c9e104ad2dae16ce799cdc8e5fef865117167045913",
+            "width": 1440,
+            "height": 2642,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1700
+              },
+              {
+                "y": 1700,
+                "height": 942
+              }
+            ],
+            "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
+          }
+        },
+        {
+          "persona": "neural",
+          "stage": "designed",
+          "full": {
+            "path": "qa/homepage-personal-20/03/review/neural-designed-desktop-full.jpg",
+            "bytes": 345585,
+            "sha256": "777bef82d1014c58ce8c3c845f613ee8247fbd0a88595a5c96569cea88b54500",
+            "width": 1440,
+            "height": 2642,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1700
+              },
+              {
+                "y": 1700,
+                "height": 942
+              }
+            ],
+            "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
+          }
+        },
+        {
+          "persona": "guest",
+          "stage": "designed",
+          "full": {
+            "path": "qa/homepage-personal-20/03/review/guest-designed-desktop-full.jpg",
+            "bytes": 336155,
+            "sha256": "add963f66133df88bca62f63248a8399b11e05dd9e9d1325cf290bcf9d2b586a",
+            "width": 1440,
+            "height": 2501,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1700
+              },
+              {
+                "y": 1700,
+                "height": 801
+              }
+            ],
+            "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
+          }
+        },
+        {
+          "persona": "reaves",
+          "stage": "structure",
+          "full": {
+            "path": "qa/homepage-personal-20/03/review/reaves-structure-desktop-full.jpg",
+            "bytes": 276739,
+            "sha256": "bbb45cb4acfd328ded2869a538c3b3093089bd19940ded363f5d7f279a3d34c4",
+            "width": 1440,
+            "height": 2642,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1700
+              },
+              {
+                "y": 1700,
+                "height": 942
+              }
+            ],
+            "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
+          }
+        }
+      ],
+      "firstFoldCaptures": [
+        {
+          "persona": "reaves",
+          "stage": "first-fold",
+          "image": {
+            "path": "qa/homepage-personal-20/03/review/reaves-desktop-first-fold.jpg",
+            "bytes": 166566,
+            "sha256": "e4ca9c1446ff1de80606bf093d979e18f5f3f924462061a20c2d50a12937bfcb",
+            "width": 1440,
+            "height": 1000,
+            "quality": 91
+          }
+        },
+        {
+          "persona": "neural",
+          "stage": "first-fold",
+          "image": {
+            "path": "qa/homepage-personal-20/03/review/neural-desktop-first-fold.jpg",
+            "bytes": 165572,
+            "sha256": "ebd26c45bc9266722d86a2c53e45ad7b254e711685e340e3de6655ccc7a26d45",
+            "width": 1440,
+            "height": 1000,
+            "quality": 91
+          }
+        },
+        {
+          "persona": "guest",
+          "stage": "first-fold",
+          "image": {
+            "path": "qa/homepage-personal-20/03/review/guest-desktop-first-fold.jpg",
+            "bytes": 201785,
+            "sha256": "2ba62e64e90c89f0e632a4afef678f1750c2dad3f955ac12c10b22a99e36c32b",
+            "width": 1440,
+            "height": 1000,
+            "quality": 91
+          }
+        }
+      ]
+    }
+  ]
+}

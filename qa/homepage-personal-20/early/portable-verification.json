@@ -8,10 +8,11 @@
       "errors": [],
       "dependencies": [],
       "licenses": [
-        "Barlow Condensed",
-        "IBM Plex Mono"
+        "IBM Plex Mono",
+        "Oswald"
       ],
-      "mainTextMatchesSource": true
+      "mainTextMatchesSource": true,
+      "localDetailSmoke": null
     },
     {
       "id": "01",
@@ -20,10 +21,11 @@
       "errors": [],
       "dependencies": [],
       "licenses": [
-        "Barlow Condensed",
-        "IBM Plex Mono"
+        "IBM Plex Mono",
+        "Oswald"
       ],
-      "mainTextMatchesSource": true
+      "mainTextMatchesSource": true,
+      "localDetailSmoke": null
     },
     {
       "id": "01",
@@ -32,22 +34,28 @@
       "errors": [],
       "dependencies": [],
       "licenses": [
+        "IBM Plex Mono",
+        "Oswald"
+      ],
+      "mainTextMatchesSource": true,
+      "localDetailSmoke": {
+        "kind": "local roster dialog",
+        "pass": true
+      }
+    },
+    {
+      "id": "02",
+      "persona": "guest",
+      "pass": true,
+      "errors": [],
+      "dependencies": [],
+      "licenses": [
         "Barlow Condensed",
-        "IBM Plex Mono"
-      ],
-      "mainTextMatchesSource": true
-    },
-    {
-      "id": "02",
-      "persona": "guest",
-      "pass": true,
-      "errors": [],
-      "dependencies": [],
-      "licenses": [
         "IBM Plex Mono",
         "Space Grotesk"
       ],
-      "mainTextMatchesSource": true
+      "mainTextMatchesSource": true,
+      "localDetailSmoke": null
     },
     {
       "id": "02",
@@ -56,10 +64,12 @@
       "errors": [],
       "dependencies": [],
       "licenses": [
+        "Barlow Condensed",
         "IBM Plex Mono",
         "Space Grotesk"
       ],
-      "mainTextMatchesSource": true
+      "mainTextMatchesSource": true,
+      "localDetailSmoke": null
     },
     {
       "id": "02",
@@ -68,10 +78,15 @@
       "errors": [],
       "dependencies": [],
       "licenses": [
+        "Barlow Condensed",
         "IBM Plex Mono",
         "Space Grotesk"
       ],
-      "mainTextMatchesSource": true
+      "mainTextMatchesSource": true,
+      "localDetailSmoke": {
+        "kind": "local roster route stays in standalone file",
+        "pass": true
+      }
     },
     {
       "id": "03",
@@ -80,9 +95,12 @@
       "errors": [],
       "dependencies": [],
       "licenses": [
-        "IBM Plex Mono"
+        "Archivo Black",
+        "Lora",
+        "Space Grotesk"
       ],
-      "mainTextMatchesSource": true
+      "mainTextMatchesSource": true,
+      "localDetailSmoke": null
     },
     {
       "id": "03",
@@ -91,9 +109,12 @@
       "errors": [],
       "dependencies": [],
       "licenses": [
-        "IBM Plex Mono"
+        "Archivo Black",
+        "Lora",
+        "Space Grotesk"
       ],
-      "mainTextMatchesSource": true
+      "mainTextMatchesSource": true,
+      "localDetailSmoke": null
     },
     {
       "id": "03",
@@ -102,9 +123,15 @@
       "errors": [],
       "dependencies": [],
       "licenses": [
-        "IBM Plex Mono"
+        "Archivo Black",
+        "Lora",
+        "Space Grotesk"
       ],
-      "mainTextMatchesSource": true
+      "mainTextMatchesSource": true,
+      "localDetailSmoke": {
+        "kind": "local roster route stays in standalone file",
+        "pass": true
+      }
     }
   ]
 }

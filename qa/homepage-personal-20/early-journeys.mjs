@@ -1,3 +1,4 @@
+// Baseline fd9df451 only; retained evidence. Current implementation uses revised-journeys.mjs.
 import {chromium} from '/opt/codex/cua_node/lib/node_modules/playwright/index.mjs';
 import {readFile,writeFile} from 'node:fs/promises';
 import assert from 'node:assert/strict';

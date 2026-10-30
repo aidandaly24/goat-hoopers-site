@@ -1,5 +1,5 @@
 {
-  "stage": "Early three complete websites ready for parent product and visual review. All 20 fresh launches and 17 discovery-only plans are preserved. No builds for 04\u201320 have started.",
+  "stage": "Same-author revisions 01\u201303 are complete, root-checked and independently inspected. Revised parent gate pending; remaining builds paused.",
   "target": 20,
   "freshAuthorsLaunched": 20,
   "newSourcesReady": 3,
@@ -24,7 +24,7 @@
       "briefSha256": "4e7d3ea083b20f7d5acd0cf6aee61c272ab5e7ba1f578bef3e27f7ced28ccc0d",
       "ownDirectory": "qa/homepage-personal-20/01",
       "phase": "build",
-      "status": "source frozen; root review complete; parent gate pending",
+      "status": "same author revision frozen; root journeys and independent visual inspection complete; parent gate pending",
       "context": "fork_turns none",
       "receiptLimit": "Tool returned canonical task_name only, no opaque UUID or launch timestamp. Timestamp here is receipt persistence time."
     },
@@ -47,7 +47,7 @@
       "briefSha256": "201bcebf9f547269a02f8c16d85c8857bbf56884bf45c9dc9970c505e9af1602",
       "ownDirectory": "qa/homepage-personal-20/02",
       "phase": "build",
-      "status": "source frozen; root review complete; parent gate pending",
+      "status": "same author revision frozen; root journeys and independent visual inspection complete; parent gate pending",
       "context": "fork_turns none",
       "receiptLimit": "Tool returned canonical task_name only, no opaque UUID or launch timestamp. Timestamp here is receipt persistence time."
     },
@@ -70,7 +70,7 @@
       "briefSha256": "680c6fb9071197cd7ec4510db7f37510494f3859a70bcc9e8d42d6e56ae3dde7",
       "ownDirectory": "qa/homepage-personal-20/03",
       "phase": "build",
-      "status": "source frozen; root review complete; parent gate pending",
+      "status": "same author revision frozen; root journeys and independent visual inspection complete; parent gate pending",
       "context": "fork_turns none",
       "receiptLimit": "Tool returned canonical task_name only, no opaque UUID or launch timestamp. Timestamp here is receipt persistence time."
     },
@@ -93,7 +93,7 @@
       "briefSha256": "6f034df4055c53807803d8a10a0e3a5b5eb2b9f7648ce107d816953bc7742046",
       "ownDirectory": "qa/homepage-personal-20/04",
       "phase": "discovery",
-      "status": "independent discovery plan ready; build pending early gate",
+      "status": "same author discovery plan revised; architecture/type diversity acceptance pending; no build",
       "context": "fork_turns none",
       "receiptLimit": "Tool returned canonical task_name only, no opaque UUID or launch timestamp. Timestamp here is receipt persistence time."
     },
@@ -116,7 +116,7 @@
       "briefSha256": "275de84e31dae2ef9f979d62171ae694b3d644409ef3f74640865004fcf594b8",
       "ownDirectory": "qa/homepage-personal-20/05",
       "phase": "discovery",
-      "status": "independent discovery plan ready; build pending early gate",
+      "status": "same author discovery plan revised; architecture/type diversity acceptance pending; no build",
       "context": "fork_turns none",
       "receiptLimit": "Tool returned canonical task_name only, no opaque UUID or launch timestamp. Timestamp here is receipt persistence time."
     },
@@ -139,7 +139,7 @@
       "briefSha256": "d94a8f5820f520e69dffe1a15de646933ac728e9f25f76b2c2baae98e56b34d1",
       "ownDirectory": "qa/homepage-personal-20/06",
       "phase": "discovery",
-      "status": "independent discovery plan ready; build pending early gate",
+      "status": "same author discovery plan revised; architecture/type diversity acceptance pending; no build",
       "context": "fork_turns none",
       "receiptLimit": "Tool returned canonical task_name only, no opaque UUID or launch timestamp. Timestamp here is receipt persistence time."
     },
@@ -180,7 +180,7 @@
       ],
       "ownDirectory": "qa/homepage-personal-20/07",
       "phase": "discovery",
-      "status": "independent discovery plan ready; build pending early gate",
+      "status": "same author discovery plan revised; architecture/type diversity acceptance pending; no build",
       "context": "fork_turns none",
       "receiptLimit": "Tool returned canonical task_name only. Timestamp is receipt persistence time."
     },
@@ -221,7 +221,7 @@
       ],
       "ownDirectory": "qa/homepage-personal-20/08",
       "phase": "discovery",
-      "status": "independent discovery plan ready; build pending early gate",
+      "status": "same author discovery plan revised; architecture/type diversity acceptance pending; no build",
       "context": "fork_turns none",
       "receiptLimit": "Tool returned canonical task_name only. Timestamp is receipt persistence time."
     },
@@ -262,7 +262,7 @@
       ],
       "ownDirectory": "qa/homepage-personal-20/09",
       "phase": "discovery",
-      "status": "independent discovery plan ready; build pending early gate",
+      "status": "same author discovery plan revised; architecture/type diversity acceptance pending; no build",
       "context": "fork_turns none",
       "receiptLimit": "Tool returned canonical task_name only. Timestamp is receipt persistence time."
     },
@@ -745,5 +745,30 @@
     "05": "plan ready; distinct architecture revision needed",
     "06": "plan ready; later turn capacity error, same author retained"
   },
-  "discoveryPlansReady": 17
+  "discoveryPlansReady": 17,
+  "parentGate": {
+    "baseline": "fd9df4514b81eedd9e965be0a3c0828f4152e368",
+    "status": "failed",
+    "reason": "Pale neutral small-type/table dashboards lost distinctive visual character and prioritized data-quality chores.",
+    "revisionOwners": [
+      "/root/personal01",
+      "/root/personal02",
+      "/root/personal03"
+    ],
+    "critic": "/root/personal_visual_critic",
+    "criticCountsAsAuthor": false,
+    "freshAuthorCountRemains": 20,
+    "revisionStatus": "Ready for another parent gate, not final user approval",
+    "visualReport": "qa/homepage-personal-20/reviews/contrast-critic/REVISED-GATE.md",
+    "runtimeReport": "qa/homepage-personal-20/reviews/revised-journeys.json"
+  },
+  "sameAuthorDiscoveryRevisionsReady": [
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09"
+  ],
+  "remainingDiscoveryReview": "Plans 04\u201309 revised by their original authors, still awaiting structural diversity acceptance. Plans10\u201320 need the same review before any build."
 }

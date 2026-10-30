@@ -1,125 +1,195 @@
 {
+  "revision": "bright social league",
   "browser": "System Chromium via installed Playwright",
-  "personas": [
+  "errors": [],
+  "home": [
     {
       "persona": "reaves",
       "heading": "Reaves Dropper",
-      "sizes": [
-        {
-          "viewport": 1440,
-          "content": 1440,
-          "height": 3336
-        },
-        {
-          "viewport": 1120,
-          "content": 1120,
-          "height": 3354
-        }
-      ],
-      "enlarged150": {
-        "viewport": 1120,
-        "content": 1120
+      "at1440": {
+        "viewport": 1440,
+        "content": 1440,
+        "height": 2809
       },
-      "rosterPlayers": 24
+      "fullRosterRows": 0,
+      "standingsTables": 0,
+      "loadedImages": true,
+      "at1120": {
+        "viewport": 1120,
+        "content": 1120,
+        "height": 2791
+      },
+      "text150": {
+        "viewport": 1120,
+        "content": 1120,
+        "height": 4581
+      }
     },
     {
       "persona": "neural",
       "heading": "NeuralNets",
-      "sizes": [
-        {
-          "viewport": 1440,
-          "content": 1440,
-          "height": 3545
-        },
-        {
-          "viewport": 1120,
-          "content": 1120,
-          "height": 3540
-        }
-      ],
-      "enlarged150": {
-        "viewport": 1120,
-        "content": 1120
+      "at1440": {
+        "viewport": 1440,
+        "content": 1440,
+        "height": 2809
       },
-      "rosterPlayers": 22
+      "fullRosterRows": 0,
+      "standingsTables": 0,
+      "loadedImages": true,
+      "at1120": {
+        "viewport": 1120,
+        "content": 1120,
+        "height": 2791
+      },
+      "text150": {
+        "viewport": 1120,
+        "content": 1120,
+        "height": 4498
+      }
     },
     {
       "persona": "guest",
-      "heading": "The league, in view.",
-      "sizes": [
-        {
-          "viewport": 1440,
-          "content": 1440,
-          "height": 2239
-        },
-        {
-          "viewport": 1120,
-          "content": 1120,
-          "height": 2234
-        }
-      ],
-      "enlarged150": {
-        "viewport": 1120,
-        "content": 1120
+      "heading": "The league comes together.",
+      "at1440": {
+        "viewport": 1440,
+        "content": 1440,
+        "height": 2225
       },
-      "rosterPlayers": 0
+      "fullRosterRows": 0,
+      "standingsTables": 0,
+      "loadedImages": true,
+      "at1120": {
+        "viewport": 1120,
+        "content": 1120,
+        "height": 2285
+      },
+      "text150": {
+        "viewport": 1120,
+        "content": 1120,
+        "height": 4052
+      }
     }
   ],
-  "errors": [],
   "actions": {
-    "matchupOpened": true,
-    "matchupCloseReturnsFocus": true,
-    "playerInspection": true,
-    "playerPortrait": true,
-    "playerCloseReturnsFocus": true,
-    "reavesSourceDisclosure": true,
-    "neuralUnpricedRows": 6,
-    "neuralUnpricedStatus": "Showing 6 of 22 players · missing quotes are not zero",
-    "longNameSearch": "Showing 1 of 22 players",
-    "neuralSourceDisclosure": true,
-    "guestSourceDisclosure": true
+    "matchupLocalURL": "matchup",
+    "savedModel": true,
+    "matchupBackFocus": true,
+    "namedPlayer": "Joel Embiid",
+    "playerReceipt": "Modeled player quote · FAAB\n137.50\nSynthetic modeled quote, checked 30 Oct 2026 at 08:10 UTC. Not a cash balance or a sale price.\nSynthetic completed Week 2 · 19–25 Oct 2026\n38 counted points\nVerified within this synthetic sample. Full game logs are not supplied; this is not a current-week score.",
+    "playerBackFocus": true,
+    "rosterRows": 24,
+    "rosterSearchRestored": "joel",
+    "rosterRowFocus": true,
+    "neuralMissingScore": "Not returned",
+    "neuralMainAction": "Open the matchup\n→",
+    "neuralNoModel": "No saved model result is supplied for this pairing in your demo view. No probability or winner is invented.",
+    "unpricedRows": 6,
+    "leagueTeams": 10,
+    "leaguePairings": 5,
+    "previousManagerQualified": true,
+    "sourcesOpen": true,
+    "sourceCloseFocus": true,
+    "all15DestinationRoutes": true,
+    "personaSelector": true
   },
-  "colors": [
+  "detailWidths": [
     {
-      "label": "body on page",
-      "foreground": "#202921",
-      "background": "#f4f3ef",
-      "ratio": 13.5
+      "view": "filtered roster",
+      "viewport": 1120,
+      "content": 1120,
+      "height": 1453
     },
     {
-      "label": "muted on page",
-      "foreground": "#59615a",
-      "background": "#f4f3ef",
-      "ratio": 5.76
+      "view": "Neural matchup",
+      "viewport": 1120,
+      "content": 1120,
+      "height": 1767
     },
     {
-      "label": "primary label on fill",
-      "foreground": "#ffffff",
-      "background": "#a83317",
-      "ratio": 6.66
+      "view": "Giannis player",
+      "viewport": 1120,
+      "content": 1120,
+      "height": 1531
     },
     {
-      "label": "muted on quote surface",
-      "foreground": "#59615a",
-      "background": "#ecece6",
-      "ratio": 5.39
+      "view": "Giannis player 150%",
+      "viewport": 1120,
+      "content": 1120,
+      "height": 2515
     },
     {
-      "label": "body on white",
-      "foreground": "#202921",
-      "background": "#ffffff",
-      "ratio": 14.99
+      "view": "Guest league",
+      "viewport": 1120,
+      "content": 1120,
+      "height": 2528
+    },
+    {
+      "view": "Neural team profile",
+      "viewport": 1120,
+      "content": 1120,
+      "height": 1481
     }
   ],
   "structure": {
-    "stage": "structure",
-    "height": 3354,
-    "background": "rgb(243, 243, 243)",
-    "normalHeight": 3354
+    "normal": {
+      "viewport": 1120,
+      "content": 1120,
+      "height": 2791
+    },
+    "neutral": {
+      "viewport": 1120,
+      "content": 1120,
+      "height": 2791
+    }
   },
+  "colors": [
+    {
+      "label": "ink on sun",
+      "foreground": "#241d4b",
+      "background": "#e9fb70",
+      "ratio": 13.68
+    },
+    {
+      "label": "ink on lilac",
+      "foreground": "#241d4b",
+      "background": "#e0d5ff",
+      "ratio": 11.19
+    },
+    {
+      "label": "ink on sky",
+      "foreground": "#241d4b",
+      "background": "#beeafa",
+      "ratio": 12.08
+    },
+    {
+      "label": "muted on page",
+      "foreground": "#5d5870",
+      "background": "#fdfcf7",
+      "ratio": 6.6
+    },
+    {
+      "label": "muted on sky",
+      "foreground": "#5d5870",
+      "background": "#beeafa",
+      "ratio": 5.28
+    },
+    {
+      "label": "white on primary",
+      "foreground": "#ffffff",
+      "background": "#4434bd",
+      "ratio": 8.5
+    },
+    {
+      "label": "white on footer",
+      "foreground": "#ffffff",
+      "background": "#241d4b",
+      "ratio": 15.53
+    }
+  ],
   "finalSmoke": {
-    "all15DestinationsPresent": true,
-    "missingDestinations": [],
-    "personaSelectorNavigatedToGuest": true
+    "guestOneFilledPrimary": true,
+    "guestSignInPresent": true,
+    "noLastVisitClaim": true,
+    "accurateTeamNotesLabel": true
   }
 }

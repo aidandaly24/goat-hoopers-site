@@ -1,153 +1,193 @@
 import { fixture } from '../fixture.js';
 
-const params = new URLSearchParams(location.search);
-const personaKey = Object.hasOwn(fixture.personas, params.get('persona')) ? params.get('persona') : 'reaves';
+const root = document.documentElement;
+const main = document.querySelector('#main');
+const initial = new URLSearchParams(location.search);
+const personaKey = Object.hasOwn(fixture.personas, initial.get('persona')) ? initial.get('persona') : 'reaves';
 const person = fixture.personas[personaKey];
 const member = person.kind === 'member';
-const root = document.documentElement;
 root.dataset.persona = personaKey;
-if (params.get('stage') === 'structure') root.dataset.stage = 'structure';
-document.querySelector('#persona').value = personaKey;
-document.querySelector('#persona').addEventListener('change', (event) => {
-  const url = new URL(location.href);
-  url.searchParams.set('persona', event.target.value);
-  url.hash = '';
-  location.assign(url.href);
-});
-if (!member) document.querySelector('[data-member-nav]').remove();
-document.querySelector('.brand').href = location.search || './';
-document.querySelector('.primary-nav [aria-current]').href = location.search || './';
-
-const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const number = value => new Intl.NumberFormat('en-US', {maximumFractionDigits:2}).format(value);
-const team = id => fixture.teams.find(t => t.id === id);
-function labelExternalLinks(container) {
-  container.querySelectorAll('a[href^="https://goathoopers.com"]').forEach(link => {
-    if (link.querySelector('.exit-icon')) return;
-    link.setAttribute('aria-label', `${link.textContent.trim()} — current GOAT site; leaves prototype`);
+if (initial.get('stage') === 'structure') root.dataset.stage = 'structure';
+const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const num = value => new Intl.NumberFormat('en-US',{maximumFractionDigits:2}).format(value);
+const money = value => new Intl.NumberFormat('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}).format(value);
+const team = id => fixture.teams.find(t=>t.id===id);
+const ordinal = n => `${n}${n%100>10&&n%100<14?'th':({1:'st',2:'nd',3:'rd'}[n%10]||'th')}`;
+const firsts = name => name.split(' ').map(n=>n[0]).slice(0,2).join('');
+const ownPlayer = id => member ? person.players.find(p=>p.id===id) : null;
+const defaultMatch = () => member ? person.matchup : fixture.matchups[0];
+function urlFor(view='home', extra={}) {
+  const query = new URLSearchParams();
+  query.set('persona',personaKey);
+  if(root.dataset.stage==='structure') query.set('stage','structure');
+  if(view!=='home') query.set('view',view);
+  for(const [key,value] of Object.entries(extra)) if(value!==undefined&&value!==null) query.set(key,value);
+  return `?${query.toString()}`;
+}
+function local(text,view,extra={},id='',className='text-link') {
+  return `<a data-local${id?` id="${esc(id)}"`:''} href="${esc(urlFor(view,extra))}" class="${className}">${esc(text)}</a>`;
+}
+function external(text,href,className='text-link') {
+  return `<a href="https://goathoopers.com${href}" class="${className}">${esc(text)}</a>`;
+}
+function labelExits(container) {
+  container.querySelectorAll('a[href^="https://goathoopers.com"]').forEach(link=>{
+    if(link.querySelector('.exit-icon'))return;
+    link.setAttribute('aria-label',`${link.textContent.trim()} — current GOAT site; leaves prototype`);
     link.insertAdjacentHTML('beforeend','<svg class="exit-icon" viewBox="0 0 12 12" aria-hidden="true" focusable="false"><path d="M2 10 10 2M3 2h7v7"/></svg>');
   });
 }
-const ordinal = value => `${value}${value % 100 > 10 && value % 100 < 14 ? 'th' : ({1:'st',2:'nd',3:'rd'}[value % 10] || 'th')}`;
-const portrait = player => `<span class="portrait" aria-hidden="true">${player.portrait ? `<img src="${escape(player.portrait)}" alt="" width="36" height="36">` : escape(player.name.split(' ').map(w => w[0]).slice(0,2).join(''))}</span>`;
-const playerButton = (player, prefix, photo = false) => `<button type="button" id="${prefix}-${player.id}" class="player-button" data-player="${player.id}" aria-expanded="false">${photo ? portrait(player) : ''}<span>${escape(player.name)}${photo ? `<small>${escape(player.position)} · Counted sample</small>` : ''}</span></button>`;
-
-function pageHeading() {
-  return `<div class="page-top"><div><p class="eyebrow">2026 season / Week 03 / ${member ? 'Your notebook' : 'Public league notebook'}</p><h1>${member ? escape(person.team.name) : 'The league, at a glance.'}</h1><p class="identity-sub">${member ? `${escape(person.team.manager)} <span aria-hidden="true">·</span> ${person.players.length} players in this demo roster` : 'GOAT Hoopers · Ten teams, one season to follow'}</p></div>${member ? `<dl class="identity-stats"><div><dt>Season record</dt><dd>${person.team.wins}–${person.team.losses}</dd></div><div><dt>League position</dt><dd>${ordinal(person.standing.rank)}<span>/ 10</span></dd></div></dl>` : `<p class="small muted">Synthetic snapshot<br><time datetime="2026-10-30T08:30:00Z">30 October · 08:30 UTC</time></p>`}</div>`;
+function portrait(player,className='',large=false) {
+  return player.portrait ? `<img class="${className}" src="${esc(player.portrait)}" alt="${large?`Approved portrait of ${esc(player.name)}`:''}" width="300" height="201">` : `<span class="profile-initials" aria-label="No portrait supplied">${esc(firsts(player.name))}</span>`;
 }
-
-function updates() {
-  const item = person.changes[0];
-  return `<div class="update-line"><p class="eyebrow">New to inspect</p><a href="#${item.target === 'players' ? 'players' : 'valuation'}">${escape(item.headline)} <span aria-hidden="true">→</span></a><time datetime="${item.at}">${item.at.slice(11,16)} UTC · demo</time></div>`;
+function scoreText(value, ribbon=false) {
+  return value===null ? `<span class="${ribbon?'ribbon-pending':'unavailable'}">Score unavailable</span>` : num(value);
 }
-
-function evidence() {
-  const verified = person.players.filter(p => p.completedWeekPoints !== null);
-  return `<section id="players" aria-labelledby="players-title"><div class="section-top"><div><p class="eyebrow">The player notebook</p><h2 id="players-title">${personaKey === 'reaves' ? 'Five performances to inspect.' : 'Start with what is counted.'}</h2></div><span class="tag">Completed Week 2</span></div><p class="section-intro">${personaKey === 'reaves' ? 'New player evidence is ready. Open a name to put the counted points beside its current modeled quote.' : 'Three players have counted evidence in this sample. Keep that small window separate from the missing matchup score.'}</p><table class="evidence-table"><caption>Synthetic October 19–25, 2026 · player points</caption><thead><tr><th scope="col">Player / position</th><th scope="col">Counted points</th></tr></thead><tbody>${verified.map(p => `<tr>${`<td>${playerButton(p,'evidence',true)}</td><td class="points">${number(p.completedWeekPoints)}</td>`}</tr>`).join('')}</tbody></table><div class="sample-note"><span class="data">${verified.length} / ${person.players.length}</span><p>roster players have counted evidence. The other ${person.players.length - verified.length} are unknown in this sample, not zero.</p></div></section>`;
+function scoreFor(m,id) { return m.home===id?m.homePoints:m.awayPoints; }
+function heading(title,eyebrow,description='',action='') {
+  return `<div class="destination-heading"><div><p class="eyebrow">${esc(eyebrow)}</p><h1 tabindex="-1">${esc(title)}</h1>${description?`<p>${esc(description)}</p>`:''}</div>${action}</div>`;
 }
-
-function gaps() {
-  const missing = person.players.filter(p => p.modeledFaab === null);
-  return `<section class="gap-block" aria-labelledby="gaps-title"><p class="eyebrow">Coverage needs attention</p><h2 id="gaps-title">Six names without a quote.</h2><p>The $${number(person.valuation.modeledFaabSubtotal)} modeled FAAB subtotal covers 16 of 22 players. It cannot stand in for the whole roster or receive a team-value rank.</p><ul class="gap-list">${missing.map(p => `<li><button type="button" id="gap-${p.id}" data-gap="${p.id}" aria-expanded="false">${escape(p.name)} <span>${p.position}</span></button></li>`).join('')}</ul></section>`;
+function backLink(fallback='home',text='Back to the edition') {
+  return `<a data-back href="${esc(urlFor(fallback))}" class="back-link">← ${esc(text)}</a>`;
 }
-
-function matchup() {
-  const ownScore = person.matchup.home === person.teamId ? person.matchup.homePoints : person.matchup.awayPoints;
-  const otherScore = person.matchup.home === person.teamId ? person.matchup.awayPoints : person.matchup.homePoints;
-  const scoreRow = (t,s,own) => `<div class="scoreline"><p class="team-name">${escape(t.name)}<span>${own ? 'Your team' : 'Opponent'} · ${t.wins}–${t.losses}</span></p><p class="score${s === null ? ' missing' : ''}">${s === null ? 'Score unavailable' : number(s)}</p></div>`;
-  return `<aside aria-labelledby="matchup-title"><section class="companion" id="matchup"><div><p class="eyebrow">Beside the notebook</p><h2 id="matchup-title">This week’s pairing</h2>${scoreRow(person.team,ownScore,true)}${scoreRow(person.opponent,otherScore,false)}<p class="match-note">${ownScore === null ? '<strong>No leader can be determined.</strong> Papichooter’s recorded zero is a known value; your score has not been returned.' : `<strong>${escape(person.team.name)} leads by ${number(ownScore - otherScore)}.</strong> In-progress synthetic score; this is not a final result.`}</p><details class="local-detail"><summary>Inspect matchup context</summary><dl class="match-detail-list"><div><dt>Your season points</dt><dd>${number(person.team.pointsFor)}</dd></div><div><dt>Opponent’s season points</dt><dd>${number(person.opponent.pointsFor)}</dd></div></dl><p>Week 3 pairs ${escape(person.team.name)} with ${escape(person.opponent.name)}. Season points and the current matchup score describe different periods.</p><p class="small sans">Score snapshot: October 30, 2026 · 08:30 UTC. Synthetic data; no live clock.</p></details></div><section class="model-section" aria-labelledby="model-title"><p class="eyebrow">${person.savedAi.status === 'ready' ? 'Saved model context' : 'Model context'}</p><h3 id="model-title">${person.savedAi.status === 'ready' ? 'A slight lean, with low confidence.' : 'No saved estimate for this pairing.'}</h3>${person.savedAi.status === 'ready' ? `<div class="model-numbers"><span>Reaves 56%</span><span>Ware 44%</span></div><div class="model-bar" aria-hidden="true"><span></span></div><p>Returned choice: Reaves Dropper. Confidence: <span class="data">0.35</span>, separate from the probabilities.</p><p style="margin-top:.6rem">Synthetic saved model estimate, generated October 26 at 08:00 UTC. Not calibrated odds; no fresh run is performed.</p>` : '<p>No pick, probabilities or confidence are available. The notebook remains usable without an AI result.</p>'}</section></section><div class="side-note"><p>${personaKey === 'reaves' ? 'Your matchup tells you where you stand. The player notebook shows which evidence is actually available.' : 'A missing value is a reason to inspect the source, never a reason to fill in a zero.'}</p></div></aside>`;
+function pairingRibbon() {
+  if(!member)return `<section class="match-ribbon" aria-label="This week's public edition"><div class="ribbon-inner"><p class="ribbon-week">Week 03<br>2026 season</p><div class="ribbon-pair"><span class="ribbon-team">Ten teams. Five pairings.</span><span class="ribbon-vs">A public look at the synthetic week.</span></div>${local('Explore this week →','league',{},'ribbon-week','ribbon-link')}</div></section>`;
+  return `<section class="match-ribbon" aria-label="Your current matchup"><div class="ribbon-inner"><p class="ribbon-week">Your matchup<br>Week 03</p><div class="ribbon-pair"><span class="ribbon-team">${esc(person.team.name)}</span><span class="ribbon-score">${scoreText(scoreFor(person.matchup,person.teamId),true)}</span><span class="ribbon-vs">vs</span><span class="ribbon-team">${esc(person.opponent.name)}</span><span class="ribbon-score">${scoreText(scoreFor(person.matchup,person.opponent.id),true)}</span></div>${local('Open your matchup →','matchup',{matchup:person.matchup.id},'ribbon-matchup','ribbon-link')}</div></section>`;
 }
-
-function roster() {
-  const v = person.valuation;
-  const half = Math.ceil(person.players.length / 2);
-  const table = (players, i) => `<table class="roster-table"><caption>Roster names ${i === 0 ? `1–${half}` : `${half+1}–${person.players.length}`}</caption><thead><tr><th scope="col">Player</th><th scope="col">Pos.</th><th scope="col">Modeled FAAB</th></tr></thead><tbody>${players.map(p => `<tr data-roster-name="${escape(p.name.toLowerCase())}"><td>${playerButton(p,'quote')}</td><td class="position">${escape(p.position)}</td><td class="${p.modeledFaab === null ? 'no-quote' : 'quote'}">${p.modeledFaab === null ? 'Unpriced' : `$${number(p.modeledFaab)}`}</td></tr>`).join('')}</tbody></table>`;
-  return `<section class="ledger" id="valuation" aria-labelledby="roster-title"><div class="ledger-heading"><div><p class="eyebrow">Your full roster / Quote inspection</p><h2 id="roster-title">${v.complete ? 'Every name has a quote.' : 'Keep the gaps in the picture.'}</h2><p>${v.complete ? 'All 24 player quotes are included. Inspect any player’s modeled value and counted evidence together, without leaving this page.' : 'Browse all 22 players, including the six who remain unpriced. Missing prices stay visible; they are excluded from the available subtotal.'}</p></div><div class="quote-total"><p class="eyebrow">${v.complete ? 'Complete modeled roster total' : 'Available modeled subtotal'}</p><p class="data">$${number(v.modeledFaabSubtotal)}</p><p>Modeled FAAB · ${v.priced}/${v.roster} players quoted${v.complete ? ' · Full roster coverage' : ' · No complete value rank'}</p><div class="coverage-track" aria-hidden="true"><span style="width:${100*v.priced/v.roster}%"></span></div><p>This is a model quote, not a cash balance. League value rank is unavailable: not every team has a complete comparable quote.</p></div></div><div class="ledger-tools"><label for="roster-search">Find a roster player <input id="roster-search" type="search" autocomplete="off" placeholder="Search by name"></label><p id="roster-count" aria-live="polite">${person.players.length} players · open a name to inspect</p></div><div class="ledger-tables">${table(person.players.slice(0,half),0)}${table(person.players.slice(half),1)}</div><p id="empty-search" class="empty-search" hidden>No matching player in this demo roster. Try a shorter name.</p><div class="roster-foot"><p>Quotes checked October 30, 2026 · 08:10 UTC. Synthetic modeled values. No availability, injury or lineup status is inferred from the price or sample.</p><p>No recorded team-value history is included, so no trend is drawn. Lineup Power is unavailable because this fixture has no producer snapshot.</p></div></section>`;
+function editionHeading() {
+  return `<div class="wrap edition-heading"><div><p class="eyebrow">Courtside / Your weekly point of view</p><h1 tabindex="-1">${member?`${esc(person.team.name)}’s edition.`:'A league worth keeping up with.'}</h1><p class="byline">${member?`For ${esc(person.team.manager)} · 2026 season · ${person.team.wins}–${person.team.losses} record`:'The public GOAT Hoopers edition · 10 teams · 2026 season'}</p></div><p class="edition-date">Friday, 30 October 2026<br>Week 03 · Synthetic edition</p></div>`;
 }
-
-function standings() {
-  return `<table class="standings-table"><caption>Synthetic 2026 standings · after two completed weeks</caption><thead><tr><th scope="col">Pos.</th><th scope="col">Team</th><th scope="col">W–L</th><th scope="col">Points for</th></tr></thead><tbody>${fixture.standings.map(t=>`<tr class="${member && t.id === person.teamId ? 'is-viewer' : ''}"><td>${String(t.rank).padStart(2,'0')}</td><td><button type="button" class="team-button" id="standing-${t.id}" data-team="${t.id}" aria-expanded="false">${escape(t.name)}</button>${member && t.id === person.teamId ? '<span class="you">Your team</span>' : ''}</td><td>${t.wins}–${t.losses}</td><td>${number(t.pointsFor)}</td></tr>`).join('')}</tbody></table>`;
+function leadFeature() {
+  const p=ownPlayer(personaKey==='reaves'?'1511':'1380');
+  return `<article class="lead-feature" aria-labelledby="lead-title"><div class="feature-heading"><div><p class="eyebrow">The names on your roster</p><h2 id="lead-title">${personaKey==='reaves'?'Embiid & Şengün: your frontcourt.':'Giannis & LaMelo: two names in your week.'}</h2></div></div><figure><div class="feature-visual"><div class="portrait-stage"><span class="position-label">${esc(p.position)}<br>${personaKey==='reaves'?'Joel Embiid':'Giannis Antetokounmpo'}</span>${portrait(p,'',true)}</div><div class="court-inset"><img src="${fixture.assets.court}" alt="GOAT Hoopers' illustrated home court and crowd" width="1440" height="810"></div></div><figcaption class="image-caption"><span>${esc(p.name)} · ${esc(person.team.name)}</span><span>Roster portrait / GOAT court artwork</span></figcaption></figure><div class="feature-body"><div><p>${personaKey==='reaves'?'Your 2–0 start meets Ware the Hoes At? this week. Joel Embiid and Alperen Şengün are two centers on your 24-player roster, and a useful place to begin a closer look at the team you own.':'At 0–2, NeuralNets faces a 2–0 papichooter side. Giannis Antetokounmpo at power forward and LaMelo Ball at point guard give this edition two different positions to begin exploring your 22-player roster.'}</p><p>${personaKey==='reaves'?'The sample has 38 counted Week 2 points for Embiid, alongside a current modeled quote of $137.50 FAAB. Those figures describe different periods; the player profile puts both in context.':'Giannis has 45 counted points in the completed Week 2 sample, alongside a modeled quote of $135.50 FAAB. Open his profile, then follow the rest of your roster on its own page.'}</p>${local(`Open ${personaKey==='reaves'?'Embiid':'Giannis'}’s player profile →`,'player',{player:p.id},'lead-player')}</div><aside class="feature-note" aria-label="Selected player facts"><div><p class="eyebrow">${esc(p.name)}</p><p class="feature-value data">${num(p.completedWeekPoints)}</p><p class="small">Counted points<br>Synthetic completed Week 2</p></div><hr class="story-rule"><div><p class="feature-value data">$${money(p.modeledFaab)}</p><p class="small">Modeled FAAB quote<br>October 30 · not a cash balance</p></div></aside></div></article>`;
 }
-
-function league() {
-  return `<section class="league-section" id="league" aria-labelledby="league-title"><p class="eyebrow">The wider picture</p><h2 id="league-title" style="margin-top:.4rem">A place in a ten-team league.</h2><p class="league-intro">${member ? `${escape(person.team.name)} is ${ordinal(person.standing.rank)} after two completed weeks. Open any team for its season and historical context.` : 'Three teams are 2–0. Open a team name to inspect the record behind its place.'}</p><div class="league-layout"><div>${standings()}</div><aside class="league-aside"><p class="eyebrow">Season context</p><h3>Six playoff places.<br>Plenty of season left.</h3><p>Ten teams are playing toward a six-team playoff field beginning in Week 20. These Week 3 positions describe the demo today, not a playoff projection.</p><p class="small">Historical reference · 2025 final</p><p>${escape(team(fixture.historicalFinal.winner).name)} beat ${escape(team(fixture.historicalFinal.runnerUp).name)}, <span class="data">326–251.5</span>.</p><a class="text-link" href="https://goathoopers.com/history">Explore league history</a><p class="small">Leaves this prototype for the current site.</p></aside></div></section>`;
+function supportFeature() {
+  const p=ownPlayer(personaKey==='reaves'?'2308':'2179');
+  return `<article class="support-story" aria-labelledby="support-title"><div><p class="eyebrow">Another part of your team</p><h3 id="support-title">${personaKey==='reaves'?'Alperen Şengün, alongside Embiid.':'LaMelo Ball, from the backcourt.'}</h3><p>${personaKey==='reaves'?'Şengün is another center in your roster, with a modeled quote of $108.25 FAAB. His profile sits one step from Embiid’s, so you can move between two of your frontcourt names.':'LaMelo is a point guard on your roster, with a modeled quote of $77.75 FAAB. His profile gives you a different position to explore after Giannis.'}</p><p class="sample-status">Completed Week 2 sample: not supplied.</p>${local(`Open ${personaKey==='reaves'?'Şengün':'LaMelo'}’s profile →`,'player',{player:p.id},'support-player')}</div><figure><div class="support-portrait">${portrait(p,'',true)}</div><figcaption class="support-caption">${esc(p.name)} · ${esc(p.position)}<br>Owned by ${esc(person.team.name)}</figcaption></figure></article>`;
 }
-
-function guest() {
-  return `<div class="guest-grid"><section id="matchup" aria-labelledby="public-match-title"><p class="eyebrow">Week 03 pairings</p><h2 id="public-match-title" style="margin-top:.4rem">Five games to follow.</h2><p class="guest-intro">A public look at the synthetic week. Open a pairing for its score context. A missing score remains unknown.</p><ul class="pair-list">${fixture.matchups.map(m => `<li><details><summary>${[[m.home,m.homePoints],[m.away,m.awayPoints]].map(([id,score])=>`<div class="pair-row"><span class="team-name">${escape(team(id).name)}</span><span class="${score === null ? 'missing-small' : 'data'}">${score === null ? 'No score' : number(score)}</span></div>`).join('')}<span class="pair-detail-hint">${m.state === 'partly_unavailable' ? 'Partial score coverage' : 'In-progress sample'} · Inspect context +</span></summary><p>${m.state === 'partly_unavailable' ? 'Papichooter has a recorded zero. NeuralNets has no returned score. These are different states; no leader can be inferred.' : 'Both scores are present in this in-progress synthetic sample. They are not a final result.'}</p><p>Snapshot: October 30 at 08:30 UTC. No live score connection.</p></details></li>`).join('')}</ul></section><aside><section class="guest-entry"><p class="eyebrow">You’re browsing the public edition</p><h2>Your own team has<br>its own notebook.</h2><p>Sign in on GOAT to reach your actual team. This public demo does not identify you or claim a private roster.</p><a class="button" href="https://goathoopers.com/login">Sign in on GOAT</a><p class="small sans">Opens the current GOAT site.</p></section><dl class="league-facts"><div><dt>League teams</dt><dd>10</dd></div><div><dt>Playoff places</dt><dd>6</dd></div><div><dt>Season</dt><dd>2026</dd></div><div><dt>Playoffs begin</dt><dd>Week 20</dd></div></dl><div class="guest-news"><p class="eyebrow">What this page can show</p><p>Public pairings, standings and franchise history are available below. Real league stories, transactions and tools are reachable in Explore GOAT.</p><a class="text-link" href="#league">Read the league table ↓</a></div></aside></div>`;
+function savedModel() {
+  if(!member||person.savedAi.status!=='ready')return `<p class="small">No saved model estimate is supplied for this pairing. No pick or probabilities are inferred.</p>`;
+  return `<details class="model-details"><summary>A saved view of this pairing</summary><div class="model-probabilities"><span>Reaves 56%</span><span>Ware 44%</span></div><p>Returned choice: Reaves Dropper. Confidence: <span class="data">0.35</span>, separate from the two probabilities.</p><p>Synthetic saved model estimate; not calibrated odds. Generated October 26 at 08:00 UTC. No fresh model run is performed.</p></details>`;
 }
-
-function directory() {
-  return `<section class="directory" aria-labelledby="directory-title"><p class="eyebrow">The people in the league</p><h2 id="directory-title" style="margin-top:.4rem">Ten teams. Meet the field.</h2><div class="directory-list">${fixture.teams.map(t => `<details class="directory-item"><summary>${escape(t.name)}<small>${escape(t.manager)}${t.previousSeason.finish === 1 ? ' · 2025 champion' : ''}</small></summary><p>2026 demo record: ${t.wins}–${t.losses}. Season points: ${number(t.pointsFor)}.</p><p>Historical 2025: ${t.previousSeason.wins}–${t.previousSeason.losses}, ${ordinal(t.previousSeason.finish)} finish. ${escape(t.previousSeason.ownerNote || '')}</p><a href="https://goathoopers.com/teams/${t.id}">Public team profile on current GOAT site</a></details>`).join('')}</div></section>`;
+function nextStops() {
+  const steps=member?[
+    ['Open your matchup',`Week 3 · ${person.opponent.name}`,'matchup',{matchup:person.matchup.id}],
+    ['Browse your roster',`${person.players.length} owned players, one place`,'roster',{}],
+    ['Follow the league',`${ordinal(person.standing.rank)} in the synthetic table`,'league',{}]
+  ]:[['Browse the teams','Ten franchises, their managers & history','league',{}],['Follow this week','All five public pairings','matchup',{matchup:'m1'}]];
+  return `<section class="next-index" aria-labelledby="next-title"><p class="eyebrow">Keep your week moving</p><h2 id="next-title">Your next stop</h2><ol class="next-stops">${steps.map(([name,note,view,extra],i)=>`<li><a data-local id="next-${i+1}" href="${esc(urlFor(view,extra))}"><span class="step">0${i+1}</span><span><strong>${esc(name)}</strong><small>${esc(note)}</small></span><span class="go" aria-hidden="true">→</span></a></li>`).join('')}${!member?`<li><a href="https://goathoopers.com/login"><span class="step">03</span><span><strong>Find your own team</strong><small>Sign in on the current GOAT site</small></span><span class="go" aria-hidden="true">→</span></a></li>`:''}</ol></section>`;
 }
-
-document.querySelector('#main').innerHTML = pageHeading() + (member ? `${updates()}<div class="notebook-grid"><div>${personaKey === 'neural' ? gaps() : ''}${evidence()}</div>${matchup()}</div>${roster()}${league()}` : `${guest()}${league()}${directory()}`);
-labelExternalLinks(document);
-document.title = `${member ? person.team.name : 'The league'} · GOAT Hoopers notebook`;
-
-let openInspection = null;
-function closeInspection(returnFocus = true) {
-  if (!openInspection) return;
-  const previous = openInspection;
-  previous.detail.remove();
-  previous.trigger.setAttribute('aria-expanded','false');
-  previous.trigger.removeAttribute('aria-controls');
-  openInspection = null;
-  if (returnFocus) previous.trigger.focus({preventScroll:true});
+function personalRail() {
+  const v=person.valuation;
+  return `<aside class="reading-rail" aria-label="Your next actions and season context">${nextStops()}<section class="rail-column"><p class="eyebrow">The season column</p><h3>${personaKey==='reaves'?'Two wins. This week, Ware.':'Papichooter is next.'}</h3><p>${personaKey==='reaves'?'Reaves Dropper leads the table after two completed weeks. Your current 184.5–171 pairing is in progress: a 13.5-point lead in this synthetic snapshot, not a final result.':'Papichooter is third at 2–0; NeuralNets is tenth at 0–2. Your next pairing is the point of focus. Papichooter’s recorded zero and your unavailable score cannot establish a leader.'}</p><dl class="season-facts"><div><dt>Your record</dt><dd>${person.team.wins}–${person.team.losses}</dd></div><div><dt>League position</dt><dd>${ordinal(person.standing.rank)} <span class="small">/ 10</span></dd></div></dl>${savedModel()}</section><section class="quote-summary" aria-labelledby="quote-title"><p class="eyebrow" id="quote-title">${v.complete?'Your roster, priced':'Your available roster quotes'}</p><p class="quote-value data">$${money(v.modeledFaabSubtotal)}</p><p>${v.complete?'Modeled FAAB · 24 of 24 players quoted. Your complete roster total is available.':'Modeled FAAB · 16 of 22 players quoted. This is a partial subtotal; six players are unpriced.'}</p><p style="margin-top:.5rem">Not a cash balance. No league value rank is established.</p>${local('Browse the roster & quotes →','roster',{},'rail-roster')}</section></aside>`;
 }
-function playerContent(player) {
-  return `<p><strong>${escape(player.name)}</strong> · ${escape(player.position)}</p><dl><div><dt>Modeled FAAB quote</dt><dd>${player.modeledFaab === null ? 'Unavailable' : `$${number(player.modeledFaab)}`}</dd></div><div><dt>Completed Week 2 points</dt><dd>${player.completedWeekPoints === null ? 'No counted evidence' : number(player.completedWeekPoints)}</dd></div></dl><p class="detail-note">${player.completedWeekPoints === null ? 'Missing sample evidence does not mean zero points or a DNP. ' : 'Counted points refer only to the synthetic October 19–25 sample. '} ${player.modeledFaab === null ? 'This player is excluded from the available quote subtotal.' : 'Quote checked October 30 at 08:10 UTC. Modeled FAAB is not cash.'}</p>`;
+function pairingsList(prefix='pair') {
+  return `<ul class="pairings-list">${fixture.matchups.map(m=>`<li><a data-local id="${prefix}-${m.id}" href="${esc(urlFor('matchup',{matchup:m.id}))}"><span class="pair-names"><span>${esc(team(m.home).name)}</span><span>${esc(team(m.away).name)}</span></span><span class="pair-scores"><span>${m.homePoints===null?'Unavailable':num(m.homePoints)}</span><span class="${m.awayPoints===null?'unknown':''}">${m.awayPoints===null?'Score unavailable':num(m.awayPoints)}</span></span></a></li>`).join('')}</ul>`;
 }
-function inspectRow(trigger, type) {
-  if (openInspection?.trigger === trigger) { closeInspection(); return; }
-  closeInspection(false);
-  const row = trigger.closest('tr');
-  const detail = document.createElement('tr');
-  detail.className = 'inline-detail';
-  detail.id = `inspection-${trigger.id}`;
-  let content;
-  if (type === 'player') content = playerContent(person.players.find(p=>p.id === trigger.dataset.player));
-  else {
-    const t = team(trigger.dataset.team);
-    content = `<p><strong>${escape(t.name)}</strong> · ${escape(t.manager)}</p><dl><div><dt>2026 demo record</dt><dd>${t.wins}–${t.losses}</dd></div><div><dt>2026 season points</dt><dd>${number(t.pointsFor)}</dd></div></dl><p class="detail-note">Historical 2025: ${t.previousSeason.wins}–${t.previousSeason.losses}, ${ordinal(t.previousSeason.finish)} finish. ${escape(t.previousSeason.ownerNote || '')}</p><p class="detail-note"><a href="https://goathoopers.com/teams/${t.id}">Team profile on current GOAT site</a></p>`;
-  }
-  detail.innerHTML = `<td colspan="${row.cells.length}"><div class="inline-detail-inner"><div>${content}</div><button type="button" data-close-inspection>Close ×</button></div></td>`;
-  row.after(detail);
-  labelExternalLinks(detail);
-  openInspection = {trigger,detail};
-  trigger.setAttribute('aria-expanded','true');trigger.setAttribute('aria-controls',detail.id);
-  detail.querySelector('[data-close-inspection]').focus({preventScroll:true});
+function leagueNotebook() {
+  const slice=fixture.standings.slice(0,3);
+  if(member&&!slice.some(t=>t.id===person.teamId))slice.push(person.standing);
+  return `<section class="league-notebook" id="league-notebook" aria-labelledby="league-notebook-title"><div class="wrap"><div class="section-intro"><div><p class="eyebrow">The league notebook</p><h2 id="league-notebook-title">The week beyond your own team.</h2></div>${local('Open the full league page →','league',{},'notebook-full-league')}</div><div class="league-notebook-grid"><section aria-labelledby="slice-title"><h3 class="notebook-heading" id="slice-title">The front of the table${member&&person.standing.rank>3?' & your place':''}</h3><ol class="standing-slice">${slice.map(t=>`<li class="${member&&t.id===person.teamId?'viewer-row':''}"><span class="place">${String(t.rank).padStart(2,'0')}</span><span>${local(t.name,'team',{team:t.id},`slice-${t.id}`,'')}${member&&t.id===person.teamId?'<span class="you">Your team</span>':''}</span><span class="standing-record">${t.wins}–${t.losses}</span></li>`).join('')}</ol><p class="slice-note">${member&&person.standing.rank>3?'Selected positions, not consecutive rows. ':''}Synthetic standings after two completed weeks. Six playoff places; playoffs begin in Week 20.</p></section>${member?`<section aria-labelledby="pairings-title"><h3 class="notebook-heading" id="pairings-title">Week 3 · all five pairings</h3>${pairingsList('notebook-pair')}</section>`:`<section aria-labelledby="public-season-title"><h3 class="notebook-heading" id="public-season-title">The shape of the season</h3><p class="serif">Ten teams are working toward six playoff places, with the postseason beginning in Week 20. The current synthetic table describes two completed weeks, not a playoff forecast.</p><p class="slice-note">Stories, older editions and actual league transactions live on the current GOAT site.</p><div class="profile-links">${external('Read the weekly archive','/weekly')}${external('Browse league news','/news')}</div></section>`}</div><div class="notebook-tail"><p>Scores are an in-progress synthetic snapshot. Missing is never zero.</p>${local('Meet the ten teams →','league',{},'notebook-teams')}</div></div></section>`;
 }
-document.querySelector('#main').addEventListener('click',event=>{
-  const player = event.target.closest('[data-player]');
-  const teamTrigger = event.target.closest('[data-team]');
-  const gap = event.target.closest('[data-gap]');
-  if (player) inspectRow(player,'player');
-  if (teamTrigger) inspectRow(teamTrigger,'team');
-  if (event.target.closest('[data-close-inspection]')) closeInspection();
-  if (gap) {
-    if (openInspection?.trigger === gap) {closeInspection();return;}
-    closeInspection(false);
-    const p = person.players.find(p=>p.id===gap.dataset.gap);
-    const detail = document.createElement('div');detail.className='gap-inspect';detail.id=`inspection-${gap.id}`;
-    detail.innerHTML = `<p>No modeled FAAB quote is available for ${escape(p.name)}. Counted Week 2 evidence is also unavailable. Neither missing value is zero.</p><button type="button" data-close-inspection>Close inspection ×</button>`;
-    gap.after(detail);gap.setAttribute('aria-expanded','true');gap.setAttribute('aria-controls',detail.id);openInspection={trigger:gap,detail};detail.querySelector('button').focus({preventScroll:true});
-  }
+function editionEnd() {
+  return `<section class="wrap edition-end" aria-label="More from GOAT"><article><p class="eyebrow">A little league memory</p><h2>The title has a history.</h2><p>In the retained 2025 final reference, Josh Diddy’s Roster beat papichooter <span class="data">326–251.5</span>. The current season is its own story.</p>${external('Read the league history','/history')}</article><article><p class="eyebrow">When you want the whole picture</p><h2>Your team has more than two names.</h2><p>${person.players.length} players belong to ${esc(person.team.name)} in this demo. Open the roster for each quote, position and available completed-week sample.</p>${local('Go to your full roster →','roster',{},'end-roster')}</article></section>`;
+}
+function guestHome() {
+  return `${pairingRibbon()}${editionHeading()}<div class="wrap edition-grid"><div><article class="lead-feature public-cover" aria-labelledby="lead-title"><div class="feature-heading"><div><p class="eyebrow">From the league’s history / 2025 final</p><h2 id="lead-title">The title belonged to Josh Diddy’s Roster.</h2></div></div><figure><div class="feature-visual"><div class="court-inset"><img src="${fixture.assets.court}" alt="The illustrated GOAT Hoopers court and crowd" width="1440" height="810"></div></div><figcaption class="image-caption"><span>GOAT Hoopers home court artwork</span><span>Illustration, not a photo of the 2025 final</span></figcaption></figure><div class="feature-body"><div><p>Ten teams share this league. The retained 2025 final reference ends with Josh Diddy’s Roster over papichooter, 326–251.5. Now, the synthetic 2026 edition has a new week to follow.</p><p>Read the current pairings, meet the managers, or open the league page to see all ten teams in one place. Sign in on the real GOAT site for your actual team.</p>${local('Meet the league →','league',{},'guest-meet')}</div><aside class="feature-note"><p class="eyebrow">2025 final</p><p class="feature-value data">326</p><p class="small">Josh Diddy’s Roster</p><hr class="story-rule"><p class="feature-value data">251.5</p><p class="small">papichooter</p></aside></div></article></div><aside class="reading-rail" aria-label="Public pairings and account entry"><section class="guest-pairings"><p class="eyebrow">The current synthetic week</p><h2>Five pairings to follow</h2>${pairingsList('guest-pair')}<p class="slice-note">No live score connection. Open any pair for its context.</p></section><section class="guest-entry"><p class="eyebrow">Your team has its own edition</p><h3>Make it personal on GOAT.</h3><p>This public view doesn’t identify you or claim a private roster.</p>${external('Sign in on GOAT','/login','button')}<p class="small" style="margin-top:.6rem">Current site · leaves prototype</p></section></aside></div>${leagueNotebook()}<section class="wrap directory" aria-labelledby="directory-title"><p class="eyebrow">The people in the league</p><h2 id="directory-title">Meet the ten-team field.</h2>${directoryList()}</section>`;
+}
+function directoryList() {
+  return `<div class="directory-list">${fixture.teams.map(t=>`<details class="directory-item"><summary>${esc(t.name)}<small>${esc(t.manager)}${t.previousSeason.finish===1?' · 2025 champion':''}</small></summary><p>2026 demo record: ${t.wins}–${t.losses}. Season points: ${num(t.pointsFor)}.</p><p>Historical 2025: ${t.previousSeason.wins}–${t.previousSeason.losses}, ${ordinal(t.previousSeason.finish)} finish. ${esc(t.previousSeason.ownerNote||'')}</p>${local('Open this team’s local profile →','team',{team:t.id},`directory-${t.id}`)}</details>`).join('')}</div>`;
+}
+function homePage() {
+  return member?`${pairingRibbon()}${editionHeading()}<div class="wrap edition-grid"><div>${leadFeature()}${supportFeature()}</div>${personalRail()}</div>${leagueNotebook()}${editionEnd()}`:guestHome();
+}
+function rosterPage() {
+  const v=person.valuation;
+  return `<div class="wrap destination">${backLink()}${heading(`${person.team.name}: the full roster.`,'Your local team page',`${person.players.length} owned players, with position, modeled quote and whatever counted Week 2 evidence is supplied. Open a name for its player profile.`)}<dl class="summary-facts"><div><dt>${v.complete?'Complete modeled roster total':'Available modeled subtotal'}</dt><dd class="data">$${money(v.modeledFaabSubtotal)} <small>FAAB</small></dd></div><div><dt>Quote coverage</dt><dd>${v.priced}<small> / ${v.roster} players</small></dd></div><div><dt>Season record</dt><dd>${person.team.wins}–${person.team.losses}</dd></div></dl><p class="summary-note">${v.complete?'Your own roster is fully quoted.':'Six players remain unpriced. This partial subtotal is not a complete team total.'} Modeled FAAB is not cash. No league value rank is established because complete comparable quotes for every team are not supplied.</p><div class="roster-tools"><label for="roster-search">Find a player <input id="roster-search" type="search" autocomplete="off" placeholder="Search your roster"></label><p id="roster-count" aria-live="polite">${person.players.length} players shown</p></div><table class="roster-table"><caption>Quotes: October 30, 08:10 UTC · Counted points: synthetic completed Week 2, October 19–25</caption><thead><tr><th scope="col">Owned player</th><th scope="col">Position</th><th scope="col">Modeled FAAB</th><th scope="col">Week 2 points</th></tr></thead><tbody>${person.players.map(p=>`<tr data-roster-name="${esc(p.name.toLowerCase())}"><td><a data-local id="roster-player-${p.id}" class="roster-player" href="${esc(urlFor('player',{player:p.id}))}"><span class="thumb" aria-hidden="true">${p.portrait?portrait(p):esc(firsts(p.name))}</span><span><span class="roster-player-name">${esc(p.name)}</span><small class="view-link">Open player profile</small></span></a></td><td><span class="position">${esc(p.position)}</span></td><td class="data ${p.modeledFaab===null?'unavailable':''}">${p.modeledFaab===null?'Unpriced':`$${money(p.modeledFaab)}`}</td><td class="data ${p.completedWeekPoints===null?'unavailable':''}">${p.completedWeekPoints===null?'No counted sample':num(p.completedWeekPoints)}</td></tr>`).join('')}</tbody></table><p id="empty-search" class="empty-search" hidden>No player in this demo roster matches. Try a shorter name.</p><details class="roster-limits"><summary>Understand the quote and sample limits</summary><p>Missing quotes and counted-week points stay unknown. They are never zero and do not imply injury, availability or a DNP. A quote is a model value, not a cash balance. No recorded team-value history is supplied, so no trend is inferred. Lineup Power has no producer snapshot and is unavailable.</p></details></div>`;
+}
+function leaguePage() {
+  return `<div class="wrap destination">${backLink()}${heading('Ten teams. One table.','The local league page','The complete synthetic 2026 standings after two completed weeks. Open a team to read its current record and qualified historical context.')}<div class="league-page-layout"><div><table class="standings-table"><caption>Synthetic standings · Week 3 edition</caption><thead><tr><th scope="col">Pos.</th><th scope="col">Team</th><th scope="col">W–L</th><th scope="col">Points for</th></tr></thead><tbody>${fixture.standings.map(t=>`<tr class="${member&&t.id===person.teamId?'viewer-row':''}"><td>${String(t.rank).padStart(2,'0')}</td><td>${local(t.name,'team',{team:t.id},`table-team-${t.id}`,'team-link')}${member&&t.id===person.teamId?'<span class="you">Your team</span>':''}</td><td class="data">${t.wins}–${t.losses}</td><td class="data">${num(t.pointsFor)}</td></tr>`).join('')}</tbody></table></div><aside class="league-page-aside"><p class="eyebrow">The road ahead</p><h2>Six playoff places.<br>A long season to play.</h2><p>The ten-team field is playing toward six playoff places, beginning in Week 20. These standings describe the demo today; they are not a playoff projection.</p><h3 class="notebook-heading">Week 3 pairings</h3>${pairingsList('league-pair')}</aside></div><section class="directory" aria-labelledby="directory-title"><p class="eyebrow">The franchise directory</p><h2 id="directory-title">A name, a manager, a history.</h2>${directoryList()}</section></div>`;
+}
+function matchupPage(m) {
+  const a=team(m.home),b=team(m.away);
+  const selectedOwn=member&&[m.home,m.away].includes(person.teamId);
+  const complete=m.homePoints!==null&&m.awayPoints!==null;
+  const lead=complete?Math.abs(m.homePoints-m.awayPoints):null;
+  const leading=complete?team(m.homePoints>=m.awayPoints?m.home:m.away):null;
+  return `<div class="wrap destination">${backLink()}${heading(`${a.name} vs ${b.name}`,'Week 3 / Local matchup page','Follow the current pairing, compare the two season records and keep the score period separate from last week’s player sample.',selectedOwn?local('Browse your players →','roster',{},'matchup-roster','button secondary'):'')}<div class="matchup-page-grid"><div><section class="comparison-board" aria-labelledby="score-title"><p class="eyebrow" id="score-title">Synthetic in-progress score</p><div class="compare-teams">${[[a,m.homePoints],[b,m.awayPoints]].map(([t,s])=>`<div class="compare-team"><h2>${esc(t.name)}</h2><p class="large-score ${s===null?'is-missing':''}">${s===null?'Score unavailable':num(s)}</p><p class="small">${t.wins}–${t.losses} season record</p></div>`).join('')}</div><p class="status-note">${complete?(lead===0?'The supplied scores are tied.':`${esc(leading.name)} leads by ${num(lead)} in this sample.`)+' This is not a final result.':'No leader can be determined. Papichooter has a recorded zero; NeuralNets has no returned score. Missing is not zero.'}</p></section><section class="comparison-notes"><h2>The season behind this pairing.</h2><p>${esc(a.name)} is ${a.wins}–${a.losses} with ${num(a.pointsFor)} season points. ${esc(b.name)} is ${b.wins}–${b.losses} with ${num(b.pointsFor)} season points. These are season quantities, not the current matchup score.</p><p class="small">Score snapshot: October 30, 2026 at 08:30 UTC. Constructed for this demo; no live clock or external scoring request.</p><div class="profile-links">${local(`Scout ${a.name} →`,'team',{team:a.id},'matchup-team-home')}${local(`Scout ${b.name} →`,'team',{team:b.id},'matchup-team-away')}</div></section></div><aside class="matchup-aside"><p class="eyebrow">${selectedOwn?'Your part of the pairing':'Public pairing context'}</p><h2>${selectedOwn?'Start with your own players.':'Two franchises to explore.'}</h2>${selectedOwn?`<p>Your completed Week 2 sample has counted points for ${person.playerEvidence.verifiedPlayers} of ${person.players.length} roster players. Open a player to read the sample beside its modeled quote.</p><ul class="evidence-list">${person.players.filter(p=>p.completedWeekPoints!==null).map(p=>`<li>${local(p.name,'player',{player:p.id},`match-player-${p.id}`,'')}<span>${num(p.completedWeekPoints)}</span></li>`).join('')}</ul>${savedModel()}`:'<p>This public view includes team records and pairing scores. It does not identify you or expose a private team roster.</p>'}</aside></div></div>`;
+}
+function playerPage(p) {
+  const other=person.players.find(t=>t.id!==p.id&&t.portrait);
+  return `<div class="wrap destination">${backLink('roster','Back to where you were reading')}${heading(p.name,`${person.team.name} / Owned player`,`${p.position} · A local profile using the supplied roster, quote and completed-week sample.`)}<div class="profile-layout"><figure><div class="profile-art">${portrait(p,'',true)}</div><figcaption class="image-caption"><span>${esc(p.name)} · ${esc(p.position)}</span><span>${p.portrait?'Approved roster portrait':'No portrait supplied'}</span></figcaption></figure><section class="profile-copy"><p class="eyebrow">Part of your ${person.players.length}-player team</p><h2>Put the player in context.</h2><p>${esc(p.name)} belongs to ${esc(person.team.name)} in this demo roster. Your team is ${person.team.wins}–${person.team.losses}, paired with ${esc(person.opponent.name)} in Week 3.</p><dl class="profile-facts"><div><dt>Modeled FAAB quote</dt><dd class="data ${p.modeledFaab===null?'unavailable':''}">${p.modeledFaab===null?'Quote unavailable':`$${money(p.modeledFaab)}`}</dd></div><div><dt>Counted Week 2 points</dt><dd class="data ${p.completedWeekPoints===null?'unavailable':''}">${p.completedWeekPoints===null?'No counted sample':num(p.completedWeekPoints)}</dd></div></dl><p>${p.completedWeekPoints===null?'No counted completed-week points are supplied for this player. That does not mean zero points, a DNP or unavailable status.':'The counted points belong only to the synthetic completed Week 2 sample, October 19–25. They are not the player’s contribution to the current Week 3 matchup.'}</p><p class="small">${p.modeledFaab===null?'This missing quote is excluded from the available roster subtotal.':'Quote checked October 30 at 08:10 UTC. Modeled FAAB is a model value, not cash.'} Current NBA team, injury and availability labels are not supplied.</p><div class="profile-links">${local('Your full roster →','roster',{},'profile-roster','button secondary')}${local(`Read ${other.name} next →`,'player',{player:other.id},'profile-next')}</div><div class="profile-links">${external('Player on the current GOAT site',`/player/${p.id}`)}</div></section></div></div>`;
+}
+function teamPage(t) {
+  const standing=fixture.standings.find(s=>s.id===t.id);
+  const m=fixture.matchups.find(m=>m.home===t.id||m.away===t.id);
+  const opponent=team(m.home===t.id?m.away:m.home);
+  return `<div class="wrap destination">${backLink('league','Back to the league reading')}${heading(t.name,'Public team profile',`Managed by ${t.manager}. Current record and scores are synthetic; the 2025 record is a retained historical reference.`)}<dl class="summary-facts"><div><dt>2026 demo record</dt><dd>${t.wins}–${t.losses}</dd></div><div><dt>League position</dt><dd>${ordinal(standing.rank)} <small>/ 10</small></dd></div><div><dt>2026 points for</dt><dd class="data">${num(t.pointsFor)}</dd></div></dl><div class="team-story"><section><p class="eyebrow">Their current week</p><h2>${esc(opponent.name)} is the Week 3 opponent.</h2><p>${esc(t.name)} is ${ordinal(standing.rank)} in the synthetic table after two completed weeks. The pairing page keeps this week’s score separate from that season record.</p><p>${m.state==='partly_unavailable'?'This pairing has partial score coverage: papichooter has a known zero and NeuralNets has no returned score. No leader is inferred.':'Both matchup scores are present in this sample. They remain in progress, not a final result.'}</p><div class="profile-links">${local('Open the Week 3 pairing →','matchup',{matchup:m.id},'team-pair','button secondary')}${member&&t.id===person.teamId?local('Browse your roster →','roster',{},'team-roster'):''}</div></section><aside class="team-history"><p class="eyebrow">Historical 2025 reference</p><h2>${t.previousSeason.wins}–${t.previousSeason.losses}. ${ordinal(t.previousSeason.finish)} finish.</h2><p>${esc(t.previousSeason.ownerNote||`The 2025 season reference belongs to ${t.name}.`)}${t.previousSeason.finish===1?' The retained league reference lists this team as the 2025 champion.':''}</p><p class="small">Historical context is separate from the synthetic current season. No private opponent roster is supplied on this public team page.</p>${external('Open the current public team profile',`/teams/${t.id}`)}</aside></div></div>`;
+}
+let renderVersion=0;
+function render() {
+  const version=++renderVersion;
+  delete root.dataset.personalStudyReady;
+  const q=new URLSearchParams(location.search);
+  let view=q.get('view')||'home';
+  if(!['home','roster','league','matchup','player','team'].includes(view))view='home';
+  if(!member&&['roster','player'].includes(view))view='league';
+  if(view==='player'&&!ownPlayer(q.get('player')))view='roster';
+  if(view==='team'&&!team(q.get('team')))view='league';
+  root.dataset.view=view;
+  const m=fixture.matchups.find(m=>m.id===q.get('matchup'))||defaultMatch();
+  main.innerHTML=view==='home'?homePage():view==='roster'?rosterPage():view==='league'?leaguePage():view==='matchup'?matchupPage(m):view==='player'?playerPage(ownPlayer(q.get('player'))):teamPage(team(q.get('team')));
+  document.querySelectorAll('[data-nav]').forEach(link=>{
+    const section=link.dataset.nav;
+    link.href=urlFor(section,section==='matchup'?{matchup:defaultMatch().id}:{});
+    link.removeAttribute('aria-current');
+    if(link.closest('.primary-nav')&&(view===section||(section==='roster'&&view==='player')||(section==='league'&&view==='team')))link.setAttribute('aria-current','page');
+  });
+  const rosterNav=document.querySelector('#nav-roster');rosterNav.hidden=!member;
+  document.querySelector('#nav-home').textContent=member?'Your edition':'League edition';
+  labelExits(document);
+  if(view==='roster'){const input=document.querySelector('#roster-search');input.value=q.get('find')||'';applyRosterFilter(input.value);}
+  document.title=`${main.querySelector('h1').textContent} · GOAT Hoopers`;
+  Promise.all([document.fonts.ready,...[...document.images].map(img=>img.complete?Promise.resolve():new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});}))]).then(()=>{if(version===renderVersion)root.dataset.personalStudyReady='03';});
+}
+history.replaceState({...history.state,goat03:true,level:0},'',location.href);
+function navigate(href,sourceId='') {
+  history.replaceState({...history.state,scrollY:scrollY,focusId:sourceId},'',location.href);
+  const level=(history.state?.level||0)+1;
+  history.pushState({goat03:true,level},'',href);
+  render();window.scrollTo(0,0);main.querySelector('h1').focus({preventScroll:true});
+}
+document.addEventListener('click',event=>{
+  if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+  const back=event.target.closest('a[data-back]');
+  if(back){event.preventDefault();if(history.state?.goat03&&history.state.level>0)history.back();else navigate(back.href);return;}
+  const link=event.target.closest('a[data-local]');
+  if(link){event.preventDefault();navigate(link.href,link.id);}
 });
-document.addEventListener('keydown',event=>{if(event.key === 'Escape' && !document.querySelector('#sources').open) closeInspection();});
-document.querySelector('#roster-search')?.addEventListener('input',event=>{
-  closeInspection(false);
-  const term = event.target.value.toLocaleLowerCase().trim();let count=0;
+window.addEventListener('popstate',()=>{
+  const state=history.state;render();
+  requestAnimationFrame(()=>{window.scrollTo(0,state?.scrollY||0);const target=state?.focusId?document.getElementById(state.focusId):main.querySelector('h1');target?.focus({preventScroll:true});});
+});
+function applyRosterFilter(value) {
+  const term=value.toLocaleLowerCase().trim();let count=0;
   document.querySelectorAll('[data-roster-name]').forEach(row=>{row.hidden=!row.dataset.rosterName.includes(term);if(!row.hidden)count++;});
   document.querySelector('#roster-count').textContent=`${count} of ${person.players.length} players shown`;
   document.querySelector('#empty-search').hidden=count>0;
+}
+document.addEventListener('input',event=>{
+  if(event.target.id!=='roster-search')return;
+  const url=new URL(location.href);
+  if(event.target.value)url.searchParams.set('find',event.target.value);else url.searchParams.delete('find');
+  history.replaceState(history.state,'',url.href);
+  applyRosterFilter(event.target.value);
 });
-const sourceDialog=document.querySelector('#sources');
-document.querySelector('#source-trigger').addEventListener('click',()=>sourceDialog.showModal());
-document.querySelector('#source-close').addEventListener('click',()=>sourceDialog.close());
-sourceDialog.addEventListener('click',event=>{if(event.target===sourceDialog){const r=sourceDialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)sourceDialog.close();}});
-sourceDialog.addEventListener('close',()=>document.querySelector('#source-trigger').focus({preventScroll:true}));
-
-await document.fonts.ready;
-await Promise.all([...document.images].map(img=>img.complete ? Promise.resolve() : new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});})));
-root.dataset.personalStudyReady='03';
+const selector=document.querySelector('#persona');selector.value=personaKey;
+selector.addEventListener('change',event=>{const q=new URLSearchParams();q.set('persona',event.target.value);if(root.dataset.stage==='structure')q.set('stage','structure');location.assign(`?${q}`);});
+const sources=document.querySelector('#sources');
+document.querySelector('#source-trigger').addEventListener('click',()=>sources.showModal());
+document.querySelector('#source-close').addEventListener('click',()=>sources.close());
+sources.addEventListener('close',()=>document.querySelector('#source-trigger').focus({preventScroll:true}));
+sources.addEventListener('click',event=>{if(event.target!==sources)return;const r=sources.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)sources.close();});
+render();

@@ -1,81 +1,162 @@
 {
-  "browser": "Chromium via Playwright, /usr/bin/chromium; desktop emulation",
+  "revision": "Dark sports revision of concept 01",
+  "browser": "154.0.8037.57",
+  "environment": "System Chromium via Playwright; desktop emulation",
   "pages": [
     {
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
       "persona": "reaves",
       "width": 1440,
       "height": 1000,
-      "scrollWidth": 1440,
-      "clientWidth": 1440,
       "pageErrors": [],
+      "visibleTextOutOfViewport": [],
+      "otherPairings": 4,
+      "leagueSlice": 3,
+      "homepageTables": 0,
       "destinations": 15
     },
     {
+      "scrollWidth": 1120,
+      "clientWidth": 1120,
       "persona": "reaves",
       "width": 1120,
       "height": 1000,
-      "scrollWidth": 1120,
-      "clientWidth": 1120,
       "pageErrors": [],
+      "visibleTextOutOfViewport": [],
+      "otherPairings": 4,
+      "leagueSlice": 3,
+      "homepageTables": 0,
       "destinations": 15
     },
     {
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
       "persona": "neural",
       "width": 1440,
       "height": 1000,
-      "scrollWidth": 1440,
-      "clientWidth": 1440,
       "pageErrors": [],
+      "visibleTextOutOfViewport": [],
+      "otherPairings": 4,
+      "leagueSlice": 3,
+      "homepageTables": 0,
       "destinations": 15
     },
     {
+      "scrollWidth": 1120,
+      "clientWidth": 1120,
       "persona": "neural",
       "width": 1120,
       "height": 1000,
-      "scrollWidth": 1120,
-      "clientWidth": 1120,
       "pageErrors": [],
+      "visibleTextOutOfViewport": [],
+      "otherPairings": 4,
+      "leagueSlice": 3,
+      "homepageTables": 0,
       "destinations": 15
     },
     {
+      "scrollWidth": 1440,
+      "clientWidth": 1440,
       "persona": "guest",
       "width": 1440,
       "height": 1000,
-      "scrollWidth": 1440,
-      "clientWidth": 1440,
       "pageErrors": [],
+      "visibleTextOutOfViewport": [],
+      "otherPairings": 4,
+      "leagueSlice": 3,
+      "homepageTables": 0,
       "destinations": 15
     },
     {
+      "scrollWidth": 1120,
+      "clientWidth": 1120,
       "persona": "guest",
       "width": 1120,
       "height": 1000,
-      "scrollWidth": 1120,
-      "clientWidth": 1120,
       "pageErrors": [],
+      "visibleTextOutOfViewport": [],
+      "otherPairings": 4,
+      "leagueSlice": 3,
+      "homepageTables": 0,
       "destinations": 15
     }
   ],
   "interactions": [
-    "Keyboard Enter opens matchup; saved 56/44 estimate and separate 0.35 confidence visible; Escape closes and restores trigger focus.",
-    "Team → player → Back restores team content and player focus; Close returns to original team trigger.",
-    "Roster name search, quote inspection, zero-result message and clear restore the correct rows.",
-    "Demo selector navigates to NeuralNets; missing quote inspection says Unpriced and never zero.",
-    "Structure mode preserves the 24 roster rows and sets its neutral palette state."
+    "Keyboard Enter opens current matchup; 56/44 saved estimate and separate 0.35 confidence visible. Escape restores trigger focus.",
+    "Local full roster has 24 rows; search, player quote, Back with filtered state/focus, no-result state and clear passed. Close restores roster trigger.",
+    "Team → full roster → player → Back → Back restores team and original roster action focus.",
+    "Full local standings has 10 teams; NeuralNets profile retains previous-manager qualification.",
+    "Persona switch loads NeuralNets; 22-row roster, partial quote label, unpriced AJ Dybantsa and absent AI are correct.",
+    "Structure mode preserves all six section geometries; reduced-motion preference retains content."
   ],
-  "enlargedText": {
-    "persona": "neural",
-    "viewport": 1120,
-    "scrollWidth": 1120,
-    "clientWidth": 1120,
-    "rootFont": "32px",
-    "note": "CSS root text size 200%; no browser zoom or physical device claim."
+  "enlargedText": [
+    {
+      "persona": "reaves",
+      "viewport": 1120,
+      "method": "Snapshot every HTMLElement computed font size, then apply 2× original size; screen-reader-only text excluded. Root rem size unchanged.",
+      "scrollWidth": 1120,
+      "clientWidth": 1120,
+      "visibleTextOutOfViewport": []
+    },
+    {
+      "persona": "neural",
+      "viewport": 1120,
+      "method": "Snapshot every HTMLElement computed font size, then apply 2× original size; screen-reader-only text excluded. Root rem size unchanged.",
+      "scrollWidth": 1120,
+      "clientWidth": 1120,
+      "visibleTextOutOfViewport": []
+    },
+    {
+      "persona": "guest",
+      "viewport": 1120,
+      "method": "Snapshot every HTMLElement computed font size, then apply 2× original size; screen-reader-only text excluded. Root rem size unchanged.",
+      "scrollWidth": 1120,
+      "clientWidth": 1120,
+      "visibleTextOutOfViewport": []
+    }
+  ],
+  "structure": {
+    "sameGeometry": true,
+    "sections": [
+      {
+        "class": "hero",
+        "top": 208,
+        "height": 432
+      },
+      {
+        "class": "pulse",
+        "top": 640,
+        "height": 188
+      },
+      {
+        "class": "players-section",
+        "top": 877,
+        "height": 583
+      },
+      {
+        "class": "slate-section",
+        "top": 1459,
+        "height": 500
+      },
+      {
+        "class": "race-section",
+        "top": 2007,
+        "height": 347
+      },
+      {
+        "class": "beyond-section",
+        "top": 2402,
+        "height": 586
+      }
+    ]
   },
   "interactionPageErrors": [],
   "notTested": [
     "Physical devices",
     "Safari/Firefox",
-    "Live GOAT destination behavior",
-    "Real authentication or APIs"
+    "Real GOAT destination behavior",
+    "Real authentication/APIs",
+    "Production builds, because this is static QA-only work"
   ]
 }

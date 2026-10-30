@@ -1,5 +1,5 @@
 {
-  "stage": "Early three completed sources, before scaling the remaining 17 builds",
+  "stage": "Revised early three websites after rejected fd9df451 baseline; remaining seventeen builds paused for parent gate",
   "freshAuthorsLaunched": 20,
   "implementedConcepts": 3,
   "reusedAuthorsOrDesigns": 0,
@@ -13,8 +13,8 @@
       "notes": "qa/homepage-personal-20/01/NOTES.md",
       "standalone": {
         "path": "qa/homepage-personal-20/portable/GOAT-personal-01.html",
-        "bytes": 909342,
-        "sha256": "69e7118e4fcb3603d3082e10e62108bd3a4eb9d85c37bdcbd031daa70383505c"
+        "bytes": 1521501,
+        "sha256": "04059a23866f51f6f9f7b8a7564580e131543fdd36e84d2c36b4a34a0ffb6076"
       },
       "captures": [
         {
@@ -22,199 +22,10 @@
           "stage": "designed",
           "full": {
             "path": "qa/homepage-personal-20/01/review/reaves-designed-desktop-full.jpg",
-            "bytes": 287908,
-            "sha256": "364e20155c9fdebb1b15135879342c1b750f57546d437ae85897e4ad23deb2b8",
+            "bytes": 397246,
+            "sha256": "caa8121d811eebc4f8d4985938a2f450f7acc3c96aabb241a414e4100a259f85",
             "width": 1440,
-            "height": 2672,
-            "quality": 91,
-            "offsets": [
-              {
-                "y": 0,
-                "height": 1700
-              },
-              {
-                "y": 1700,
-                "height": 972
-              }
-            ],
-            "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
-          }
-        },
-        {
-          "persona": "reaves",
-          "stage": "first-fold",
-          "image": {
-            "path": "qa/homepage-personal-20/01/review/reaves-desktop-first-fold.jpg",
-            "bytes": 121338,
-            "sha256": "6d8c367292891e34268909a7f9f235b0fd06ebd8b17fade8c25f88f08cbcdd00",
-            "width": 1440,
-            "height": 1000,
-            "quality": 91
-          }
-        },
-        {
-          "persona": "neural",
-          "stage": "designed",
-          "full": {
-            "path": "qa/homepage-personal-20/01/review/neural-designed-desktop-full.jpg",
-            "bytes": 299843,
-            "sha256": "2b0517ca0b07ba1cdee327791d8de76c49f19b45a30b3021348bb5cbd384f319",
-            "width": 1440,
-            "height": 2764,
-            "quality": 91,
-            "offsets": [
-              {
-                "y": 0,
-                "height": 1700
-              },
-              {
-                "y": 1700,
-                "height": 1064
-              }
-            ],
-            "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
-          }
-        },
-        {
-          "persona": "neural",
-          "stage": "first-fold",
-          "image": {
-            "path": "qa/homepage-personal-20/01/review/neural-desktop-first-fold.jpg",
-            "bytes": 117962,
-            "sha256": "d6b62c0f31edb72c26d3cdd799edbae4461060523a5c681a1b27b7e7ab20aebb",
-            "width": 1440,
-            "height": 1000,
-            "quality": 91
-          }
-        },
-        {
-          "persona": "guest",
-          "stage": "designed",
-          "full": {
-            "path": "qa/homepage-personal-20/01/review/guest-designed-desktop-full.jpg",
-            "bytes": 173272,
-            "sha256": "bd763835b7049741bb7e6ec79a8614370be9a32cf7a8334b9cb336d44ee27d3a",
-            "width": 1440,
-            "height": 1686,
-            "quality": 91,
-            "offsets": [
-              {
-                "y": 0,
-                "height": 1686
-              }
-            ],
-            "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
-          }
-        },
-        {
-          "persona": "guest",
-          "stage": "first-fold",
-          "image": {
-            "path": "qa/homepage-personal-20/01/review/guest-desktop-first-fold.jpg",
-            "bytes": 114099,
-            "sha256": "79dcfd94ed7f3072a7e52446d7545b7171d41d03573bd73ad8d74b9e44dda77b",
-            "width": 1440,
-            "height": 1000,
-            "quality": 91
-          }
-        },
-        {
-          "persona": "reaves",
-          "stage": "structure",
-          "full": {
-            "path": "qa/homepage-personal-20/01/review/reaves-structure-desktop-full.jpg",
-            "bytes": 273865,
-            "sha256": "a96d1595cb8e7b8413bafd78f28ba0d66ffb433d8b1f0cc286d0ebb6bd18834f",
-            "width": 1440,
-            "height": 2672,
-            "quality": 91,
-            "offsets": [
-              {
-                "y": 0,
-                "height": 1700
-              },
-              {
-                "y": 1700,
-                "height": 972
-              }
-            ],
-            "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
-          }
-        }
-      ],
-      "sourceHashes": [
-        {
-          "path": "qa/homepage-personal-20/01/app.js",
-          "sha256": "f57e86837a8b6b624bfa134ebd48d4c7e1285f857e8e06ba86acce83e60dce31",
-          "bytes": 24367
-        },
-        {
-          "path": "qa/homepage-personal-20/01/index.html",
-          "sha256": "9105a73630de0ebb5213e4705ce47214973631e38215655cd0bdc351e945eb0f",
-          "bytes": 733
-        },
-        {
-          "path": "qa/homepage-personal-20/01/style.css",
-          "sha256": "0c673bbcb7ddd1cd30ae4905366fed01e0b8c8ec4e926cd23c14a1681daa8277",
-          "bytes": 20966
-        }
-      ]
-    },
-    {
-      "id": "02",
-      "author": "/root/personal02",
-      "source": "qa/homepage-personal-20/02/index.html",
-      "notes": "qa/homepage-personal-20/02/NOTES.md",
-      "standalone": {
-        "path": "qa/homepage-personal-20/portable/GOAT-personal-02.html",
-        "bytes": 1022158,
-        "sha256": "03c7bca5d68820f121a048785cdcee7addbc4be2dc392bdcedc59b2be1bb3a76"
-      },
-      "captures": [
-        {
-          "persona": "reaves",
-          "stage": "designed",
-          "full": {
-            "path": "qa/homepage-personal-20/02/review/reaves-designed-desktop-full.jpg",
-            "bytes": 320613,
-            "sha256": "0247a31640d0ba4766fb282d93a935d580c5e6b34f5a32a302ecdc2d1d254c15",
-            "width": 1440,
-            "height": 3336,
-            "quality": 91,
-            "offsets": [
-              {
-                "y": 0,
-                "height": 1700
-              },
-              {
-                "y": 1700,
-                "height": 1636
-              }
-            ],
-            "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
-          }
-        },
-        {
-          "persona": "reaves",
-          "stage": "first-fold",
-          "image": {
-            "path": "qa/homepage-personal-20/02/review/reaves-desktop-first-fold.jpg",
-            "bytes": 107745,
-            "sha256": "0f0469b6d06d8fda0f0a9c559932b2ecd3f914d0563f7066947ed1961d73248e",
-            "width": 1440,
-            "height": 1000,
-            "quality": 91
-          }
-        },
-        {
-          "persona": "neural",
-          "stage": "designed",
-          "full": {
-            "path": "qa/homepage-personal-20/02/review/neural-designed-desktop-full.jpg",
-            "bytes": 350333,
-            "sha256": "42c4c38b08faadee0f4e7a0c59160f318df1aa0def1a1044da6c81d03189199a",
-            "width": 1440,
-            "height": 3545,
+            "height": 3427,
             "quality": 91,
             "offsets": [
               {
@@ -227,7 +38,204 @@
               },
               {
                 "y": 3400,
-                "height": 145
+                "height": 27
+              }
+            ],
+            "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
+          }
+        },
+        {
+          "persona": "reaves",
+          "stage": "first-fold",
+          "image": {
+            "path": "qa/homepage-personal-20/01/review/reaves-desktop-first-fold.jpg",
+            "bytes": 154489,
+            "sha256": "c8c514243e3463a0f2900ac8358f4ed722f7d8a6b7e7e33b73cce992d9940632",
+            "width": 1440,
+            "height": 1000,
+            "quality": 91
+          }
+        },
+        {
+          "persona": "neural",
+          "stage": "designed",
+          "full": {
+            "path": "qa/homepage-personal-20/01/review/neural-designed-desktop-full.jpg",
+            "bytes": 390700,
+            "sha256": "dd4360307e5a27cece5722219c253693b73f5715a87da3a1eff55ea8be231a76",
+            "width": 1440,
+            "height": 3347,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1700
+              },
+              {
+                "y": 1700,
+                "height": 1647
+              }
+            ],
+            "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
+          }
+        },
+        {
+          "persona": "neural",
+          "stage": "first-fold",
+          "image": {
+            "path": "qa/homepage-personal-20/01/review/neural-desktop-first-fold.jpg",
+            "bytes": 152300,
+            "sha256": "3e692aa4bfdb59efeb73495721e414763d28c888576bbec9fa7bdfcc0627c7d1",
+            "width": 1440,
+            "height": 1000,
+            "quality": 91
+          }
+        },
+        {
+          "persona": "guest",
+          "stage": "designed",
+          "full": {
+            "path": "qa/homepage-personal-20/01/review/guest-designed-desktop-full.jpg",
+            "bytes": 391484,
+            "sha256": "12376dfb88f07c2af66a3ebd2a4ac8307078c4b64dac70ca4c574d67a490980c",
+            "width": 1440,
+            "height": 3334,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1700
+              },
+              {
+                "y": 1700,
+                "height": 1634
+              }
+            ],
+            "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
+          }
+        },
+        {
+          "persona": "guest",
+          "stage": "first-fold",
+          "image": {
+            "path": "qa/homepage-personal-20/01/review/guest-desktop-first-fold.jpg",
+            "bytes": 153684,
+            "sha256": "88da28e076591ffbcfd593473f41c03cc37aaeead6ab4ad8d1dbce5c106f5f47",
+            "width": 1440,
+            "height": 1000,
+            "quality": 91
+          }
+        },
+        {
+          "persona": "reaves",
+          "stage": "structure",
+          "full": {
+            "path": "qa/homepage-personal-20/01/review/reaves-structure-desktop-full.jpg",
+            "bytes": 261144,
+            "sha256": "b884557adf6373a056165222870b3dbc1c3bdeb5cabb22e62fb282c7be875afe",
+            "width": 1440,
+            "height": 3427,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1700
+              },
+              {
+                "y": 1700,
+                "height": 1700
+              },
+              {
+                "y": 3400,
+                "height": 27
+              }
+            ],
+            "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
+          }
+        }
+      ],
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-personal-20/01/app.js",
+          "sha256": "442f023116533e5fa157a22be54a222ec008014b1290f8852d4eb2a97ccdaa4e",
+          "bytes": 27885
+        },
+        {
+          "path": "qa/homepage-personal-20/01/index.html",
+          "sha256": "b603fe07ecc9b1d84fc122a8e3a96a89fb1195d55da61bfb095453f46384d988",
+          "bytes": 798
+        },
+        {
+          "path": "qa/homepage-personal-20/01/style.css",
+          "sha256": "135f8e140f4830c54b18c6d16cb86da8aa658f8d61a927c58dbb2f3c52e5c4fc",
+          "bytes": 28466
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "author": "/root/personal02",
+      "source": "qa/homepage-personal-20/02/index.html",
+      "notes": "qa/homepage-personal-20/02/NOTES.md",
+      "standalone": {
+        "path": "qa/homepage-personal-20/portable/GOAT-personal-02.html",
+        "bytes": 1173740,
+        "sha256": "dc3f5d0b948ce50c0cd338b44ea3874120768e8aaaae4cad0c7a13408aae8d9d"
+      },
+      "captures": [
+        {
+          "persona": "reaves",
+          "stage": "designed",
+          "full": {
+            "path": "qa/homepage-personal-20/02/review/reaves-designed-desktop-full.jpg",
+            "bytes": 328489,
+            "sha256": "3c48aed8d4c0397c2fcc426036d768f6c4e4e7c05538176d8f6972d316a28622",
+            "width": 1440,
+            "height": 2809,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1700
+              },
+              {
+                "y": 1700,
+                "height": 1109
+              }
+            ],
+            "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
+          }
+        },
+        {
+          "persona": "reaves",
+          "stage": "first-fold",
+          "image": {
+            "path": "qa/homepage-personal-20/02/review/reaves-desktop-first-fold.jpg",
+            "bytes": 124746,
+            "sha256": "e33dff625a97f40fb2f23afd328de168c58d0b2fc24eb263111165439132fb88",
+            "width": 1440,
+            "height": 1000,
+            "quality": 91
+          }
+        },
+        {
+          "persona": "neural",
+          "stage": "designed",
+          "full": {
+            "path": "qa/homepage-personal-20/02/review/neural-designed-desktop-full.jpg",
+            "bytes": 315026,
+            "sha256": "8647f596441552c135146cad90ee262c8c2352309f8cfc7f23987ccc8eb70833",
+            "width": 1440,
+            "height": 2809,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1700
+              },
+              {
+                "y": 1700,
+                "height": 1109
               }
             ],
             "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
@@ -238,8 +246,8 @@
           "stage": "first-fold",
           "image": {
             "path": "qa/homepage-personal-20/02/review/neural-desktop-first-fold.jpg",
-            "bytes": 106884,
-            "sha256": "f2e1b8bdc6d44831c04959b738bb10b67addb536beb39ea83ab08bb710bb16dc",
+            "bytes": 117820,
+            "sha256": "0e0ea17b099728845d8e26f8f5f7fe47a0e2371201026cacc13645f06c01f749",
             "width": 1440,
             "height": 1000,
             "quality": 91
@@ -250,10 +258,10 @@
           "stage": "designed",
           "full": {
             "path": "qa/homepage-personal-20/02/review/guest-designed-desktop-full.jpg",
-            "bytes": 224397,
-            "sha256": "b1f483b0a17e5b4435f983bb3d6d72b2f45105e917e80515a50bed983aec07e1",
+            "bytes": 271496,
+            "sha256": "dd16d51429cdb0e6caf1ed49f0fa8b34f6a103db0efa1a15af142eeccf4fefee",
             "width": 1440,
-            "height": 2239,
+            "height": 2225,
             "quality": 91,
             "offsets": [
               {
@@ -262,7 +270,7 @@
               },
               {
                 "y": 1700,
-                "height": 539
+                "height": 525
               }
             ],
             "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
@@ -273,8 +281,8 @@
           "stage": "first-fold",
           "image": {
             "path": "qa/homepage-personal-20/02/review/guest-desktop-first-fold.jpg",
-            "bytes": 106215,
-            "sha256": "ffa3a0e2ad7e8433ab35da74c3ce41769b962b616f61884f067f592d5016c4c8",
+            "bytes": 147689,
+            "sha256": "8b5b883e80d225d845bc0d40312533c253c5b1e30b8da7bee6bb4099726dab70",
             "width": 1440,
             "height": 1000,
             "quality": 91
@@ -285,10 +293,10 @@
           "stage": "structure",
           "full": {
             "path": "qa/homepage-personal-20/02/review/reaves-structure-desktop-full.jpg",
-            "bytes": 311772,
-            "sha256": "36adb3b035e423f899fd2ddc0f16bd8b325510a4dbc6156c302f2ac912d1b837",
+            "bytes": 271181,
+            "sha256": "3fd92429634445725eea7890b7c5bd72f136e85b8c4cf11ea0cc49b65938f9cd",
             "width": 1440,
-            "height": 3336,
+            "height": 2809,
             "quality": 91,
             "offsets": [
               {
@@ -297,7 +305,7 @@
               },
               {
                 "y": 1700,
-                "height": 1636
+                "height": 1109
               }
             ],
             "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
@@ -307,8 +315,8 @@
       "sourceHashes": [
         {
           "path": "qa/homepage-personal-20/02/app.js",
-          "sha256": "085043113b0dd3060295306d72ce1668aa4250a0ee59e63644181634a96cfe4b",
-          "bytes": 23437
+          "sha256": "84e741c81779c1523a10bb8607cad54cea841baf4d68adb7f4cadfdb5937b311",
+          "bytes": 27809
         },
         {
           "path": "qa/homepage-personal-20/02/index.html",
@@ -317,8 +325,8 @@
         },
         {
           "path": "qa/homepage-personal-20/02/styles.css",
-          "sha256": "7292689cc0e647899e2a6fba8a5a382219fd091a0b7fbcbb85f009f4fb083c20",
-          "bytes": 19998
+          "sha256": "7252565a6ac1bf22720f1d9e39599f84e79ddff0a95acb1226699b11874dca75",
+          "bytes": 19239
         }
       ]
     },
@@ -329,8 +337,8 @@
       "notes": "qa/homepage-personal-20/03/NOTES.md",
       "standalone": {
         "path": "qa/homepage-personal-20/portable/GOAT-personal-03.html",
-        "bytes": 774461,
-        "sha256": "b3ca5dff795dd60975acde0dc6097597be8245741d173049fa3f0629e5459297"
+        "bytes": 1650646,
+        "sha256": "b904ce4e325a435017c1895e7e9ab5aea4261729de37531f0fe1b342ff8274ff"
       },
       "captures": [
         {
@@ -338,10 +346,10 @@
           "stage": "designed",
           "full": {
             "path": "qa/homepage-personal-20/03/review/reaves-designed-desktop-full.jpg",
-            "bytes": 340482,
-            "sha256": "5c9f9f3cbd568547c6ae6ec56d1934501cb6fb7bd453afce110dc82c13851aae",
+            "bytes": 341798,
+            "sha256": "da2b24a366a474f3a8a38c9e104ad2dae16ce799cdc8e5fef865117167045913",
             "width": 1440,
-            "height": 3241,
+            "height": 2642,
             "quality": 91,
             "offsets": [
               {
@@ -350,7 +358,7 @@
               },
               {
                 "y": 1700,
-                "height": 1541
+                "height": 942
               }
             ],
             "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
@@ -361,8 +369,8 @@
           "stage": "first-fold",
           "image": {
             "path": "qa/homepage-personal-20/03/review/reaves-desktop-first-fold.jpg",
-            "bytes": 110622,
-            "sha256": "630c33f899c66389d299686548d2da0e8059aca8d0d256e0e416fb8c477aaa0d",
+            "bytes": 166566,
+            "sha256": "e4ca9c1446ff1de80606bf093d979e18f5f3f924462061a20c2d50a12937bfcb",
             "width": 1440,
             "height": 1000,
             "quality": 91
@@ -373,10 +381,10 @@
           "stage": "designed",
           "full": {
             "path": "qa/homepage-personal-20/03/review/neural-designed-desktop-full.jpg",
-            "bytes": 348525,
-            "sha256": "ff65998b9e7413604e43fab321ecb90dfee5c602a31ce81b57a8510b21c614df",
+            "bytes": 345585,
+            "sha256": "777bef82d1014c58ce8c3c845f613ee8247fbd0a88595a5c96569cea88b54500",
             "width": 1440,
-            "height": 3333,
+            "height": 2642,
             "quality": 91,
             "offsets": [
               {
@@ -385,7 +393,7 @@
               },
               {
                 "y": 1700,
-                "height": 1633
+                "height": 942
               }
             ],
             "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
@@ -396,8 +404,8 @@
           "stage": "first-fold",
           "image": {
             "path": "qa/homepage-personal-20/03/review/neural-desktop-first-fold.jpg",
-            "bytes": 115086,
-            "sha256": "425b8309baf94cc907b1ecb753dd52ba79d6fca036de92ce80efb7924cee0c51",
+            "bytes": 165572,
+            "sha256": "ebd26c45bc9266722d86a2c53e45ad7b254e711685e340e3de6655ccc7a26d45",
             "width": 1440,
             "height": 1000,
             "quality": 91
@@ -408,10 +416,10 @@
           "stage": "designed",
           "full": {
             "path": "qa/homepage-personal-20/03/review/guest-designed-desktop-full.jpg",
-            "bytes": 246775,
-            "sha256": "b479c96ae1b2b73e4b912e2dfbf6ca94b9f6fe4b292c7aa0afe7522405ff8c1b",
+            "bytes": 336155,
+            "sha256": "add963f66133df88bca62f63248a8399b11e05dd9e9d1325cf290bcf9d2b586a",
             "width": 1440,
-            "height": 2671,
+            "height": 2501,
             "quality": 91,
             "offsets": [
               {
@@ -420,7 +428,7 @@
               },
               {
                 "y": 1700,
-                "height": 971
+                "height": 801
               }
             ],
             "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
@@ -431,8 +439,8 @@
           "stage": "first-fold",
           "image": {
             "path": "qa/homepage-personal-20/03/review/guest-desktop-first-fold.jpg",
-            "bytes": 107302,
-            "sha256": "9e622064f776cf667308fc75c44db74c25104efe3159680709e444e5ad0232c1",
+            "bytes": 201785,
+            "sha256": "2ba62e64e90c89f0e632a4afef678f1750c2dad3f955ac12c10b22a99e36c32b",
             "width": 1440,
             "height": 1000,
             "quality": 91
@@ -443,10 +451,10 @@
           "stage": "structure",
           "full": {
             "path": "qa/homepage-personal-20/03/review/reaves-structure-desktop-full.jpg",
-            "bytes": 321915,
-            "sha256": "a6af4550e9dca144b766f3b7bed46ab40889ec63418e70a58867434877bd6fd2",
+            "bytes": 276739,
+            "sha256": "bbb45cb4acfd328ded2869a538c3b3093089bd19940ded363f5d7f279a3d34c4",
             "width": 1440,
-            "height": 3241,
+            "height": 2642,
             "quality": 91,
             "offsets": [
               {
@@ -455,7 +463,7 @@
               },
               {
                 "y": 1700,
-                "height": 1541
+                "height": 942
               }
             ],
             "method": "Exact viewport-width CDP document tiles, complete initial normal-flow page; no source styling changed."
@@ -465,18 +473,18 @@
       "sourceHashes": [
         {
           "path": "qa/homepage-personal-20/03/index.html",
-          "sha256": "59dd4b213fd859643416404ccdca531113c39bb15080cca8a87aa766064a9c12",
-          "bytes": 4467
+          "sha256": "dbe56616568b2fec7219e4327de1113f4a819444f07562f0e40444fa910e414d",
+          "bytes": 4992
         },
         {
           "path": "qa/homepage-personal-20/03/script.js",
-          "sha256": "74ff703c3ecce2d714ec6eba5e3dd610e73b959f97ae3c5958720277a441601d",
-          "bytes": 21550
+          "sha256": "69eee851dd0b92e776e0f7d462c9d323d15c5661a7af51799d89bfaf6f7b281c",
+          "bytes": 34667
         },
         {
           "path": "qa/homepage-personal-20/03/style.css",
-          "sha256": "f3b88d0a9cd0cb99ad09767503f98c55e34768834937b474c4844858634d6972",
-          "bytes": 19524
+          "sha256": "76d3df4e684114aca052349d2edca224d021d046956b4a4756ca6896d0e06bf9",
+          "bytes": 27892
         }
       ]
     }
@@ -484,85 +492,85 @@
   "comparisons": [
     {
       "path": "qa/homepage-personal-20/early/GOAT-early-three-reaves-FULL-comparison.jpg",
-      "bytes": 158685,
-      "sha256": "ae0f8af2a6cf255576be70e5e786fcce60231f14fff18ffa64fb0f079dba8cce",
+      "bytes": 188359,
+      "sha256": "d5f0aa923e5becd4b654e9eca918318e6100d73d7191f8a909e318595bd3283b",
       "wholePages": [
         {
           "id": "01",
           "source": "qa/homepage-personal-20/01/review/reaves-designed-desktop-full.jpg",
           "width": 460,
-          "height": 854
+          "height": 1094
         },
         {
           "id": "02",
           "source": "qa/homepage-personal-20/02/review/reaves-designed-desktop-full.jpg",
           "width": 460,
-          "height": 1066
+          "height": 897
         },
         {
           "id": "03",
           "source": "qa/homepage-personal-20/03/review/reaves-designed-desktop-full.jpg",
           "width": 460,
-          "height": 1035
+          "height": 844
         }
       ]
     },
     {
       "path": "qa/homepage-personal-20/early/GOAT-early-three-neural-FULL-comparison.jpg",
-      "bytes": 170064,
-      "sha256": "9e1df3a68529aef54208d3e3031156319362595dd0ad29223a8723b8debbf56a",
+      "bytes": 186521,
+      "sha256": "758522934f0c9478aae6d86e2223063e95c2be75bb14615023ee21202054d8a9",
       "wholePages": [
         {
           "id": "01",
           "source": "qa/homepage-personal-20/01/review/neural-designed-desktop-full.jpg",
           "width": 460,
-          "height": 883
+          "height": 1069
         },
         {
           "id": "02",
           "source": "qa/homepage-personal-20/02/review/neural-designed-desktop-full.jpg",
           "width": 460,
-          "height": 1132
+          "height": 897
         },
         {
           "id": "03",
           "source": "qa/homepage-personal-20/03/review/neural-designed-desktop-full.jpg",
           "width": 460,
-          "height": 1064
+          "height": 844
         }
       ]
     },
     {
       "path": "qa/homepage-personal-20/early/GOAT-early-three-guest-FULL-comparison.jpg",
-      "bytes": 112833,
-      "sha256": "9970584abd7fe73cb8102bc22737f8f4d51baae71b4f5c4bc2964f34524d8414",
+      "bytes": 175782,
+      "sha256": "865ae14b660b2718fe7a5e403d54767bbb11372d96675bcf7d03314092878d2d",
       "wholePages": [
         {
           "id": "01",
           "source": "qa/homepage-personal-20/01/review/guest-designed-desktop-full.jpg",
           "width": 460,
-          "height": 539
+          "height": 1065
         },
         {
           "id": "02",
           "source": "qa/homepage-personal-20/02/review/guest-designed-desktop-full.jpg",
           "width": 460,
-          "height": 715
+          "height": 710
         },
         {
           "id": "03",
           "source": "qa/homepage-personal-20/03/review/guest-designed-desktop-full.jpg",
           "width": 460,
-          "height": 853
+          "height": 799
         }
       ]
     }
   ],
   "embeddedAssets": [
     {
-      "path": "public/courtside/portraits/player-2133.png",
-      "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
-      "bytes": 71681
+      "path": "public/courtside/portraits/player-1511.png",
+      "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
+      "bytes": 68824
     },
     {
       "path": "public/courtside/portraits/player-2308.png",
@@ -570,19 +578,9 @@
       "bytes": 59711
     },
     {
-      "path": "public/courtside/portraits/player-1511.png",
-      "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9",
-      "bytes": 68824
-    },
-    {
-      "path": "public/courtside/portraits/player-2179.png",
-      "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
-      "bytes": 68817
-    },
-    {
-      "path": "public/courtside/portraits/player-4866.png",
-      "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
-      "bytes": 53860
+      "path": "public/courtside/portraits/player-2133.png",
+      "sha256": "fa1b318818a20e73978da5d4e864efb18126d080b85b5be8d26d6bbe46ad6693",
+      "bytes": 71681
     },
     {
       "path": "public/courtside/portraits/player-1380.png",
@@ -590,19 +588,19 @@
       "bytes": 60668
     },
     {
-      "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
-      "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
-      "bytes": 5117
+      "path": "public/courtside/portraits/player-4866.png",
+      "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506",
+      "bytes": 53860
     },
     {
-      "path": "qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
-      "sha256": "583cec5da3b84bc4dc7c9c72e2a565c94d34e431518b19d7e250b7830ad5f996",
-      "bytes": 102480
+      "path": "public/courtside/portraits/player-2179.png",
+      "sha256": "8d9045ff6e2fb34c89ddb36995a39e13300cf62e49e418a01e2bd5cfad3b10e8",
+      "bytes": 68817
     },
     {
-      "path": "qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
-      "sha256": "6a3412f058c7d8dfd9170c41e85ade48e5156ecb89356110ca57a0a27734af46",
-      "bytes": 135580
+      "path": "public/courtside/arena.jpg",
+      "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177",
+      "bytes": 329398
     },
     {
       "path": "public/arcade/free-throw-preview.jpg",
@@ -610,28 +608,70 @@
       "bytes": 46441
     },
     {
+      "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+      "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156",
+      "bytes": 5117
+    },
+    {
+      "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+      "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9",
+      "bytes": 5117
+    },
+    {
+      "path": "qa/homepage-structures/assets/fonts/oswald/Oswald[wght].ttf",
+      "sha256": "5b38c246e255a12f5712d640d56bcced0472466fc68983d2d0410ec0457c2817",
+      "bytes": 172088
+    },
+    {
+      "path": "qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+      "sha256": "6a3412f058c7d8dfd9170c41e85ade48e5156ecb89356110ca57a0a27734af46",
+      "bytes": 135580
+    },
+    {
+      "path": "qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+      "sha256": "583cec5da3b84bc4dc7c9c72e2a565c94d34e431518b19d7e250b7830ad5f996",
+      "bytes": 102480
+    },
+    {
       "path": "qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk[wght].ttf",
       "sha256": "acad6de1fc93436f5c0f1f4137751ef04f1aea3063e7036535970ffcfbd79f72",
       "bytes": 136676
+    },
+    {
+      "path": "qa/homepage-structures/assets/fonts/lora/Lora[wght].ttf",
+      "sha256": "822a6621ccbe8d97d20ac88c1c41f5615c9c2c202eaa75f272cd452aac6475a7",
+      "bytes": 212196
+    },
+    {
+      "path": "qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+      "sha256": "dd9a89a019b4849f66ab75455fe7bdf931311042cbb0f0f97acc061539703180",
+      "bytes": 90988
     }
   ],
-  "limits": "Synthetic data. Local HTTP source and named journey checks only. No mobile, live auth, backend, assistive technology or physical-device certification. Parent early product/visual review pending. Current three are utility-heavy directions; the final twenty still need broader visual range.",
+  "limits": "Synthetic data; localHTTP source and named journey checks only. No mobile/liveauth/backend/AT/physicaldevice certification. Parent early product/visual review pending; three revised directions are ready for another parent gate, not user approval or evidence that the final twenty are complete.",
   "archive": {
     "path": "qa/homepage-personal-20/early/GOAT-early-three-desktop-websites.zip",
-    "bytes": 4514921,
-    "sha256": "1ddfd70470c36063b278e2700b317f75bf81d049068935c518211c3ed5b62d3e",
-    "contents": "Three self-contained HTML demos, nine complete designed JPEGs, three full neutral JPEGs, full-page index, root journey evidence, portable checks and limits."
+    "bytes": 6092841,
+    "sha256": "335494d11d7e1554a48b42b222eb3e0afdc1c5a35a66a1f848a930cc6e629e31",
+    "contents": "Three self-contained HTML demos; nine complete designed JPEGs; three full neutral JPEGs; full-page index; root journeys, independent visual gate and portable checks."
   },
   "verification": {
-    "freshLaunchReceipts": 20,
-    "newImplementedConcepts": 3,
-    "discoveryOnlyPlans": 17,
-    "rootSourceCases": 18,
-    "rootJourneysPassed": 3,
+    "freshAuthorLaunchReceipts": 20,
+    "reusedAuthorsOrDesigns": 0,
+    "revisedImplementedConcepts": 3,
+    "otherDiscoveryPlans": 17,
+    "rootSourceObservations": 18,
+    "rootRevisedJourneysPassed": 3,
     "portableBootsPassed": 9,
-    "fullInitialDesignedPersonaImages": 9,
-    "neutralFullImages": 3,
-    "parentProductVisualGate": "pending",
-    "mobile": "deferred"
-  }
+    "standaloneRosterDetailSmokesPassed": 3,
+    "completeDesignedPersonaImages": 9,
+    "neutralCompleteImages": 3,
+    "independentVisualGate": "Ready for another parent gate; no blocking visual defect, cautions retained",
+    "parentGate": "Pending revised checkpoint",
+    "userDelivery": "Not authorized by parent yet",
+    "mobile": "Deferred"
+  },
+  "visualReview": "qa/homepage-personal-20/reviews/contrast-critic/REVISED-GATE.md",
+  "runtimeJourneys": "qa/homepage-personal-20/reviews/revised-journeys.json",
+  "sourceFreeze": "qa/homepage-personal-20/reviews/revised-source-freeze.json"
 }

@@ -6,7 +6,7 @@
       "result": "pass",
       "steps": [
         "Reaves scored matchup opens using Enter; saved56/44 estimate and separate confidence visible; Escape returns actual trigger focus.",
-        "Team→Joel Embiid inspection→Back to team→Escape works locally without leaving the homepage.",
+        "Team\u2192Joel Embiid inspection\u2192Back to team\u2192Escape works locally without leaving the homepage.",
         "Neural has its own opponent and22-player roster; six unpriced players are actionable locally, with missing quote/evidence distinguished from zero.",
         "Guest has public pairings/league context and real-site sign-in, without an owned roster search. Functional footer remains.",
         "All15 current destination paths exist; external destinations were source/label checked, not contacted."
@@ -32,5 +32,8 @@
         "All15 current destination paths exist; external destinations were source/label checked, not contacted."
       ]
     }
-  ]
+  ],
+  "baselineOnly": true,
+  "sourceCommit": "fd9df4514b81eedd9e965be0a3c0828f4152e368",
+  "supersededBy": "qa/homepage-personal-20/reviews/revised-journeys.json"
 }

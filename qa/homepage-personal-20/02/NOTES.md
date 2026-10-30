@@ -1,46 +1,64 @@
-# Concept 02 — Team home
+# Concept 02 — Bright social league
 
-Status: source complete and frozen for root-owned delivery capture. Only this directory was authored. No peer implementation or old prototype was inspected. The shared data-only `../fixture.js` supplies synthetic state; all markup, composition, styles and behavior here are original to this author.
+Revised within the original author’s concept after the early product gate. Source is complete and frozen for root-owned delivery capture. Only `02/` was authored; no peer or old prototype implementation was inspected. Baseline history belongs to the parent’s Git snapshot, not to duplicate files here.
 
-## Product and information architecture
+## What managers return to do
 
-This homepage starts with a returning manager’s current work. Reaves opens on a known Week 3 score, an inspectable pairing and a short list of new evidence. Five completed Week 2 rows and a complete own-roster quote follow. NeuralNets opens on its six missing prices; its pairing is secondary and explicitly unresolved. Its available three-player evidence remains separate from the missing current score. Guest gets public pairings, standings, historical context and real account entry, without a claimed team.
+The first three tasks are to open the current pairing, explore the players behind their own team, and compare the people they compete with. The homepage composition follows those tasks: an explicit two-manager matchup, a portrait-led roster preview, and a compact view of named league competition. Full rosters and the full standings are dedicated local destinations rather than the homepage spine.
 
-The exact GOAT logo and current Home marker anchor a small main navigation. The team view adds useful local section links. The lower homepage contains the complete roster, standings and other current pairings in normal document flow, followed by actual-site tools, Arcade and a semantic destination footer. Every fixture route is discoverable. Actual-site links have an exit arrow and accessible text explaining that they open the current GOAT site in a new tab.
+Reaves sees its own scored pairing against Ware the Hoes At?, with both manager handles, current records, the 13.5-point sample gap and access to saved model context. Its three visible roster identities are Joel Embiid, Anthony Edwards and Alperen Şengün, using approved portraits and actual supplied evidence/quotes.
 
-The default rejected was an oversized editorial statement followed by equal feature cards. The useful work begins in the first fold. The two-column roster is a readable list of data, not a collection of promotional boxes. Search and optional filters operate on the initially complete list.
+NeuralNets leads with papichooter and its own Giannis Antetokounmpo, LaMelo Ball and AJ Dybantsa roster references. Its missing score remains “Not returned” beside the opponent’s recorded zero. No leader or AI result is inferred. Missing quote coverage is a quiet lower-page note and an optional inspection filter, never an instruction to repair the data or the homepage identity.
 
-## Typography and color
+Guest gets a substantial public homepage: the featured pairing, all four other pairings, named managers, the three unbeaten teams, useful league tools and clear actual-site account entry. It never claims an owned team. The local public team directory uses the supplied roster references only where they exist for Reaves and NeuralNets; it does not fabricate the other eight rosters.
 
-- Space Grotesk, from the existing licensed local catalog: 44px/600 primary heading, 28.8px section headings, 18.4px smaller headings. Mixed case, restrained tracking. It gives team names a deliberate identity without requiring a poster-sized title.
-- System UI stack for body and controls: 16px/1.55 reading baseline, 14px primary controls and compact rows, 12–13px secondary explanations. Body copy has a 65-character maximum measure. Long player names wrap; they are never truncated to preserve row heights.
-- IBM Plex Mono, existing local OFL asset, for score, record, rank, quote and point data. Scores are 56px; table/roster data is 13–14px. Tabular figures align comparisons. Mono is not used for paragraphs or team names.
-- The local font files are referenced in place. No font bytes or assets were downloaded; existing OFL notices are preserved alongside the shared files.
-- The neutral page/surface/text roles and single rust action role are semantic CSS variables. One filled action receives emphasis in each persona. Missing data is described in text, not signaled only by color. No trend, value rank or current leader is inferred from incomplete evidence.
+“Social” means identifiable managers, opponents, roster players and shared competition. There is no chat, friend graph, notification service, quote, last-visit baseline or invented rivalry history.
 
-## Reference reads and concrete effects
+## Website architecture and routes
 
-1. [Redesign Existing Projects — full raw SKILL.md](https://raw.githubusercontent.com/elayadesign/redesign-skill/main/skills/redesign-existing-projects/SKILL.md), including Typography, Layout, Interactivity and states, Content, Component patterns, Code quality and Strategic omissions. Read directly on 30 Oct 2026; the GitHub starting URL also opened. This is a reference, not an installed skill or an adopted design system. The relevant effects are tabular data, bounded reading measures, current-page navigation, native meaningful HTML, usable missing-data states and explicit close/back behavior. Its recommended font list, gradients, palette and scroll reveals were not adopted because this brief calls for independent typography and immediate content.
-2. [better-colors](https://www.ui-skills.com/skills/jakubkrehel/better-colors), core Colors through Reporting sections, lines 28–102. Read directly; no install command run and no linked secondary files claimed as read. “Every step has a job” and semantic role separation led to named page/surface/muted/action variables. The one-primary-action principle changed Neural’s main emphasis to missing-quote inspection rather than coloring its unresolved matchup. Contrast computation is reported only for the explicit checked pairs below.
+The persistent exact-logo header provides Home, The league, Your roster (or Meet the teams for guest), Tools & Arcade, and visibly identified current-site account entry. The homepage has useful normal scrolling content. The current location is marked in navigation; every local detail view has a Back link. All 15 fixture destinations remain discoverable in the footer, with labeled exits to the current GOAT site.
 
-Repository reads: `AGENTS.md`; `ARCHITECTURE.md` directory/homepage/personalization sections and domain/data/surface/UI/page ownership contracts; `src/app/page.tsx`; `src/surfaces/season-hub/CourtsideHome.tsx`; `src/domain/personalized-home.ts`; `src/data/home-viewer.ts`; `src/ui/siteDestinations.ts`; author brief, product inventory and the shared fixture. Production membership remains server-resolved; query personas here are explicitly synthetic display state.
+Local query routes preserve the explicit demo persona and optional structure stage:
 
-## Local action behavior
+- `?persona=reaves`, `?persona=neural`, `?persona=guest` — complete homepages.
+- `?persona=reaves&view=matchup&matchup=m1` — current Reaves pairing, saved synthetic 56/44 model context, distinct 0.35 confidence and opponent identity.
+- `?persona=neural&view=matchup&matchup=m4` — current Neural pairing, missing score, no saved model result and qualified opponent context.
+- `?persona=reaves&view=roster` — all 24 players, search and optional completed-week/unpriced filters. Neural’s equivalent contains 22 players.
+- `?persona=reaves&view=player&player=1511` — Joel Embiid’s supplied 137.50 modeled FAAB quote and 38 completed Week 2 counted points. Player routes opened from another team carry `team=`.
+- `?persona=guest&view=league` — 10-team table and all five pairings.
+- `?persona=guest&view=team&team=8` — NeuralNets team identity, current synthetic record and visibly qualified 2025 previous-manager history.
 
-- Reaves: “Inspect matchup evidence” opens a native inline disclosure with the saved synthetic 56/44 estimate and separately labeled 0.35 model confidence. Close returns focus to its summary.
-- Neural: the primary missing-quote action filters the roster to exactly six unpriced players and announces the result count. The roster filter can restore all 22. There is no fabricated total, ranking, live score or model result.
-- Evidence names open the corresponding roster row, reveal the supplied quote/evidence, and move keyboard focus to its summary. The close control returns focus to that row.
-- Team and pairing details use native disclosures with explicit close controls. The source link opens the source explanation. The visible demo selector navigates ordinary persona URLs and preserves structure mode.
-- No authentication, trade, lineup, notification, AI, quote, storage or API operation is simulated or invoked.
+Navigation uses ordinary anchor URLs enhanced with local History API rendering. Browser Back and visible Back restore the originating control and scroll position; roster search/filter state survives player inspection. Directly opened detail URLs have a home fallback. In-page tools/source links scroll without adding false route history. Source explanation is a native disclosure with close/focus return.
 
-## Browser evidence
+Useful selectors for root review: `[data-focus="main-matchup"]`, `[data-focus="spotlight-1511"]`, `[data-focus="home-roster"]`, `[data-focus="home-league"]`, `[data-focus="roster-player-1511"]`, `[data-focus="table-team-8"]`, `[data-back]`, `#player-search`, `#roster-filter`, `#sources > summary` and `[data-close]`.
 
-`verification.json` records bounded real browser checks using installed Playwright with system Chromium, served from `http://127.0.0.1:4207/qa/homepage-personal-20/02/`.
+## Typography, proportions and approved materials
 
-All three persona views loaded without page errors or HTTP failures. Each had document width equal to viewport width at 1440 and 1120 CSS px. At 1120px, setting the root text size to 150% also produced no horizontal document overflow. This is an enlarged-text check, not a mobile-device claim.
+Barlow Condensed regular gives the competition and team names a sports identity in normal mixed case. Primary team headings are 72px, section headings 44px, player names 32px and score figures 76px, with deliberately tighter line height for names and scores. It is not used for reading paragraphs or controls.
 
-Verified the Reaves matchup open/close/focus flow, Joel Embiid evidence-to-roster inspection and loaded portrait, Neural’s exactly-six unpriced filter and Giannis name search, and source disclosure in all three views. Default roster counts are 24, 22 and 0 for Reaves, Neural and guest. Structure mode kept Reaves’ 1120px document height identical (3354px) while neutralizing colors and imagery. Diagnostic screenshots of Reaves full page and Neural at 1120px were visually inspected, then removed so root owns the delivery captures.
+Space Grotesk is the reading face at 17px/1.55, with 14–16px supporting copy. System UI controls use 15px semibold with useful padding, rather than condensed display letters. IBM Plex Mono supplies precise roster quotes, records and compact comparison data at 14–22px; scores use the display face with tabular figure styling. Long names wrap rather than truncate. Enlarged text grows the page.
 
-Computed declared solid color pairs: body/page 13.50:1; muted/page 5.76:1; primary label/fill 6.66:1; muted/quote surface 5.39:1; body/white 14.99:1. This is a bounded check of those pairs, not a claim of a complete accessibility audit. Focus indicators are visible CSS outlines; native disclosures remain keyboard operable. No motion or scroll-reveal dependency exists; reduced-motion disables smooth scrolling.
+Bright yellow, lilac, sky and pink surfaces distinguish competition, player identities and shared league context. Deep violet ink and one primary action role keep labels readable. Color does not carry unknown or state meaning alone. The source mode neutralizes those colors and imagery while preserving full geometry.
 
-No production build, live-account test, mobile capture or external publication was performed or required. Final delivery screenshots belong to root. No blockers remain.
+The exact supplied black/white GOAT logos remain intact. Player photos and the existing game preview are used for actual roster identities and an actual-site Arcade destination. All font bytes are existing local OFL assets, referenced in place; no assets, packages, scripts or fonts were downloaded, and the existing OFL notices remain untouched.
+
+## Actual source reads and selective effects
+
+1. [Redesign Existing Projects — full raw SKILL.md](https://raw.githubusercontent.com/elayadesign/redesign-skill/main/skills/redesign-existing-projects/SKILL.md), read directly on 30 Oct 2026 after the assigned GitHub URL opened. Actual sections include Typography, Layout, Interactivity and states, Content, Component patterns, Code quality and Strategic omissions. The useful effects are explicit current location, semantic page structure, readable measures, actionable missing-data explanations and Back behavior. Its prescribed fonts, gradients, palette, scroll reveals and approval workflow are not adopted; the user asked for independent complete QA concepts.
+2. [better-colors](https://www.ui-skills.com/skills/jakubkrehel/better-colors), core Colors through Reporting, lines 28–102, read directly. Semantic role mapping and measurement informed the CSS variables and explicit contrast checks. The one-primary-action principle reserves the homepage’s filled action for opening the pairing. No linked secondary source is claimed as read and no install command was run.
+
+Repository reads: `AGENTS.md`; `ARCHITECTURE.md` homepage/personalization and ownership contracts; `src/app/page.tsx`; `src/surfaces/season-hub/CourtsideHome.tsx`; `src/domain/personalized-home.ts`; `src/data/home-viewer.ts`; `src/ui/siteDestinations.ts`; author brief, product inventory and shared fixture. The shared data import is the only presentation-external JS import. Production files and membership resolution remain unchanged.
+
+## Browser evidence and limits
+
+`verification.json` records real bounded checks using installed Playwright and system Chromium against the existing port 4207 static server. All three final homepages loaded with their approved images, no page errors or HTTP failures, and no horizontal document overflow at 1440 or 1120 CSS px. At 1120px, setting root text to 150% also produced no horizontal overflow. Each homepage contains zero full roster rows and zero standings tables.
+
+Verified local paths: Reaves home → matchup → Back with focus restored; home → Joel Embiid → Back with focus restored; home → full roster → Joel search → player → Back preserving search and row focus; Neural matchup/no model; six-unpriced optional filter; Giannis player view; guest league table with 10 teams and five pairings; Neural team profile with previous-manager qualification; source open/close/focus; all 15 actual-site routes; persona selector. Selected detail views also passed 1120px checks, and Giannis’ long name passed 150% text without overflow.
+
+The first deep-path check found hash navigation closing the source disclosure through route rerendering. It was corrected and verified in the final successful run. This is completed work, not a remaining blocker.
+
+Structure mode at 1120px retained the same Reaves page height, 2791px. A full-page Reaves diagnostic screenshot and first-fold Neural/guest diagnostics were inspected; the temporary diagnostic PNGs were removed so root owns final delivery captures.
+
+Declared solid contrast pairs were computed and stored in the evidence file: ink/yellow 13.68:1; ink/lilac 11.19:1; ink/sky 12.08:1; muted/page 6.60:1; muted/sky 5.28:1; white/primary 8.50:1; white/footer 15.53:1. These are bounded pair calculations, not a complete accessibility audit. Visible focus styles and native controls are present. There is no reveal animation or motion-dependent content; reduced motion disables smooth scrolling.
+
+No live API, authentication, model generation, database, storage, lineup or trade mutation, production build, mobile/device capture or external publication was performed. All current quantities are visibly synthetic. No blocker remains.
