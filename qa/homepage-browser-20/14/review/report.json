@@ -1,0 +1,907 @@
+{
+  "id": "14",
+  "scope": "Seventeen new independent desktop homepage worlds plus three retained pilots; technical observations do not establish visual diversity or craft. No footer/section/data-family/length quota.",
+  "sources": [
+    {
+      "path": "qa/homepage-browser-20/14/index.html",
+      "bytes": 10925,
+      "sha256": "1ff1001444c53f08a641386d211e4e6f3eebe01cd906d3f3c99d3c14b3225475"
+    },
+    {
+      "path": "qa/homepage-browser-20/14/script.js",
+      "bytes": 113,
+      "sha256": "348e4fd2c1faa15898fce35bfbf007b6f1d1fe1cb85041b66b7f7025415d8e74"
+    },
+    {
+      "path": "qa/homepage-browser-20/14/style.css",
+      "bytes": 13479,
+      "sha256": "fd777cdc6564ce3575394996f43afd18079c01b6d96a6a8354cdec17a5239128"
+    }
+  ],
+  "checks": [
+    {
+      "stage": "designed",
+      "width": 1440,
+      "textScale": 1,
+      "textScaleMethod": "Authored normal size",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1440,
+        "documentWidth": 1440,
+        "height": 1878,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 2073,
+        "headings": [
+          {
+            "text": "The racefor six.",
+            "top": 254.71875
+          },
+          {
+            "text": "At the front",
+            "top": 222.328125
+          },
+          {
+            "text": "ReavesDropper ↗",
+            "top": 276.921875
+          },
+          {
+            "text": "Ware theHoes At? ↗",
+            "top": 276.921875
+          },
+          {
+            "text": "The cut comesat Week 20.",
+            "top": 740.1875
+          },
+          {
+            "text": "The next two, face to face",
+            "top": 663.703125
+          },
+          {
+            "text": "Stephon Castle’s Back ↗",
+            "top": 720.703125
+          },
+          {
+            "text": "The Fun Guys ↗",
+            "top": 720.703125
+          },
+          {
+            "text": "Josh Diddy’s Roster ↗",
+            "top": 1047.765625
+          },
+          {
+            "text": "Huff n’ Puff ↗",
+            "top": 1217.890625
+          },
+          {
+            "text": "Below the cut.",
+            "top": 1448.578125
+          },
+          {
+            "text": "papichooter ↗",
+            "top": 1528.96875
+          },
+          {
+            "text": "NeuralNets ↗",
+            "top": 1528.96875
+          },
+          {
+            "text": "Lebron Theme Team ↗",
+            "top": 1622.25
+          },
+          {
+            "text": "T Halibooty ↗",
+            "top": 1689.625
+          },
+          {
+            "text": "Make yournext move.",
+            "top": 1452.578125
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to league home",
+            "href": "#main"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "Teams",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "Stocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Intel",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "Arcade",
+            "href": "https://goathoopers.com/arcade"
+          },
+          {
+            "text": "My team ↗",
+            "href": "https://goathoopers.com/team"
+          },
+          {
+            "text": "Find the cut ↓",
+            "href": "#sixth-place"
+          },
+          {
+            "text": "ReavesDropper ↗",
+            "href": "https://goathoopers.com/teams/1"
+          },
+          {
+            "text": "Joel Embiid",
+            "href": "https://goathoopers.com/player/1511"
+          },
+          {
+            "text": "Ware theHoes At? ↗",
+            "href": "https://goathoopers.com/teams/2"
+          },
+          {
+            "text": "Domantas Sabonis",
+            "href": "https://goathoopers.com/player/1739"
+          },
+          {
+            "text": "Full standings ↗",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Stephon Castle’s Back ↗",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "Shai Gilgeous-Alexander",
+            "href": "https://goathoopers.com/player/1957"
+          },
+          {
+            "text": "The Fun Guys ↗",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Josh Diddy’s Roster ↗",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Visit the champions ↗",
+            "href": "https://goathoopers.com/history/champions"
+          },
+          {
+            "text": "Huff n’ Puff ↗",
+            "href": "https://goathoopers.com/teams/6"
+          },
+          {
+            "text": "Open the roster ↗",
+            "href": "https://goathoopers.com/teams/6"
+          },
+          {
+            "text": "papichooter ↗",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "NeuralNets ↗",
+            "href": "https://goathoopers.com/teams/8"
+          },
+          {
+            "text": "Lebron Theme Team ↗",
+            "href": "https://goathoopers.com/teams/9"
+          },
+          {
+            "text": "T Halibooty ↗",
+            "href": "https://goathoopers.com/teams/10"
+          },
+          {
+            "text": "Check player values ↗The player market, with modeled values.",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Put a trade together ↗Bring a proposal to the analyzer.",
+            "href": "https://goathoopers.com/trade-analyzer"
+          },
+          {
+            "text": "Take a few shots ↗Free throw practice in the Arcade.",
+            "href": "https://goathoopers.com/arcade"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "designed",
+      "width": 1120,
+      "textScale": 1,
+      "textScaleMethod": "Authored normal size",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1120,
+        "documentWidth": 1120,
+        "height": 1857,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 2073,
+        "headings": [
+          {
+            "text": "The racefor six.",
+            "top": 254.71875
+          },
+          {
+            "text": "At the front",
+            "top": 222.328125
+          },
+          {
+            "text": "ReavesDropper ↗",
+            "top": 276.921875
+          },
+          {
+            "text": "Ware theHoes At? ↗",
+            "top": 276.921875
+          },
+          {
+            "text": "The cut comesat Week 20.",
+            "top": 710.796875
+          },
+          {
+            "text": "The next two, face to face",
+            "top": 641.15625
+          },
+          {
+            "text": "Stephon Castle’s Back ↗",
+            "top": 698.15625
+          },
+          {
+            "text": "The Fun Guys ↗",
+            "top": 698.15625
+          },
+          {
+            "text": "Josh Diddy’s Roster ↗",
+            "top": 1019.375
+          },
+          {
+            "text": "Huff n’ Puff ↗",
+            "top": 1197.171875
+          },
+          {
+            "text": "Below the cut.",
+            "top": 1427.53125
+          },
+          {
+            "text": "papichooter ↗",
+            "top": 1507.921875
+          },
+          {
+            "text": "NeuralNets ↗",
+            "top": 1507.921875
+          },
+          {
+            "text": "Lebron Theme Team ↗",
+            "top": 1601.203125
+          },
+          {
+            "text": "T Halibooty ↗",
+            "top": 1668.578125
+          },
+          {
+            "text": "Make yournext move.",
+            "top": 1431.53125
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to league home",
+            "href": "#main"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "Teams",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "Stocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Intel",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "Arcade",
+            "href": "https://goathoopers.com/arcade"
+          },
+          {
+            "text": "My team ↗",
+            "href": "https://goathoopers.com/team"
+          },
+          {
+            "text": "Find the cut ↓",
+            "href": "#sixth-place"
+          },
+          {
+            "text": "ReavesDropper ↗",
+            "href": "https://goathoopers.com/teams/1"
+          },
+          {
+            "text": "Joel Embiid",
+            "href": "https://goathoopers.com/player/1511"
+          },
+          {
+            "text": "Ware theHoes At? ↗",
+            "href": "https://goathoopers.com/teams/2"
+          },
+          {
+            "text": "Domantas Sabonis",
+            "href": "https://goathoopers.com/player/1739"
+          },
+          {
+            "text": "Full standings ↗",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Stephon Castle’s Back ↗",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "Shai Gilgeous-Alexander",
+            "href": "https://goathoopers.com/player/1957"
+          },
+          {
+            "text": "The Fun Guys ↗",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Josh Diddy’s Roster ↗",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Visit the champions ↗",
+            "href": "https://goathoopers.com/history/champions"
+          },
+          {
+            "text": "Huff n’ Puff ↗",
+            "href": "https://goathoopers.com/teams/6"
+          },
+          {
+            "text": "Open the roster ↗",
+            "href": "https://goathoopers.com/teams/6"
+          },
+          {
+            "text": "papichooter ↗",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "NeuralNets ↗",
+            "href": "https://goathoopers.com/teams/8"
+          },
+          {
+            "text": "Lebron Theme Team ↗",
+            "href": "https://goathoopers.com/teams/9"
+          },
+          {
+            "text": "T Halibooty ↗",
+            "href": "https://goathoopers.com/teams/10"
+          },
+          {
+            "text": "Check player values ↗The player market, with modeled values.",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Put a trade together ↗Bring a proposal to the analyzer.",
+            "href": "https://goathoopers.com/trade-analyzer"
+          },
+          {
+            "text": "Take a few shots ↗Free throw practice in the Arcade.",
+            "href": "https://goathoopers.com/arcade"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "designed",
+      "width": 1280,
+      "textScale": 2,
+      "textScaleMethod": "Computed HTML font sizes snapshotted then doubled; explicit text-only stress emulation, not native browser zoom",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1280,
+        "documentWidth": 1280,
+        "height": 3430,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 2073,
+        "headings": [
+          {
+            "text": "The racefor six.",
+            "top": 284.71875
+          },
+          {
+            "text": "At the front",
+            "top": 237.328125
+          },
+          {
+            "text": "ReavesDropper ↗",
+            "top": 307.921875
+          },
+          {
+            "text": "Ware theHoes At? ↗",
+            "top": 307.921875
+          },
+          {
+            "text": "The cut comesat Week 20.",
+            "top": 1366.6875
+          },
+          {
+            "text": "The next two, face to face",
+            "top": 1293.5
+          },
+          {
+            "text": "Stephon Castle’s Back ↗",
+            "top": 1366.5
+          },
+          {
+            "text": "The Fun Guys ↗",
+            "top": 1366.5
+          },
+          {
+            "text": "Josh Diddy’s Roster ↗",
+            "top": 1991.03125
+          },
+          {
+            "text": "Huff n’ Puff ↗",
+            "top": 2276.015625
+          },
+          {
+            "text": "Below the cut.",
+            "top": 2704.6875
+          },
+          {
+            "text": "papichooter ↗",
+            "top": 2872.078125
+          },
+          {
+            "text": "NeuralNets ↗",
+            "top": 2872.078125
+          },
+          {
+            "text": "Lebron Theme Team ↗",
+            "top": 3047.125
+          },
+          {
+            "text": "T Halibooty ↗",
+            "top": 3147.296875
+          },
+          {
+            "text": "Make yournext move.",
+            "top": 2708.6875
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to league home",
+            "href": "#main"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "Teams",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "Stocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Intel",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "Arcade",
+            "href": "https://goathoopers.com/arcade"
+          },
+          {
+            "text": "My team ↗",
+            "href": "https://goathoopers.com/team"
+          },
+          {
+            "text": "Find the cut ↓",
+            "href": "#sixth-place"
+          },
+          {
+            "text": "ReavesDropper ↗",
+            "href": "https://goathoopers.com/teams/1"
+          },
+          {
+            "text": "Joel Embiid",
+            "href": "https://goathoopers.com/player/1511"
+          },
+          {
+            "text": "Ware theHoes At? ↗",
+            "href": "https://goathoopers.com/teams/2"
+          },
+          {
+            "text": "Domantas Sabonis",
+            "href": "https://goathoopers.com/player/1739"
+          },
+          {
+            "text": "Full standings ↗",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Stephon Castle’s Back ↗",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "Shai Gilgeous-Alexander",
+            "href": "https://goathoopers.com/player/1957"
+          },
+          {
+            "text": "The Fun Guys ↗",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Josh Diddy’s Roster ↗",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Visit the champions ↗",
+            "href": "https://goathoopers.com/history/champions"
+          },
+          {
+            "text": "Huff n’ Puff ↗",
+            "href": "https://goathoopers.com/teams/6"
+          },
+          {
+            "text": "Open the roster ↗",
+            "href": "https://goathoopers.com/teams/6"
+          },
+          {
+            "text": "papichooter ↗",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "NeuralNets ↗",
+            "href": "https://goathoopers.com/teams/8"
+          },
+          {
+            "text": "Lebron Theme Team ↗",
+            "href": "https://goathoopers.com/teams/9"
+          },
+          {
+            "text": "T Halibooty ↗",
+            "href": "https://goathoopers.com/teams/10"
+          },
+          {
+            "text": "Check player values ↗The player market, with modeled values.",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Put a trade together ↗Bring a proposal to the analyzer.",
+            "href": "https://goathoopers.com/trade-analyzer"
+          },
+          {
+            "text": "Take a few shots ↗Free throw practice in the Arcade.",
+            "href": "https://goathoopers.com/arcade"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "structure",
+      "width": 1440,
+      "textScale": 1,
+      "textScaleMethod": "Authored normal size",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1440,
+        "documentWidth": 1440,
+        "height": 1878,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 2073,
+        "headings": [
+          {
+            "text": "The racefor six.",
+            "top": 254.71875
+          },
+          {
+            "text": "At the front",
+            "top": 222.328125
+          },
+          {
+            "text": "ReavesDropper ↗",
+            "top": 276.921875
+          },
+          {
+            "text": "Ware theHoes At? ↗",
+            "top": 276.921875
+          },
+          {
+            "text": "The cut comesat Week 20.",
+            "top": 740.1875
+          },
+          {
+            "text": "The next two, face to face",
+            "top": 663.703125
+          },
+          {
+            "text": "Stephon Castle’s Back ↗",
+            "top": 720.703125
+          },
+          {
+            "text": "The Fun Guys ↗",
+            "top": 720.703125
+          },
+          {
+            "text": "Josh Diddy’s Roster ↗",
+            "top": 1047.765625
+          },
+          {
+            "text": "Huff n’ Puff ↗",
+            "top": 1217.890625
+          },
+          {
+            "text": "Below the cut.",
+            "top": 1448.578125
+          },
+          {
+            "text": "papichooter ↗",
+            "top": 1528.96875
+          },
+          {
+            "text": "NeuralNets ↗",
+            "top": 1528.96875
+          },
+          {
+            "text": "Lebron Theme Team ↗",
+            "top": 1622.25
+          },
+          {
+            "text": "T Halibooty ↗",
+            "top": 1689.625
+          },
+          {
+            "text": "Make yournext move.",
+            "top": 1452.578125
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to league home",
+            "href": "#main"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "Teams",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "Stocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Intel",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "Arcade",
+            "href": "https://goathoopers.com/arcade"
+          },
+          {
+            "text": "My team ↗",
+            "href": "https://goathoopers.com/team"
+          },
+          {
+            "text": "Find the cut ↓",
+            "href": "#sixth-place"
+          },
+          {
+            "text": "ReavesDropper ↗",
+            "href": "https://goathoopers.com/teams/1"
+          },
+          {
+            "text": "Joel Embiid",
+            "href": "https://goathoopers.com/player/1511"
+          },
+          {
+            "text": "Ware theHoes At? ↗",
+            "href": "https://goathoopers.com/teams/2"
+          },
+          {
+            "text": "Domantas Sabonis",
+            "href": "https://goathoopers.com/player/1739"
+          },
+          {
+            "text": "Full standings ↗",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Stephon Castle’s Back ↗",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "Shai Gilgeous-Alexander",
+            "href": "https://goathoopers.com/player/1957"
+          },
+          {
+            "text": "The Fun Guys ↗",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Josh Diddy’s Roster ↗",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Visit the champions ↗",
+            "href": "https://goathoopers.com/history/champions"
+          },
+          {
+            "text": "Huff n’ Puff ↗",
+            "href": "https://goathoopers.com/teams/6"
+          },
+          {
+            "text": "Open the roster ↗",
+            "href": "https://goathoopers.com/teams/6"
+          },
+          {
+            "text": "papichooter ↗",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "NeuralNets ↗",
+            "href": "https://goathoopers.com/teams/8"
+          },
+          {
+            "text": "Lebron Theme Team ↗",
+            "href": "https://goathoopers.com/teams/9"
+          },
+          {
+            "text": "T Halibooty ↗",
+            "href": "https://goathoopers.com/teams/10"
+          },
+          {
+            "text": "Check player values ↗The player market, with modeled values.",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Put a trade together ↗Bring a proposal to the analyzer.",
+            "href": "https://goathoopers.com/trade-analyzer"
+          },
+          {
+            "text": "Take a few shots ↗Free throw practice in the Arcade.",
+            "href": "https://goathoopers.com/arcade"
+          }
+        ]
+      }
+    }
+  ],
+  "captures": [
+    {
+      "stage": "designed",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-browser-20/14/review/designed-desktop-full.jpg",
+        "bytes": 182623,
+        "sha256": "fe02f8c47b7b205084a74033c9fa909f17afa3ec554fde67c8aefe0c32ff55aa",
+        "width": 1440,
+        "height": 1878,
+        "quality": 91,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "CDP document clip at actual viewport width"
+          },
+          {
+            "y": 1800,
+            "height": 78,
+            "method": "CDP document clip at actual viewport width"
+          }
+        ],
+        "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+      },
+      "native": [
+        {
+          "position": "top",
+          "offset": 0,
+          "path": "qa/homepage-browser-20/14/review/desktop-top.jpg",
+          "bytes": 102044,
+          "sha256": "3ff13e607f85038acefadf4a7a33f56ab41cc81a979cafeadb94db86113d6fae",
+          "width": 1440,
+          "height": 1000,
+          "quality": 91
+        },
+        {
+          "position": "middle",
+          "offset": 439,
+          "path": "qa/homepage-browser-20/14/review/desktop-middle.jpg",
+          "bytes": 103461,
+          "sha256": "5f4879c9bc71458ed2e1e1f74b74bf5d9a03a3eba6ccd9e74a68e031ce004e22",
+          "width": 1440,
+          "height": 1000,
+          "quality": 91
+        },
+        {
+          "position": "bottom",
+          "offset": 878,
+          "path": "qa/homepage-browser-20/14/review/desktop-bottom.jpg",
+          "bytes": 86603,
+          "sha256": "7240e4458e7bb250e193617f14184dfa6c7ba7a69d513788584fb327d7150717",
+          "width": 1440,
+          "height": 1000,
+          "quality": 91
+        }
+      ]
+    },
+    {
+      "stage": "structure",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-browser-20/14/review/structure-desktop-full.jpg",
+        "bytes": 164266,
+        "sha256": "8259e2dd82d229505d76c159981861136d2448b285cc858f44ca7c1c19d2f338",
+        "width": 1440,
+        "height": 1878,
+        "quality": 91,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "CDP document clip at actual viewport width"
+          },
+          {
+            "y": 1800,
+            "height": 78,
+            "method": "CDP document clip at actual viewport width"
+          }
+        ],
+        "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+      },
+      "native": []
+    }
+  ],
+  "passed": 4,
+  "total": 4,
+  "limits": "Desktop-only synthetic/draft design study. Headless Linux Chromium at1440/1120 and explicit2xtext at1280; not nativezoom, AT, live/auth destination or production performance acceptance. No new mobile work. Structure view is authored neutral geometry, not screenshot editing."
+}

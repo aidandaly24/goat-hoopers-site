@@ -1,0 +1,811 @@
+{
+  "id": "08",
+  "scope": "Seventeen new independent desktop homepage worlds plus three retained pilots; technical observations do not establish visual diversity or craft. No footer/section/data-family/length quota.",
+  "sources": [
+    {
+      "path": "qa/homepage-browser-20/08/index.html",
+      "bytes": 11704,
+      "sha256": "acfd5d63fd44c7d45ecdada2bec8cd56680e3a0924ebaaafa39e73f611a07ffa"
+    },
+    {
+      "path": "qa/homepage-browser-20/08/study.js",
+      "bytes": 259,
+      "sha256": "90ded951841c85938322bcd53b448b70b44f62e03fee46464a89befd0b4f2517"
+    },
+    {
+      "path": "qa/homepage-browser-20/08/style.css",
+      "bytes": 10214,
+      "sha256": "54f8b5cd80dbfa47d3d32c662148a845a37acebf8f9e8156c66ff600c5b38a58"
+    }
+  ],
+  "checks": [
+    {
+      "stage": "designed",
+      "width": 1440,
+      "textScale": 1,
+      "textScaleMethod": "Authored normal size",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1440,
+        "documentWidth": 1440,
+        "height": 2240,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 1782,
+        "headings": [
+          {
+            "text": "Ten clubs. One title to take.",
+            "top": 165
+          },
+          {
+            "text": "Josh Diddy’s Roster",
+            "top": 459.484375
+          },
+          {
+            "text": "The chase has room for six.",
+            "top": 355.09375
+          },
+          {
+            "text": "Elsewhere in Week 3",
+            "top": 596.421875
+          },
+          {
+            "text": "Across the same cord.",
+            "top": 929.609375
+          },
+          {
+            "text": "Stephon Castle’s Back",
+            "top": 985.359375
+          },
+          {
+            "text": "The Fun Guys",
+            "top": 985.359375
+          },
+          {
+            "text": "The names behind the cloth.",
+            "top": 1393.703125
+          },
+          {
+            "text": "Shai Gilgeous-Alexander",
+            "top": 1483.640625
+          },
+          {
+            "text": "Jalen Brunson",
+            "top": 1523.640625
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to league home",
+            "href": "#home"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "Clubs",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "The Table",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Stocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Intel",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "Arcade",
+            "href": "https://goathoopers.com/arcade"
+          },
+          {
+            "text": "History",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "Josh Diddy’s Roster",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Stephen Curry",
+            "href": "https://goathoopers.com/player/1085"
+          },
+          {
+            "text": "papichooter",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "Revisit the first season",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "See the league standings",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Reaves Dropper",
+            "href": "https://goathoopers.com/teams/1"
+          },
+          {
+            "text": "Ware the Hoes At?",
+            "href": "https://goathoopers.com/teams/2"
+          },
+          {
+            "text": "Stephon Castle’s Back",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "The Fun Guys",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Open matchup previews",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "Stephon Castle’s Back",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "Shai Gilgeous-Alexander",
+            "href": "https://goathoopers.com/player/1957"
+          },
+          {
+            "text": "Meet TommyDieselfuel’s roster",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "The Fun Guys",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Jalen Brunson",
+            "href": "https://goathoopers.com/player/1967"
+          },
+          {
+            "text": "Inside The Fun Guys",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Price the next moveStocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Take a question to AI DecidesLeague decision playground",
+            "href": "https://goathoopers.com/ai-decides"
+          },
+          {
+            "text": "Put a few shots upFree-throw practice",
+            "href": "https://goathoopers.com/arcade/free-throw"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "designed",
+      "width": 1120,
+      "textScale": 1,
+      "textScaleMethod": "Authored normal size",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1120,
+        "documentWidth": 1120,
+        "height": 2171,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 1782,
+        "headings": [
+          {
+            "text": "Ten clubs. One title to take.",
+            "top": 165
+          },
+          {
+            "text": "Josh Diddy’s Roster",
+            "top": 390.859375
+          },
+          {
+            "text": "The chase has room for six.",
+            "top": 347.1875
+          },
+          {
+            "text": "Elsewhere in Week 3",
+            "top": 581.140625
+          },
+          {
+            "text": "Across the same cord.",
+            "top": 909.28125
+          },
+          {
+            "text": "Stephon Castle’s Back",
+            "top": 965.03125
+          },
+          {
+            "text": "The Fun Guys",
+            "top": 965.03125
+          },
+          {
+            "text": "The names behind the cloth.",
+            "top": 1363.296875
+          },
+          {
+            "text": "Shai Gilgeous-Alexander",
+            "top": 1453.234375
+          },
+          {
+            "text": "Jalen Brunson",
+            "top": 1493.234375
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to league home",
+            "href": "#home"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "Clubs",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "The Table",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Stocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Intel",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "Arcade",
+            "href": "https://goathoopers.com/arcade"
+          },
+          {
+            "text": "History",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "Josh Diddy’s Roster",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Stephen Curry",
+            "href": "https://goathoopers.com/player/1085"
+          },
+          {
+            "text": "papichooter",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "Revisit the first season",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "See the league standings",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Reaves Dropper",
+            "href": "https://goathoopers.com/teams/1"
+          },
+          {
+            "text": "Ware the Hoes At?",
+            "href": "https://goathoopers.com/teams/2"
+          },
+          {
+            "text": "Stephon Castle’s Back",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "The Fun Guys",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Open matchup previews",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "Stephon Castle’s Back",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "Shai Gilgeous-Alexander",
+            "href": "https://goathoopers.com/player/1957"
+          },
+          {
+            "text": "Meet TommyDieselfuel’s roster",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "The Fun Guys",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Jalen Brunson",
+            "href": "https://goathoopers.com/player/1967"
+          },
+          {
+            "text": "Inside The Fun Guys",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Price the next moveStocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Take a question to AI DecidesLeague decision playground",
+            "href": "https://goathoopers.com/ai-decides"
+          },
+          {
+            "text": "Put a few shots upFree-throw practice",
+            "href": "https://goathoopers.com/arcade/free-throw"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "designed",
+      "width": 1280,
+      "textScale": 2,
+      "textScaleMethod": "Computed HTML font sizes snapshotted then doubled; explicit text-only stress emulation, not native browser zoom",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1280,
+        "documentWidth": 1280,
+        "height": 4165,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 1782,
+        "headings": [
+          {
+            "text": "Ten clubs. One title to take.",
+            "top": 184
+          },
+          {
+            "text": "Josh Diddy’s Roster",
+            "top": 570.453125
+          },
+          {
+            "text": "The chase has room for six.",
+            "top": 523.046875
+          },
+          {
+            "text": "Elsewhere in Week 3",
+            "top": 1087.171875
+          },
+          {
+            "text": "Across the same cord.",
+            "top": 1750.609375
+          },
+          {
+            "text": "Stephon Castle’s Back",
+            "top": 1830.125
+          },
+          {
+            "text": "The Fun Guys",
+            "top": 1830.125
+          },
+          {
+            "text": "The names behind the cloth.",
+            "top": 2636.5625
+          },
+          {
+            "text": "Shai Gilgeous-Alexander",
+            "top": 2770.84375
+          },
+          {
+            "text": "Jalen Brunson",
+            "top": 2810.84375
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to league home",
+            "href": "#home"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "Clubs",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "The Table",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Stocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Intel",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "Arcade",
+            "href": "https://goathoopers.com/arcade"
+          },
+          {
+            "text": "History",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "Josh Diddy’s Roster",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Stephen Curry",
+            "href": "https://goathoopers.com/player/1085"
+          },
+          {
+            "text": "papichooter",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "Revisit the first season",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "See the league standings",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Reaves Dropper",
+            "href": "https://goathoopers.com/teams/1"
+          },
+          {
+            "text": "Ware the Hoes At?",
+            "href": "https://goathoopers.com/teams/2"
+          },
+          {
+            "text": "Stephon Castle’s Back",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "The Fun Guys",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Open matchup previews",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "Stephon Castle’s Back",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "Shai Gilgeous-Alexander",
+            "href": "https://goathoopers.com/player/1957"
+          },
+          {
+            "text": "Meet TommyDieselfuel’s roster",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "The Fun Guys",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Jalen Brunson",
+            "href": "https://goathoopers.com/player/1967"
+          },
+          {
+            "text": "Inside The Fun Guys",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Price the next moveStocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Take a question to AI DecidesLeague decision playground",
+            "href": "https://goathoopers.com/ai-decides"
+          },
+          {
+            "text": "Put a few shots upFree-throw practice",
+            "href": "https://goathoopers.com/arcade/free-throw"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "structure",
+      "width": 1440,
+      "textScale": 1,
+      "textScaleMethod": "Authored normal size",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1440,
+        "documentWidth": 1440,
+        "height": 2240,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 1782,
+        "headings": [
+          {
+            "text": "Ten clubs. One title to take.",
+            "top": 165
+          },
+          {
+            "text": "Josh Diddy’s Roster",
+            "top": 459.484375
+          },
+          {
+            "text": "The chase has room for six.",
+            "top": 355.09375
+          },
+          {
+            "text": "Elsewhere in Week 3",
+            "top": 596.421875
+          },
+          {
+            "text": "Across the same cord.",
+            "top": 929.609375
+          },
+          {
+            "text": "Stephon Castle’s Back",
+            "top": 985.359375
+          },
+          {
+            "text": "The Fun Guys",
+            "top": 985.359375
+          },
+          {
+            "text": "The names behind the cloth.",
+            "top": 1393.703125
+          },
+          {
+            "text": "Shai Gilgeous-Alexander",
+            "top": 1483.640625
+          },
+          {
+            "text": "Jalen Brunson",
+            "top": 1523.640625
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to league home",
+            "href": "#home"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "Clubs",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "The Table",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Stocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Intel",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "Arcade",
+            "href": "https://goathoopers.com/arcade"
+          },
+          {
+            "text": "History",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "Josh Diddy’s Roster",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Stephen Curry",
+            "href": "https://goathoopers.com/player/1085"
+          },
+          {
+            "text": "papichooter",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "Revisit the first season",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "See the league standings",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Reaves Dropper",
+            "href": "https://goathoopers.com/teams/1"
+          },
+          {
+            "text": "Ware the Hoes At?",
+            "href": "https://goathoopers.com/teams/2"
+          },
+          {
+            "text": "Stephon Castle’s Back",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "The Fun Guys",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Open matchup previews",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "Stephon Castle’s Back",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "Shai Gilgeous-Alexander",
+            "href": "https://goathoopers.com/player/1957"
+          },
+          {
+            "text": "Meet TommyDieselfuel’s roster",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "The Fun Guys",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Jalen Brunson",
+            "href": "https://goathoopers.com/player/1967"
+          },
+          {
+            "text": "Inside The Fun Guys",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Price the next moveStocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Take a question to AI DecidesLeague decision playground",
+            "href": "https://goathoopers.com/ai-decides"
+          },
+          {
+            "text": "Put a few shots upFree-throw practice",
+            "href": "https://goathoopers.com/arcade/free-throw"
+          }
+        ]
+      }
+    }
+  ],
+  "captures": [
+    {
+      "stage": "designed",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-browser-20/08/review/designed-desktop-full.jpg",
+        "bytes": 299790,
+        "sha256": "f22cc3953b366d404ab3596e20e0d40c0750ecd98af56a69e0904e16a23cdfe9",
+        "width": 1440,
+        "height": 2240,
+        "quality": 91,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "CDP document clip at actual viewport width"
+          },
+          {
+            "y": 1800,
+            "height": 440,
+            "method": "CDP document clip at actual viewport width"
+          }
+        ],
+        "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+      },
+      "native": [
+        {
+          "position": "top",
+          "offset": 0,
+          "path": "qa/homepage-browser-20/08/review/desktop-top.jpg",
+          "bytes": 147621,
+          "sha256": "37b6281fe2d268a80da7fd2f9dd9d1435d121470a4b5e542f82b6d139d8c00cd",
+          "width": 1440,
+          "height": 1000,
+          "quality": 91
+        },
+        {
+          "position": "middle",
+          "offset": 620,
+          "path": "qa/homepage-browser-20/08/review/desktop-middle.jpg",
+          "bytes": 150700,
+          "sha256": "83ba59150600abd693b5a3c6850424203ed4dc50cc7a5fa8fa976a0bad9469fd",
+          "width": 1440,
+          "height": 1000,
+          "quality": 91
+        },
+        {
+          "position": "bottom",
+          "offset": 1240,
+          "path": "qa/homepage-browser-20/08/review/desktop-bottom.jpg",
+          "bytes": 115222,
+          "sha256": "349515433154ba054a803c6a833056f5fc102340aefd9fc39fd153abd39aa17b",
+          "width": 1440,
+          "height": 1000,
+          "quality": 91
+        }
+      ]
+    },
+    {
+      "stage": "structure",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-browser-20/08/review/structure-desktop-full.jpg",
+        "bytes": 246947,
+        "sha256": "1644c1ca46f235fa164733c1e5658156394a24dc8abf33cfb09839a03abdf166",
+        "width": 1440,
+        "height": 2240,
+        "quality": 91,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "CDP document clip at actual viewport width"
+          },
+          {
+            "y": 1800,
+            "height": 440,
+            "method": "CDP document clip at actual viewport width"
+          }
+        ],
+        "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+      },
+      "native": []
+    }
+  ],
+  "passed": 4,
+  "total": 4,
+  "limits": "Desktop-only synthetic/draft design study. Headless Linux Chromium at1440/1120 and explicit2xtext at1280; not nativezoom, AT, live/auth destination or production performance acceptance. No new mobile work. Structure view is authored neutral geometry, not screenshot editing."
+}

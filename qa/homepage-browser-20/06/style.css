@@ -1,0 +1,87 @@
+@font-face{font-family:League;src:url('/qa/homepage-structures/assets/fonts/oswald/Oswald[wght].ttf') format('truetype');font-style:normal;font-weight:200 700;font-display:swap}
+@font-face{font-family:Words;src:url('/qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf') format('truetype');font-style:normal;font-weight:100 1000;font-display:swap}
+:root{--ground:#2444e9;--ink:#fffdf1;--soft:#d7deff;--charge:#e9ff71;--rule:#8e9eff;font-family:Words,Arial,sans-serif;font-size:16px;color:var(--ink);background:var(--ground);font-synthesis:none}
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+body{margin:0}
+a{color:inherit;text-decoration-thickness:.055em;text-underline-offset:.13em;text-decoration-skip-ink:auto}
+a:hover{color:var(--charge)}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--charge);outline-offset:7px}
+button,input,summary,a{-webkit-tap-highlight-color:transparent}
+p,h1,h2,dl,dd{margin:0}
+p{overflow-wrap:break-word}
+h1,h2{font-weight:500}
+.skip-link{position:absolute;z-index:3;top:1rem;left:1.5rem;padding:1rem;background:var(--ink);color:var(--ground);transform:translateY(-200%)}
+.skip-link:focus{transform:translateY(0)}
+.masthead{margin:0 3.5%;padding:1.5rem 0 1.2rem;display:flex;align-items:center;gap:2.7rem;border-bottom:1px solid var(--rule)}
+.brand{flex:0 1 15rem;display:block;line-height:0;min-width:10rem}
+.brand img{display:block;width:100%;height:auto;max-height:4rem;object-fit:contain;object-position:left center}
+.masthead nav{display:flex;align-items:center;flex-wrap:wrap;gap:.45rem 2rem;margin-left:auto;font-size:1rem;font-weight:600}
+.masthead nav a,.login{text-decoration:none;padding:.6rem 0}
+.masthead nav a:hover,.login:hover{text-decoration:underline}
+.login{font-size:1rem;white-space:nowrap;margin-left:1.25rem}
+main{margin:0 3.5%;outline:none}
+.opening{display:grid;grid-template-columns:minmax(0,3fr) minmax(15rem,1fr);column-gap:3%;padding:3.5rem 0 0;align-items:center}
+h1{font-family:League,Impact,sans-serif;font-size:clamp(6.5rem,10.3vw,9.3rem);font-weight:650;letter-spacing:-.045em;line-height:1.03;text-transform:uppercase;overflow-wrap:anywhere}
+h1 span{display:block}
+h1 span:nth-child(2){padding-left:8.5%}
+h1 span:nth-child(3){padding-left:23%;color:var(--charge)}
+.opening-words{padding-top:1rem;max-width:22rem}
+.league-year{font-size:1rem;font-weight:700;margin-bottom:1.65rem}
+.opening-thought{font-size:1.8rem;line-height:1.18;font-weight:500;letter-spacing:-.025em;margin-bottom:1.5rem}
+.opening-words>p:not([class]){font-size:1.03rem;line-height:1.55;color:var(--soft);margin-bottom:1.3rem}
+.text-action{font-size:1.05rem;font-weight:600;display:inline-block;line-height:1.45}
+.study-label{grid-column:1/-1;margin-top:2.4rem;padding:.8rem 0;display:flex;gap:1rem;align-items:baseline;font-size:.8rem;line-height:1.45;color:var(--soft)}
+.study-label strong{font-size:.8rem;color:var(--ink);white-space:nowrap}
+.matchup{display:grid;grid-template-columns:minmax(12rem,.75fr) minmax(0,2.7fr);gap:3%;padding-top:2.4rem;margin-top:1.1rem}
+.matchup-intro{padding-top:.65rem}
+h2{font-size:1.35rem;line-height:1.25;letter-spacing:-.025em}
+.matchup-intro a{display:inline-block;margin-top:1.2rem;font-size:.95rem;line-height:1.5;max-width:11rem}
+.matchup-sentence{font-family:League,Impact,sans-serif;font-size:clamp(4.1rem,6.7vw,6rem);font-weight:500;line-height:1.1;letter-spacing:-.035em;overflow-wrap:anywhere}
+.matchup-sentence a{text-decoration-thickness:.025em;text-underline-offset:.08em}
+.meeting-word{font-family:Words,Arial,sans-serif;font-size:.36em;font-weight:400;letter-spacing:-.02em;vertical-align:middle;margin:0 .2em}
+.matchup-score{display:flex;flex-wrap:wrap;column-gap:4rem;row-gap:1.3rem;margin-top:2rem}
+.matchup-score>div{display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap}
+.matchup-score dt{font-size:.9rem;color:var(--soft)}
+.matchup-score dd{font-family:League,Impact,sans-serif;font-weight:500;font-variant-numeric:tabular-nums;font-size:2.7rem;letter-spacing:-.025em;line-height:1.1}
+.matchup-score dd span{font-family:Words,Arial,sans-serif;font-size:.34em;letter-spacing:0;font-weight:400}
+.matchup-score .pending{font-family:Words,Arial,sans-serif;font-size:1.2rem;font-weight:400;letter-spacing:0}
+.matchup-note{font-size:.85rem;line-height:1.55;color:var(--soft);max-width:38rem;margin-top:1.2rem}
+.champion{margin:5rem 0 0;padding:3.4rem 0 3rem;border-top:.5rem solid var(--ink);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:7%;align-items:start}
+.crown-words h2{margin-bottom:1.2rem}
+.champion-name{font-family:League,Impact,sans-serif;font-size:clamp(4.2rem,7.9vw,7.2rem);font-weight:500;letter-spacing:-.035em;line-height:1.08;overflow-wrap:anywhere}
+.champion-name a{text-decoration:none}
+.champion-name a:hover{text-decoration:underline;text-decoration-thickness:.025em}
+.champion-context{font-size:1rem;line-height:1.5;max-width:25rem;margin-top:1.4rem;color:var(--soft)}
+.final-sentence{padding-top:.3rem}
+.final-period{font-size:.9rem;font-weight:600;margin-bottom:1rem}
+.final-score{font-family:League,Impact,sans-serif;font-weight:600;font-variant-numeric:tabular-nums;display:flex;flex-wrap:wrap;align-items:baseline;gap:.02em .18em;font-size:clamp(4.3rem,7.2vw,6.5rem);letter-spacing:-.045em;line-height:1.1;color:var(--charge)}
+.score-join{font-family:Words,Arial,sans-serif;font-size:.24em;letter-spacing:0;color:var(--ink);font-weight:400}
+.final-caption{font-size:1rem;line-height:1.5;margin-top:.7rem}
+.archive-sentence{font-size:1.4rem;line-height:1.4;letter-spacing:-.025em;margin-top:2.1rem;margin-bottom:1.4rem}
+.club-paragraph{padding-top:3rem;display:grid;grid-template-columns:minmax(12rem,.75fr) minmax(0,2.7fr);gap:2rem 3%;align-items:start}
+.club-paragraph-intro>p{font-size:.95rem;line-height:1.5;color:var(--soft);max-width:12rem;margin-top:1.3rem}
+.club-prose{min-width:0}
+.club-line{font-family:League,Impact,sans-serif;font-size:clamp(2.6rem,4.2vw,3.8rem);line-height:1.35;letter-spacing:-.025em;overflow-wrap:anywhere}
+.club-line a{text-decoration-thickness:.025em}
+.club-line span{font-family:Words,Arial,sans-serif;font-size:.48em;line-height:1.4;letter-spacing:-.02em}
+.club-line strong{font-weight:500;font-variant-numeric:tabular-nums;color:var(--charge)}
+.neural-line{margin:2rem 0 0 10%}
+.previous-name{font-size:1rem;line-height:1.6;margin:.5rem 0 0 26%;max-width:32rem;color:var(--soft)}
+.previous-name strong{font-weight:500;font-variant-numeric:tabular-nums;color:var(--ink)}
+.lebron-line{margin-top:2.2rem;max-width:49rem}
+.next-opponent{margin:.6rem 0 0 16%;font-size:1rem;line-height:1.6;color:var(--soft);max-width:32rem}
+.all-clubs{grid-column:2;font-size:1.15rem;line-height:1.6;margin-top:1.1rem}
+.last-word{margin-top:4.6rem;padding:3rem 0 2rem;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);column-gap:8%;border-top:1px solid var(--rule);align-items:start}
+.last-word>p{font-family:League,Impact,sans-serif;font-size:clamp(3.2rem,5.2vw,4.8rem);font-weight:500;line-height:1.2;letter-spacing:-.025em;overflow-wrap:anywhere}
+.last-word>p a{text-decoration-thickness:.025em}
+.last-word>p a span{font-family:Words,Arial,sans-serif;font-size:.65em}
+.source-note{font-size:.85rem;line-height:1.6;color:var(--soft);margin-top:.35rem}
+.source-note summary{cursor:pointer;color:var(--ink);font-size:1rem;line-height:1.5;padding:.3rem 0;width:fit-content;max-width:100%}
+.source-note[open] summary{margin-bottom:1rem}
+.source-note p{margin-bottom:.8rem}
+.last-word small{grid-column:1/-1;color:var(--soft);font-size:.72rem;line-height:1.5;margin-top:2.6rem}
+html[data-stage="structure"]{--ground:#ececec;--ink:#181818;--soft:#444;--charge:#181818;--rule:#888}
+html[data-stage="structure"] .brand img{filter:brightness(0)}
+@media (max-width:75rem){.masthead{gap:1.7rem}.masthead nav{gap:.5rem 1.4rem}.opening{column-gap:2.5%}.opening-words{padding-top:0}.opening-thought{font-size:1.5rem}.matchup-score{column-gap:2rem}.champion{gap:5%}.final-score{font-size:6.5vw}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}

@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>League account · GOAT Hoopers</title>
+  <script>if(new URLSearchParams(location.search).get('stage')==='structure')document.documentElement.dataset.stage='structure';</script>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#account">Skip to league account</a>
+  <header class="masthead">
+    <a class="wordmark" href="https://goathoopers.com/" aria-label="GOAT Hoopers home"><img src="/public/courtside/GOAT-HOOPERS-horizontal-black.svg" width="195" height="43" alt="GOAT Hoopers"></a>
+    <nav aria-label="League navigation">
+      <a href="https://goathoopers.com/table">Standings</a>
+      <a href="https://goathoopers.com/teams">Clubs</a>
+      <a href="https://goathoopers.com/stocks">Stocks</a>
+      <a href="https://goathoopers.com/trade-analyzer">Trades</a>
+    </nav>
+    <a class="sign-in" href="https://goathoopers.com/login">Sign in</a>
+  </header>
+
+  <main id="account">
+    <div class="introduction">
+      <div class="title-group">
+        <p class="eyebrow">Fixture League <span class="season">Season 2026</span></p>
+        <h1>League, on the record.</h1>
+      </div>
+      <dl class="league-terms" aria-label="League format">
+        <div><dt>Clubs</dt><dd>10</dd></div>
+        <div><dt>Playoff spots</dt><dd>6</dd></div>
+        <div><dt>Playoffs begin</dt><dd><span>W</span>20</dd></div>
+      </dl>
+    </div>
+    <p class="study-label"><strong>Synthetic study</strong> · 2026 fixture checked Nov 12, after the Oct 30, 2026 review date.</p>
+
+    <div class="open-account">
+      <section class="league-order" aria-labelledby="order-title">
+        <div class="section-line">
+          <div><h2 id="order-title">The ten</h2><p>2026 fixture order <span class="interpunct">·</span> season totals</p></div>
+          <label class="sort-control">Order by
+            <select id="club-sort"><option value="order">Fixture order</option><option value="name">Club name</option></select>
+          </label>
+        </div>
+        <table>
+          <caption class="visually-hidden">Ten clubs in the synthetic 2026 fixture. Record is wins and losses; fantasy points for are 2026 season totals.</caption>
+          <thead><tr><th scope="col" class="rank-col">Order</th><th scope="col">Club / manager</th><th scope="col" class="numeric record-col">W–L</th><th scope="col" class="numeric points-col">Fantasy pts</th></tr></thead>
+          <tbody id="club-rows">
+            <tr data-order="1" data-name="Reaves Dropper" data-history="4"><td class="rank">01</td><th scope="row"><a href="https://goathoopers.com/teams/1">Reaves Dropper</a><span class="manager">aidandaly20</span></th><td class="numeric record">1–0</td><td class="numeric points">320.50</td></tr>
+            <tr data-order="2" data-name="Ware the Hoes At?" data-history="5"><td class="rank">02</td><th scope="row"><a href="https://goathoopers.com/teams/2">Ware the Hoes At?</a><span class="manager">Aedan23</span></th><td class="numeric record">1–0</td><td class="numeric points">315.00</td></tr>
+            <tr data-order="3" data-name="Stephon Castle’s Back" data-history="7"><td class="rank">03</td><th scope="row"><a href="https://goathoopers.com/teams/3">Stephon Castle’s Back</a><span class="manager">TommyDieselfuel</span></th><td class="numeric record">1–0</td><td class="numeric points">309.50</td></tr>
+            <tr data-order="4" data-name="The Fun Guys" data-history="3"><td class="rank">04</td><th scope="row"><a href="https://goathoopers.com/teams/4">The Fun Guys</a><span class="manager">philbiag</span></th><td class="numeric record">1–0</td><td class="numeric points">304.00</td></tr>
+            <tr data-order="5" data-name="Josh Diddy’s Roster" data-history="1"><td class="rank">05</td><th scope="row"><a href="https://goathoopers.com/teams/5">Josh Diddy’s Roster</a><span class="manager">vannweinkauf</span></th><td class="numeric record">1–0</td><td class="numeric points">298.50</td></tr>
+            <tr data-order="6" data-name="Huff n’ Puff" data-history="8"><td class="rank">06</td><th scope="row"><a href="https://goathoopers.com/teams/6">Huff n’ Puff</a><span class="manager">GriffinHealy</span></th><td class="numeric record">1–0</td><td class="numeric points">293.00</td></tr>
+            <tr data-order="7" data-name="papichooter" data-history="2"><td class="rank">07</td><th scope="row"><a href="https://goathoopers.com/teams/7">papichooter</a><span class="manager">papichooter</span></th><td class="numeric record">1–0</td><td class="numeric points">287.50</td></tr>
+            <tr data-order="8" data-name="NeuralNets" data-history="10"><td class="rank">08</td><th scope="row"><a href="https://goathoopers.com/teams/8">NeuralNets</a><span class="manager">NeuralNets</span></th><td class="numeric record">1–0</td><td class="numeric points">282.00</td></tr>
+            <tr data-order="9" data-name="Lebron Theme Team" data-history="9"><td class="rank">09</td><th scope="row"><a href="https://goathoopers.com/teams/9">Lebron Theme Team</a><span class="manager">lordlx</span></th><td class="numeric record">1–0</td><td class="numeric points">276.50</td></tr>
+            <tr data-order="10" data-name="T Halibooty" data-history="6"><td class="rank">10</td><th scope="row"><a href="https://goathoopers.com/teams/10">T Halibooty</a><span class="manager">TyreseHalibooty</span></th><td class="numeric record">1–0</td><td class="numeric points">271.00</td></tr>
+          </tbody>
+        </table>
+        <div class="table-end"><p id="sort-result" role="status">All 10 clubs · fixture order</p><a href="https://goathoopers.com/table">Full standings</a></div>
+      </section>
+
+      <aside class="margin" aria-label="Fixture matchups and roster note">
+        <section class="pairings" aria-labelledby="matchups-title">
+          <div class="margin-heading"><h2 id="matchups-title">On the schedule</h2><span class="week">Week 3</span></div>
+          <p class="small-label">2026 synthetic fixture · selected pairings</p>
+          <dl class="matchup">
+            <div><dt><a href="https://goathoopers.com/teams/1">Reaves Dropper</a></dt><dd>0</dd></div>
+            <div><dt><a href="https://goathoopers.com/teams/2">Ware the Hoes At?</a></dt><dd class="pending">Pending</dd></div>
+          </dl>
+          <dl class="matchup">
+            <div><dt><a href="https://goathoopers.com/teams/3">Stephon Castle’s Back</a></dt><dd>105.5</dd></div>
+            <div><dt><a href="https://goathoopers.com/teams/4">The Fun Guys</a></dt><dd class="pending">Pending</dd></div>
+          </dl>
+          <p class="score-note">Matchup points. A recorded zero stays zero; a missing score stays Pending.</p>
+        </section>
+        <figure class="roster-note">
+          <p class="handwritten">The big man<br>in Ware’s corner.</p>
+          <a class="portrait-link" href="https://goathoopers.com/player/1739" aria-label="Domantas Sabonis player profile"><img src="/public/courtside/portraits/player-1739.png" alt="Domantas Sabonis" width="350" height="254"></a>
+          <figcaption><a href="https://goathoopers.com/player/1739">Domantas Sabonis</a><span>C · <a href="https://goathoopers.com/teams/2">Ware the Hoes At?</a></span></figcaption>
+        </figure>
+      </aside>
+    </div>
+
+    <section class="first-title" aria-labelledby="title-history">
+      <div class="history-title"><p class="eyebrow">In the book <span class="season">2025 final · verified</span></p><h2 id="title-history">The first crown<br>belongs to<br><span>vannweinkauf.</span></h2><a class="history-link" href="https://goathoopers.com/history">Visit the league archive</a></div>
+      <div class="final-result" aria-label="2025 final score">
+        <div class="winner"><p class="final-score">326.0</p><div class="final-name"><a href="https://goathoopers.com/teams/5">Josh Diddy’s Roster</a><span class="champion">Inaugural champion</span></div></div>
+        <div class="runner"><p class="final-score">251.5</p><div class="final-name"><a href="https://goathoopers.com/teams/7">papichooter</a><span>Runner-up</span></div></div>
+      </div>
+      <div class="history-note"><p class="handwritten">That’s the bar.</p><p>A 17–4 season, then the title. Josh Diddy’s Roster closed the inaugural final with 326.0 points to papichooter’s 251.5.</p><p class="small-label">Historical result · 2025 season</p></div>
+    </section>
+
+    <div class="closing-account">
+      <section class="receipts" aria-labelledby="receipts-title">
+        <div class="receipts-heading"><h2 id="receipts-title">A few roster receipts.</h2><p class="draft-label">Unpublished opener draft<br><span>Oct 5–11, 2026</span></p></div>
+        <ol>
+          <li><time datetime="2026-10-07">Oct 7</time><p><a href="https://goathoopers.com/teams/9">Lebron Theme Team</a> dropped <a href="https://goathoopers.com/player/1798">Lonzo Ball.</a></p></li>
+          <li><time datetime="2026-10-06">Oct 6</time><p><a href="https://goathoopers.com/teams/8">NeuralNets</a> dropped Malik Monk and Nikola Jović.</p></li>
+          <li><time datetime="2026-10-06">Oct 6</time><p><a href="https://goathoopers.com/teams/10">T Halibooty</a> dropped <a href="https://goathoopers.com/player/2737">Zaccharie Risacher.</a></p></li>
+        </ol>
+        <p class="receipt-note">Dated draft notes, separate from the Week 3 fixture above.</p>
+      </section>
+      <nav class="other-doors" aria-labelledby="doors-title">
+        <p class="eyebrow" id="doors-title">The rest of your league</p>
+        <a href="https://goathoopers.com/ai-decides"><span>AI Decides</span><small>Saved picks &amp; playground</small></a>
+        <a href="https://goathoopers.com/draft"><span>Draft room</span><small>Picks &amp; draft history</small></a>
+        <a href="https://goathoopers.com/arcade"><span>Arcade</span><small>Step away from the table</small></a>
+      </nav>
+    </div>
+    <details class="provenance"><summary>About this study &amp; its sources</summary><div><p>This independent desktop homepage uses the supplied local FACTS.json. The 2026 standings, matchup values and roster identities are synthetic study data checked Nov 12, 2026, a date after the Oct 30 review. They are not live league results. Fantasy points for are 2026 season totals, converted from stored integer hundredths; matchup scores are Week 3 fantasy points.</p><p>The inaugural final and 2025 records are verified history. The Oct 5–11 opener is an unpublished draft; it is not the current Week 3 edition. No live data, account, pricing or AI service is called. Links lead to existing public GOAT routes.</p><p>Reference: <a href="https://goathoopers.com/history">GOAT league history</a>. The dated move notes were supplied with Sleeper league transaction evidence checked Oct 8, 2026.</p></div></details>
+  </main>
+</body>
+</html>

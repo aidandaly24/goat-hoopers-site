@@ -1,0 +1,2553 @@
+{
+  "scope": "Twenty complete desktop homepage concepts, three retained pilots plus seventeen new independent authors. No new mobile work; no early shortlist or production integration.",
+  "base": "ab214b04f543858235d8825da5e28b660564012d",
+  "count": 20,
+  "fullDesktopCaptures": 40,
+  "entries": [
+    {
+      "id": "01",
+      "title": "Home court",
+      "summary": "Continuous illustrated member gym",
+      "author": "/root/world_court",
+      "retained": true,
+      "retainedAt": "ab214b04f543858235d8825da5e28b660564012d",
+      "source": "qa/homepage-worlds-3/a/index.html",
+      "report": "qa/homepage-worlds-3/a/review/report.json",
+      "standalone": {
+        "path": "qa/homepage-worlds-3/portable/GOAT-A-homepage.html",
+        "bytes": 1544633,
+        "sha256": "30e48658325441d055457bdda91496b9ec4d1d026e3f0e3cd5e2da154692658e"
+      },
+      "captures": [
+        {
+          "stage": "designed",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-worlds-3/a/review/designed-desktop-full.jpg",
+            "bytes": 413304,
+            "sha256": "fbe2d2d1683630e017a73ee0e901e7c2f689063fbfdf15270511e1da83da16b0",
+            "width": 1440,
+            "height": 2528,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 728,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": [
+            {
+              "position": "top",
+              "offset": 0,
+              "path": "qa/homepage-worlds-3/a/review/desktop-top.jpg",
+              "bytes": 155945,
+              "sha256": "a59110cf27c08826e14801a9e1c1bf3a11b549062c1dbd45bd456186cc0449ef",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "middle",
+              "offset": 764,
+              "path": "qa/homepage-worlds-3/a/review/desktop-middle.jpg",
+              "bytes": 183938,
+              "sha256": "fb6c466ea2825af3d3e82d3b7a8871e0572745a022e630d160e46764f84f6891",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "bottom",
+              "offset": 1528,
+              "path": "qa/homepage-worlds-3/a/review/desktop-bottom.jpg",
+              "bytes": 159967,
+              "sha256": "aa0c8ed34faec09532ec41ab02ded265e0eca71008541ba0d44b61d72800f27b",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            }
+          ]
+        },
+        {
+          "stage": "structure",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-worlds-3/a/review/structure-desktop-full.jpg",
+            "bytes": 264269,
+            "sha256": "fc434fec66b6b530513c8b8fdf8794b39cc8f8f9c8f8b0597d18d64b6502fa2e",
+            "width": 1440,
+            "height": 2528,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 728,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": []
+        }
+      ],
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-worlds-3/a/gym-phone.svg",
+          "bytes": 2647,
+          "sha256": "c48d9cadc4cd18637b239daaee7ef131156eeb5b048215adfdc6771c298edbce"
+        },
+        {
+          "path": "qa/homepage-worlds-3/a/gym.css",
+          "bytes": 23421,
+          "sha256": "ab2e73b83c349e5613f3b1b5a2215c7f6d84ff945b726baa74f4f614bd0508a3"
+        },
+        {
+          "path": "qa/homepage-worlds-3/a/gym.js",
+          "bytes": 189,
+          "sha256": "46c0f30387580214ab365e6e4f74e38317ee4358d758efd76287cb6cffad3aa7"
+        },
+        {
+          "path": "qa/homepage-worlds-3/a/gym.svg",
+          "bytes": 4647,
+          "sha256": "d1005dc82e07a48ee5d8f3eba4d4635cc0f31effbb0c69042fed66e61c564930"
+        },
+        {
+          "path": "qa/homepage-worlds-3/a/index.html",
+          "bytes": 9296,
+          "sha256": "b50a71ccb40968537dc9f451e21f39d002786e1b3d56c23ef574752e15a136c6"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "title": "Sports weekly",
+      "summary": "Image-led weekly sports frontpage",
+      "author": "/root/world_press",
+      "retained": true,
+      "retainedAt": "ab214b04f543858235d8825da5e28b660564012d",
+      "source": "qa/homepage-worlds-3/b/index.html",
+      "report": "qa/homepage-worlds-3/b/review/report.json",
+      "standalone": {
+        "path": "qa/homepage-worlds-3/portable/GOAT-B-homepage.html",
+        "bytes": 1203430,
+        "sha256": "7b4c28c9a833e3cc12a6407b15df7fbc8903b31ec4b0351bae2b8a20591988af"
+      },
+      "captures": [
+        {
+          "stage": "designed",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-worlds-3/b/review/designed-desktop-full.jpg",
+            "bytes": 478276,
+            "sha256": "a9c51fd5ee3e84c22cdef006828bc9861315d3ba507bc0f9dd53cf21415275b0",
+            "width": 1440,
+            "height": 3517,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 1717,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": [
+            {
+              "position": "top",
+              "offset": 0,
+              "path": "qa/homepage-worlds-3/b/review/desktop-top.jpg",
+              "bytes": 236784,
+              "sha256": "f157d5ce9b951b101f0d90008b30835527021fc9500f0725ad2259d1e4623892",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "middle",
+              "offset": 1258,
+              "path": "qa/homepage-worlds-3/b/review/desktop-middle.jpg",
+              "bytes": 111261,
+              "sha256": "555d9ba1d50fa03402bf3d4f3810e82b102050dc511a7c4ad717be06330acca4",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "bottom",
+              "offset": 2517,
+              "path": "qa/homepage-worlds-3/b/review/desktop-bottom.jpg",
+              "bytes": 85016,
+              "sha256": "fcd70876652c869f722e033ede46ababead365e820b30bd0d524285409939de1",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            }
+          ]
+        },
+        {
+          "stage": "structure",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-worlds-3/b/review/structure-desktop-full.jpg",
+            "bytes": 331862,
+            "sha256": "91c25e6b4dc980fb3dd4723673b88c35e3929ee3d4f0617632b25601b8de5399",
+            "width": 1440,
+            "height": 3517,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 1717,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": []
+        }
+      ],
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-worlds-3/b/index.html",
+          "bytes": 9198,
+          "sha256": "bcadedf59c5e5c9a6ee1bf02f1f2fa2c64df822d5984da25a18fd48403502f3e"
+        },
+        {
+          "path": "qa/homepage-worlds-3/b/world.css",
+          "bytes": 16667,
+          "sha256": "d9a3cb05b4d491baa541434ef5224790a2e7d39cbebb29fa66f34326ceeb0629"
+        },
+        {
+          "path": "qa/homepage-worlds-3/b/world.js",
+          "bytes": 175,
+          "sha256": "a3f40727baaa4a33724646fa4f2a020a96155588c3a391cddeea7e428c761910"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "title": "Season threads",
+      "summary": "Two asymmetric season narratives",
+      "author": "/root/world_threads",
+      "retained": true,
+      "retainedAt": "ab214b04f543858235d8825da5e28b660564012d",
+      "source": "qa/homepage-worlds-3/c/index.html",
+      "report": "qa/homepage-worlds-3/c/review/report.json",
+      "standalone": {
+        "path": "qa/homepage-worlds-3/portable/GOAT-C-homepage.html",
+        "bytes": 805149,
+        "sha256": "c042004b165afc3eb70c82cbcca6fce5005a066ed22232dfc05dcf4f71c2744e"
+      },
+      "captures": [
+        {
+          "stage": "designed",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-worlds-3/c/review/designed-desktop-full.jpg",
+            "bytes": 491472,
+            "sha256": "ac483b768335fb38f4a5b2d9e11f62ed645e582aaff999e3672efc42f2eac657",
+            "width": 1440,
+            "height": 5036,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 3600,
+                "height": 1436,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": [
+            {
+              "position": "top",
+              "offset": 0,
+              "path": "qa/homepage-worlds-3/c/review/desktop-top.jpg",
+              "bytes": 107147,
+              "sha256": "704a1bb501d184e3370d711af917e7ce4e86df7357596922fc31c2651c5d9461",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "middle",
+              "offset": 2018,
+              "path": "qa/homepage-worlds-3/c/review/desktop-middle.jpg",
+              "bytes": 112984,
+              "sha256": "383d96ce74708c3fa43196fcf371ae691e46d7f7dcb999b7031b6e6f17a1bba8",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "bottom",
+              "offset": 4036,
+              "path": "qa/homepage-worlds-3/c/review/desktop-bottom.jpg",
+              "bytes": 97526,
+              "sha256": "fe1e316b70ea93f3446209bea10d121f4fd0fad13b2c04429acfab493acac119",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            }
+          ]
+        },
+        {
+          "stage": "structure",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-worlds-3/c/review/structure-desktop-full.jpg",
+            "bytes": 395140,
+            "sha256": "5fefb4a30b90481dc2abd269d8d5d60138814e0a3c10a266a15ea6a8a1dedb9d",
+            "width": 1440,
+            "height": 5036,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 3600,
+                "height": 1436,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": []
+        }
+      ],
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-worlds-3/c/app.js",
+          "bytes": 191,
+          "sha256": "7d0c15bf68ead3be4aa26c3cc9d296efea0b252f6dc1d80879211660f34df42f"
+        },
+        {
+          "path": "qa/homepage-worlds-3/c/index.html",
+          "bytes": 10467,
+          "sha256": "ac66dee7990d5474930e1bfeafe747a83e6ca58bfca3af411241c961d1a4d18e"
+        },
+        {
+          "path": "qa/homepage-worlds-3/c/style.css",
+          "bytes": 17111,
+          "sha256": "ca5cbd3c0903b231e50c61cba7ead0fdb18e4b476f4a4f84f956dfaba77631f8"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "title": "Portrait assembly",
+      "summary": "Large player portraits and club names frame the current pairing in an open asymmetric field.",
+      "author": "/root/browser04",
+      "retained": false,
+      "source": "qa/homepage-browser-20/04/index.html",
+      "report": "qa/homepage-browser-20/04/review/report.json",
+      "standalone": {
+        "path": "qa/homepage-browser-20/portable/GOAT-04-homepage.html",
+        "bytes": 858784,
+        "sha256": "3624e966f6a539e2274f05337032b78ed2fa35910ece96906e65aedf1dd4245e"
+      },
+      "captures": [
+        {
+          "stage": "designed",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/04/review/designed-desktop-full.jpg",
+            "bytes": 295353,
+            "sha256": "2ebeca64e94ba008833ce6a01716bf1617bd2f77c07481c1d210b79caf1b7694",
+            "width": 1440,
+            "height": 2652,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 852,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": [
+            {
+              "position": "top",
+              "offset": 0,
+              "path": "qa/homepage-browser-20/04/review/desktop-top.jpg",
+              "bytes": 137954,
+              "sha256": "3800d758393df811ac6532c2a8e6f3393329ffea1d5c7eec99dfc3f90805f720",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "middle",
+              "offset": 826,
+              "path": "qa/homepage-browser-20/04/review/desktop-middle.jpg",
+              "bytes": 106565,
+              "sha256": "14f04cb27aec06fc0a992c47b1ee406991208af6c250350e09ce7e3b6763be39",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "bottom",
+              "offset": 1652,
+              "path": "qa/homepage-browser-20/04/review/desktop-bottom.jpg",
+              "bytes": 97031,
+              "sha256": "4ede7e27c4999d5e8c659a8c1529be59ac276c7b3f544d7d2f3667e436b7c822",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            }
+          ]
+        },
+        {
+          "stage": "structure",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/04/review/structure-desktop-full.jpg",
+            "bytes": 237648,
+            "sha256": "1201d256e43382ada07e1a635ec02bbd17206f194972f2a14298f02aedb9ddda",
+            "width": 1440,
+            "height": 2652,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 852,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": []
+        }
+      ],
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-browser-20/04/index.html",
+          "bytes": 7213,
+          "sha256": "5fb5992789fa139c3621757cf579958562ce6ce19fd0d722b8e3659f0cb801e8"
+        },
+        {
+          "path": "qa/homepage-browser-20/04/script.js",
+          "bytes": 257,
+          "sha256": "284e9818528b3386354ed545525cdcc2f570cdb470291a593c76e8b3aa2c00dc"
+        },
+        {
+          "path": "qa/homepage-browser-20/04/style.css",
+          "bytes": 9592,
+          "sha256": "6935a72f37b4357c09684c6c7db56773a5bb9a4cd645e4dcffea61c445eb6af4"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "title": "Overhead court",
+      "summary": "Historical champion and current matchups inhabit opposite halves of one overhead basketball court.",
+      "author": "/root/browser05",
+      "retained": false,
+      "source": "qa/homepage-browser-20/05/index.html",
+      "report": "qa/homepage-browser-20/05/review/report.json",
+      "standalone": {
+        "path": "qa/homepage-browser-20/portable/GOAT-05-homepage.html",
+        "bytes": 696791,
+        "sha256": "f567bdff5b23f41b5dc3c174827e2176f9df3c6e8d9966b29871bb0f3571a992"
+      },
+      "captures": [
+        {
+          "stage": "designed",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/05/review/designed-desktop-full.jpg",
+            "bytes": 233187,
+            "sha256": "b2cba6204f58c81b10484767c50be1077c724abe11a39e516f82bc093f6380d8",
+            "width": 1440,
+            "height": 1539,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1539,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": [
+            {
+              "position": "top",
+              "offset": 0,
+              "path": "qa/homepage-browser-20/05/review/desktop-top.jpg",
+              "bytes": 153672,
+              "sha256": "4fa93b64c6f338008411ebc854dd92d7b1597df4e06ddb04afdb1b8dc13f6cbd",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "middle",
+              "offset": 269,
+              "path": "qa/homepage-browser-20/05/review/desktop-middle.jpg",
+              "bytes": 177543,
+              "sha256": "9d024c6f48ddbd72b5cee92bf98bf4777eb0897876352601fa1bcd8d5d8d303d",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "bottom",
+              "offset": 539,
+              "path": "qa/homepage-browser-20/05/review/desktop-bottom.jpg",
+              "bytes": 146060,
+              "sha256": "7a80ba9d6ad5cab9383701a71838e0da9af614d7f6c8c9817c42ff0cf10c88e2",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            }
+          ]
+        },
+        {
+          "stage": "structure",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/05/review/structure-desktop-full.jpg",
+            "bytes": 178723,
+            "sha256": "743792f97eed2aed3eca11d0c87a22035b3bf26fdf947d91e8917760c7d4b058",
+            "width": 1440,
+            "height": 1539,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1539,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": []
+        }
+      ],
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-browser-20/05/app.js",
+          "bytes": 268,
+          "sha256": "0f453cde2d3769099b4ba5de0656c94a73e30ea2157d414eba149ea646c81ddf"
+        },
+        {
+          "path": "qa/homepage-browser-20/05/index.html",
+          "bytes": 9378,
+          "sha256": "598002a556b922645c4b1867f05fd71eac973482e216d708b6a1bd194b0a9498"
+        },
+        {
+          "path": "qa/homepage-browser-20/05/style.css",
+          "bytes": 11693,
+          "sha256": "cbade8c4825795cd58efd82ee71c2cebc072eb29f32f25b7080d135af581b2c5"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "title": "The league in words",
+      "summary": "A sentence-led typographic home follows papichooter, the current pairing and league memory.",
+      "author": "/root/browser06",
+      "retained": false,
+      "source": "qa/homepage-browser-20/06/index.html",
+      "report": "qa/homepage-browser-20/06/review/report.json",
+      "standalone": {
+        "path": "qa/homepage-browser-20/portable/GOAT-06-homepage.html",
+        "bytes": 581714,
+        "sha256": "a6b7465323574cb0e6f2a5064e94d364d1eeb83e2c2171cfdf7e8d8b3ecebee4"
+      },
+      "captures": [
+        {
+          "stage": "designed",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/06/review/designed-desktop-full.jpg",
+            "bytes": 335811,
+            "sha256": "2435a89bc1b11a24e7e2c300c43b8d3c705fd508d9107f8a7e6b7854cb77393d",
+            "width": 1440,
+            "height": 2619,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 819,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": [
+            {
+              "position": "top",
+              "offset": 0,
+              "path": "qa/homepage-browser-20/06/review/desktop-top.jpg",
+              "bytes": 144649,
+              "sha256": "180ae5da3925479c438f0b6b832aea409c7c0c11657aeb81dc9866b8ca7ab351",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "middle",
+              "offset": 809,
+              "path": "qa/homepage-browser-20/06/review/desktop-middle.jpg",
+              "bytes": 142340,
+              "sha256": "a36bfd1be95779afc3e46f86a08a71ebc8ba604b9901bb2ff4eb57a3ce238e8a",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "bottom",
+              "offset": 1619,
+              "path": "qa/homepage-browser-20/06/review/desktop-bottom.jpg",
+              "bytes": 113232,
+              "sha256": "f4fb663f0520f82e8f47a21c048e21da5a2d72cfe9f22672b9a3153b8faa4367",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            }
+          ]
+        },
+        {
+          "stage": "structure",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/06/review/structure-desktop-full.jpg",
+            "bytes": 236163,
+            "sha256": "798a1fa7ab0c338ff0549b0b65940c977347de727b8fa4dbce8b065a0bc1373f",
+            "width": 1440,
+            "height": 2619,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 819,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": []
+        }
+      ],
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-browser-20/06/index.html",
+          "bytes": 6598,
+          "sha256": "1449378e0abf55840397156a17535d7d9f979fe54e7d95ca516ce580bba5e1de"
+        },
+        {
+          "path": "qa/homepage-browser-20/06/script.js",
+          "bytes": 99,
+          "sha256": "000ffb09d28f9487601475baa7845a688ad227d198a1c4704a89c4ad800909bb"
+        },
+        {
+          "path": "qa/homepage-browser-20/06/style.css",
+          "bytes": 8109,
+          "sha256": "ac84ce5b5dbf9e2e685ade502f95477434f365aeea1654c68b511fbe5e5b661c"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "title": "Courtside cinema",
+      "summary": "NeuralNets’ rebuild unfolds through unequal image apertures, separated roster moves and open text.",
+      "author": "/root/browser07",
+      "retained": false,
+      "source": "qa/homepage-browser-20/07/index.html",
+      "report": "qa/homepage-browser-20/07/review/report.json",
+      "standalone": {
+        "path": "qa/homepage-browser-20/portable/GOAT-07-homepage.html",
+        "bytes": 1173571,
+        "sha256": "6b0e182be000258bed936481dfab7c3ec15f645cb857cfdb53653d8e4b151e38"
+      },
+      "captures": [
+        {
+          "stage": "designed",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/07/review/designed-desktop-full.jpg",
+            "bytes": 258041,
+            "sha256": "c5310d3c8cbe8f8ea966d6f7b4cd7bd664ec352ef403866545a3cc1421cc1c31",
+            "width": 1440,
+            "height": 2634,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 834,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": [
+            {
+              "position": "top",
+              "offset": 0,
+              "path": "qa/homepage-browser-20/07/review/desktop-top.jpg",
+              "bytes": 99084,
+              "sha256": "21b677d85772528008ccb5e4264fa6e89a7dd895727010a296d2c11dd84df314",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "middle",
+              "offset": 817,
+              "path": "qa/homepage-browser-20/07/review/desktop-middle.jpg",
+              "bytes": 118311,
+              "sha256": "cdcb0f41d05bdbed734d37a44ff41e487afa1e759f4cbfb654c868e24e81c777",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "bottom",
+              "offset": 1634,
+              "path": "qa/homepage-browser-20/07/review/desktop-bottom.jpg",
+              "bytes": 81356,
+              "sha256": "4587deead533f7ee4353fa14f5d85fd6400843a2f92b590b48071e80da72db25",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            }
+          ]
+        },
+        {
+          "stage": "structure",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/07/review/structure-desktop-full.jpg",
+            "bytes": 230348,
+            "sha256": "32bff17f6a2a17db620c33252f0c225f18b0047c30607d1af4c94b70a1a4b0d4",
+            "width": 1440,
+            "height": 2634,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 834,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": []
+        }
+      ],
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-browser-20/07/index.html",
+          "bytes": 8533,
+          "sha256": "2de685cae801cb91ea347ca6e3febead27dcdae5b3da82390e30c39ebcdafd0c"
+        },
+        {
+          "path": "qa/homepage-browser-20/07/script.js",
+          "bytes": 173,
+          "sha256": "cb330bfff41fc49d7bc01218ca84a1a4cc4cddcb0d049f251627c01ba282561f"
+        },
+        {
+          "path": "qa/homepage-browser-20/07/style.css",
+          "bytes": 9362,
+          "sha256": "5687acc207d1fa08919e46c1c046775074c4ae583aee8d46fc5a324d065624f0"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "title": "Pennant assembly",
+      "summary": "Irregular pennants carry club identities, current pairings and the championship target.",
+      "author": "/root/browser08",
+      "retained": false,
+      "source": "qa/homepage-browser-20/08/index.html",
+      "report": "qa/homepage-browser-20/08/review/report.json",
+      "standalone": {
+        "path": "qa/homepage-browser-20/portable/GOAT-08-homepage.html",
+        "bytes": 672734,
+        "sha256": "32ad71d50d818315657efe26e47e62464f0c91db9659077ac7919b522bf91877"
+      },
+      "captures": [
+        {
+          "stage": "designed",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/08/review/designed-desktop-full.jpg",
+            "bytes": 299790,
+            "sha256": "f22cc3953b366d404ab3596e20e0d40c0750ecd98af56a69e0904e16a23cdfe9",
+            "width": 1440,
+            "height": 2240,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 440,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": [
+            {
+              "position": "top",
+              "offset": 0,
+              "path": "qa/homepage-browser-20/08/review/desktop-top.jpg",
+              "bytes": 147621,
+              "sha256": "37b6281fe2d268a80da7fd2f9dd9d1435d121470a4b5e542f82b6d139d8c00cd",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "middle",
+              "offset": 620,
+              "path": "qa/homepage-browser-20/08/review/desktop-middle.jpg",
+              "bytes": 150700,
+              "sha256": "83ba59150600abd693b5a3c6850424203ed4dc50cc7a5fa8fa976a0bad9469fd",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "bottom",
+              "offset": 1240,
+              "path": "qa/homepage-browser-20/08/review/desktop-bottom.jpg",
+              "bytes": 115222,
+              "sha256": "349515433154ba054a803c6a833056f5fc102340aefd9fc39fd153abd39aa17b",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            }
+          ]
+        },
+        {
+          "stage": "structure",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/08/review/structure-desktop-full.jpg",
+            "bytes": 246947,
+            "sha256": "1644c1ca46f235fa164733c1e5658156394a24dc8abf33cfb09839a03abdf166",
+            "width": 1440,
+            "height": 2240,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 440,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": []
+        }
+      ],
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-browser-20/08/index.html",
+          "bytes": 11704,
+          "sha256": "acfd5d63fd44c7d45ecdada2bec8cd56680e3a0924ebaaafa39e73f611a07ffa"
+        },
+        {
+          "path": "qa/homepage-browser-20/08/study.js",
+          "bytes": 259,
+          "sha256": "90ded951841c85938322bcd53b448b70b44f62e03fee46464a89befd0b4f2517"
+        },
+        {
+          "path": "qa/homepage-browser-20/08/style.css",
+          "bytes": 10214,
+          "sha256": "54f8b5cd80dbfa47d3d32c662148a845a37acebf8f9e8156c66ff600c5b38a58"
+        }
+      ]
+    },
+    {
+      "id": "09",
+      "title": "Team kit",
+      "summary": "A continuous Huff n’ Puff jersey carries record, matchup, roster anchor and franchise context.",
+      "author": "/root/browser09",
+      "retained": false,
+      "source": "qa/homepage-browser-20/09/index.html",
+      "report": "qa/homepage-browser-20/09/review/report.json",
+      "standalone": {
+        "path": "qa/homepage-browser-20/portable/GOAT-09-homepage.html",
+        "bytes": 515323,
+        "sha256": "9334d87f537701e005d74516f202c2625ae3894f151c10a35b9c46dedace39f2"
+      },
+      "captures": [
+        {
+          "stage": "designed",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/09/review/designed-desktop-full.jpg",
+            "bytes": 331816,
+            "sha256": "421e0c1fa3cc978c73a7f1a764a49674d53326054a529a5493d99140cb6a9318",
+            "width": 1440,
+            "height": 1811,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 11,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": [
+            {
+              "position": "top",
+              "offset": 0,
+              "path": "qa/homepage-browser-20/09/review/desktop-top.jpg",
+              "bytes": 154127,
+              "sha256": "2b9c3f2de17a3dee278f8b644c66ef2716e1c65c99548af831d3f26aec1a015b",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "middle",
+              "offset": 405,
+              "path": "qa/homepage-browser-20/09/review/desktop-middle.jpg",
+              "bytes": 221670,
+              "sha256": "c1eed73b1bfe5e06db8ee6378ab71b8f704e05be94ff54c2c1faf95821d156d7",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "bottom",
+              "offset": 811,
+              "path": "qa/homepage-browser-20/09/review/desktop-bottom.jpg",
+              "bytes": 219154,
+              "sha256": "34618deb134937fb5d82bb04eb4e71210ac9b74af2525a4b96dc773bd9e0e1e9",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            }
+          ]
+        },
+        {
+          "stage": "structure",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/09/review/structure-desktop-full.jpg",
+            "bytes": 112528,
+            "sha256": "0e8224bf65d22335ed021016a202790808989f7ce538bf4235ebcc87a86c4ec2",
+            "width": 1440,
+            "height": 1811,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 11,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": []
+        }
+      ],
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-browser-20/09/index.html",
+          "bytes": 5021,
+          "sha256": "7151388d3a74e8252ac34eb990093c99cac2d174f807ba105651cd3239c1b68f"
+        },
+        {
+          "path": "qa/homepage-browser-20/09/script.js",
+          "bytes": 484,
+          "sha256": "a0fda949170739e9aadbbd3cfac3ab39fe81f5ee7392674ec3c7b847bccb67f1"
+        },
+        {
+          "path": "qa/homepage-browser-20/09/style.css",
+          "bytes": 7848,
+          "sha256": "92c7837fa87a18a684477a6b57b37e3dfdf33fffc4c8c49c6e4b6af1bf939b00"
+        }
+      ]
+    },
+    {
+      "id": "10",
+      "title": "Value field",
+      "summary": "Modeled roster value leads an open field of quotes, completed-week evidence and the matchup.",
+      "author": "/root/browser10",
+      "retained": false,
+      "source": "qa/homepage-browser-20/10/index.html",
+      "report": "qa/homepage-browser-20/10/review/report.json",
+      "standalone": {
+        "path": "qa/homepage-browser-20/portable/GOAT-10-homepage.html",
+        "bytes": 771546,
+        "sha256": "ae19881d2cd0e3e515272a54adff2f1d7ba61269ddc3f4755db26c4ae767207a"
+      },
+      "captures": [
+        {
+          "stage": "designed",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/10/review/designed-desktop-full.jpg",
+            "bytes": 179032,
+            "sha256": "4c44ca29930769b43f19bc0af55e7f1ef1442808e80a9955223176088b249826",
+            "width": 1440,
+            "height": 1589,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1589,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": [
+            {
+              "position": "top",
+              "offset": 0,
+              "path": "qa/homepage-browser-20/10/review/desktop-top.jpg",
+              "bytes": 111708,
+              "sha256": "7ea073b934905da94e4f389255e7e2bf6c132e0767d3297d3de0b5c7048a3f62",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "middle",
+              "offset": 294,
+              "path": "qa/homepage-browser-20/10/review/desktop-middle.jpg",
+              "bytes": 128094,
+              "sha256": "0033ff1ccc4065033ad02df37f74d28817b2f51d52402ae2519c21195fc4038e",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "bottom",
+              "offset": 589,
+              "path": "qa/homepage-browser-20/10/review/desktop-bottom.jpg",
+              "bytes": 113956,
+              "sha256": "f5d5d69fdf25228f9ed556e254185265c2c071e66a225a8e6568fdda3cb8a746",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            }
+          ]
+        },
+        {
+          "stage": "structure",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/10/review/structure-desktop-full.jpg",
+            "bytes": 146590,
+            "sha256": "f2e091ba97dabe63e2c78ccf6332a37e0eb3066392588b4b64076a83bfcb1ac9",
+            "width": 1440,
+            "height": 1589,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1589,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": []
+        }
+      ],
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-browser-20/10/index.html",
+          "bytes": 7537,
+          "sha256": "d56807f258427742f7377c986e1be4e96380170f51893acefc943f01cb2c5423"
+        },
+        {
+          "path": "qa/homepage-browser-20/10/script.js",
+          "bytes": 193,
+          "sha256": "0a1903dd255736394de54fca02af45829842c7be074121b1ce05f1bff3501cfa"
+        },
+        {
+          "path": "qa/homepage-browser-20/10/style.css",
+          "bytes": 10694,
+          "sha256": "1a574d9027b2668cde43ced7b5926651f91ffa14fa9a76fe803144bf9bff052a"
+        }
+      ]
+    },
+    {
+      "id": "11",
+      "title": "Open league ledger",
+      "summary": "A compact open league table shares the page with matchup notes and historical receipts.",
+      "author": "/root/browser11",
+      "retained": false,
+      "source": "qa/homepage-browser-20/11/index.html",
+      "report": "qa/homepage-browser-20/11/review/report.json",
+      "standalone": {
+        "path": "qa/homepage-browser-20/portable/GOAT-11-homepage.html",
+        "bytes": 1303151,
+        "sha256": "059563754ebbcf41d8c1fafe2da7eeffef0771e8076bce1e49c61ec93eb1f746"
+      },
+      "captures": [
+        {
+          "stage": "designed",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/11/review/designed-desktop-full.jpg",
+            "bytes": 147861,
+            "sha256": "08f0f3946e123ace3f146f199368131aea41a2a6063062606570bc7a00a7e99e",
+            "width": 1440,
+            "height": 1600,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1600,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": [
+            {
+              "position": "top",
+              "offset": 0,
+              "path": "qa/homepage-browser-20/11/review/desktop-top.jpg",
+              "bytes": 89775,
+              "sha256": "61e862e18ddb147e6679ad2dc30f20ff8fee1f0e2a4f5beff07a91fb0f922d58",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "middle",
+              "offset": 300,
+              "path": "qa/homepage-browser-20/11/review/desktop-middle.jpg",
+              "bytes": 98696,
+              "sha256": "43cd0016afdab025d45907d958f92198593c1cc644ec2ff17c3467c8a594d4c3",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "bottom",
+              "offset": 600,
+              "path": "qa/homepage-browser-20/11/review/desktop-bottom.jpg",
+              "bytes": 87554,
+              "sha256": "2a8af6dfa5399d223a262a481463b38c141810abeda50b918678529fa98ac7ae",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            }
+          ]
+        },
+        {
+          "stage": "structure",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/11/review/structure-desktop-full.jpg",
+            "bytes": 142372,
+            "sha256": "191f80e67da7403726334887408c8488aba53817839388ccfec2e210bf10bcf6",
+            "width": 1440,
+            "height": 1600,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1600,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": []
+        }
+      ],
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-browser-20/11/index.html",
+          "bytes": 11051,
+          "sha256": "ad93a2ff21a8c4e2824fe8f2ffac2ac8564acf226220888af968cfc33f2a93ef"
+        },
+        {
+          "path": "qa/homepage-browser-20/11/script.js",
+          "bytes": 634,
+          "sha256": "dc4dc92c7b38133e25e71267e53d80cdcf230e12f16d4bca76829ec4a8df76b3"
+        },
+        {
+          "path": "qa/homepage-browser-20/11/styles.css",
+          "bytes": 10124,
+          "sha256": "032f0d036936cee8bbe425e6d6ff074cc2814082c84cfbc45dd7ece2f03dde93"
+        }
+      ]
+    },
+    {
+      "id": "12",
+      "title": "Opening-night pass",
+      "summary": "A continuous admission pass connects the opening draft, league format and the first title.",
+      "author": "/root/browser12",
+      "retained": false,
+      "source": "qa/homepage-browser-20/12/index.html",
+      "report": "qa/homepage-browser-20/12/review/report.json",
+      "standalone": {
+        "path": "qa/homepage-browser-20/portable/GOAT-12-homepage.html",
+        "bytes": 684100,
+        "sha256": "7867429f1e7a73eaa3952599d40b308bd07d8676f0cea7dfff799385344a4e8e"
+      },
+      "captures": [
+        {
+          "stage": "designed",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/12/review/designed-desktop-full.jpg",
+            "bytes": 273149,
+            "sha256": "f16071177d0799702209939a31e53c735477b0035ea7dc357605f48195ee971d",
+            "width": 1440,
+            "height": 2326,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 526,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": [
+            {
+              "position": "top",
+              "offset": 0,
+              "path": "qa/homepage-browser-20/12/review/desktop-top.jpg",
+              "bytes": 121370,
+              "sha256": "d51ed3e6332de393c18d392577a1d200af4702669efafb8cdd399cbf64fca9e9",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "middle",
+              "offset": 663,
+              "path": "qa/homepage-browser-20/12/review/desktop-middle.jpg",
+              "bytes": 118865,
+              "sha256": "81b0cc6656d80e1d373aaf78e846510e2ee9d5ca78e93e0942c00b49a829f486",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "bottom",
+              "offset": 1326,
+              "path": "qa/homepage-browser-20/12/review/desktop-bottom.jpg",
+              "bytes": 121162,
+              "sha256": "15af0b5311739ad14d355ac3b8c57a436202c30c9e9ab6ceb79961a0915cdea7",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            }
+          ]
+        },
+        {
+          "stage": "structure",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/12/review/structure-desktop-full.jpg",
+            "bytes": 204791,
+            "sha256": "ca460015622c946f081e2dd59ae7fb66c14dc01cd38ec13b01590211506a0c48",
+            "width": 1440,
+            "height": 2326,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 526,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": []
+        }
+      ],
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-browser-20/12/index.html",
+          "bytes": 7534,
+          "sha256": "da910e8810ad66782dfc6eafada519e58b983227a6f18ab3636fdbed64189a87"
+        },
+        {
+          "path": "qa/homepage-browser-20/12/pass.css",
+          "bytes": 10288,
+          "sha256": "1c965c0220ceefd6ea92295ccd3bb7583087644ce0aabc0b560d8db5bd47d725"
+        },
+        {
+          "path": "qa/homepage-browser-20/12/pass.js",
+          "bytes": 264,
+          "sha256": "ca7553d729b13df75e8a1c6e9f9ece97716ce31a73a533c655b4fdedd2023248"
+        }
+      ]
+    },
+    {
+      "id": "13",
+      "title": "Letter from the floor",
+      "summary": "One editorial letter wraps league history, rookie context and useful actions around imagery.",
+      "author": "/root/browser13",
+      "retained": false,
+      "source": "qa/homepage-browser-20/13/index.html",
+      "report": "qa/homepage-browser-20/13/review/report.json",
+      "standalone": {
+        "path": "qa/homepage-browser-20/portable/GOAT-13-homepage.html",
+        "bytes": 1428863,
+        "sha256": "6652ffc6286de9bfcc9cf4ebe3fc3bf19aceb8b2d582ec3c96c685228c8f47f1"
+      },
+      "captures": [
+        {
+          "stage": "designed",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/13/review/designed-desktop-full.jpg",
+            "bytes": 347710,
+            "sha256": "0b91022a20b6b49618bde16ecef853d2e8f1f6462502d21681ce328c74947c46",
+            "width": 1440,
+            "height": 1716,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1716,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": [
+            {
+              "position": "top",
+              "offset": 0,
+              "path": "qa/homepage-browser-20/13/review/desktop-top.jpg",
+              "bytes": 218622,
+              "sha256": "0771f77c70ec7abcf8290a481886a23a4846ec815e67bc923ccb9ce3ecf6675a",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "middle",
+              "offset": 358,
+              "path": "qa/homepage-browser-20/13/review/desktop-middle.jpg",
+              "bytes": 252846,
+              "sha256": "c45ec4718b8b44b5674f2a641a7823dc39ac186f0ae63d2fe782491f083254b2",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "bottom",
+              "offset": 716,
+              "path": "qa/homepage-browser-20/13/review/desktop-bottom.jpg",
+              "bytes": 200901,
+              "sha256": "b3d80ecc1e5587e807809ac34c75441528641c7b597c39d86e16a00ba023c13f",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            }
+          ]
+        },
+        {
+          "stage": "structure",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/13/review/structure-desktop-full.jpg",
+            "bytes": 270025,
+            "sha256": "81babc5f8439d949d14790587d78c9b5cb515b3e6bc8fb396f19c87ff15ab6a7",
+            "width": 1440,
+            "height": 1716,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1716,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": []
+        }
+      ],
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-browser-20/13/index.html",
+          "bytes": 5605,
+          "sha256": "0aabb25ded6fb10ad9ff6701707c03ff42e6550e900c92c49e82e2c85e4bbce2"
+        },
+        {
+          "path": "qa/homepage-browser-20/13/letter.css",
+          "bytes": 4705,
+          "sha256": "ed2a69560f27c9f6fcfd72e231959cba944d0087230d5285d77a7b876e1f221c"
+        },
+        {
+          "path": "qa/homepage-browser-20/13/letter.js",
+          "bytes": 230,
+          "sha256": "23c102dc5d2bb55a337fc0a4f3c140ad24be9a1f8db4e141b657ea21aaa3c964"
+        }
+      ]
+    },
+    {
+      "id": "14",
+      "title": "Race for six",
+      "summary": "Widening terraces organize the supplied league order toward the sixth playoff place.",
+      "author": "/root/browser14",
+      "retained": false,
+      "source": "qa/homepage-browser-20/14/index.html",
+      "report": "qa/homepage-browser-20/14/review/report.json",
+      "standalone": {
+        "path": "qa/homepage-browser-20/portable/GOAT-14-homepage.html",
+        "bytes": 886153,
+        "sha256": "de1b101f3d47750c59992cf365c49f4f938d860bbd7a18ad9bb6fdef570cf310"
+      },
+      "captures": [
+        {
+          "stage": "designed",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/14/review/designed-desktop-full.jpg",
+            "bytes": 182623,
+            "sha256": "fe02f8c47b7b205084a74033c9fa909f17afa3ec554fde67c8aefe0c32ff55aa",
+            "width": 1440,
+            "height": 1878,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 78,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": [
+            {
+              "position": "top",
+              "offset": 0,
+              "path": "qa/homepage-browser-20/14/review/desktop-top.jpg",
+              "bytes": 102044,
+              "sha256": "3ff13e607f85038acefadf4a7a33f56ab41cc81a979cafeadb94db86113d6fae",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "middle",
+              "offset": 439,
+              "path": "qa/homepage-browser-20/14/review/desktop-middle.jpg",
+              "bytes": 103461,
+              "sha256": "5f4879c9bc71458ed2e1e1f74b74bf5d9a03a3eba6ccd9e74a68e031ce004e22",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "bottom",
+              "offset": 878,
+              "path": "qa/homepage-browser-20/14/review/desktop-bottom.jpg",
+              "bytes": 86603,
+              "sha256": "7240e4458e7bb250e193617f14184dfa6c7ba7a69d513788584fb327d7150717",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            }
+          ]
+        },
+        {
+          "stage": "structure",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/14/review/structure-desktop-full.jpg",
+            "bytes": 164266,
+            "sha256": "8259e2dd82d229505d76c159981861136d2448b285cc858f44ca7c1c19d2f338",
+            "width": 1440,
+            "height": 1878,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 78,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": []
+        }
+      ],
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-browser-20/14/index.html",
+          "bytes": 10925,
+          "sha256": "1ff1001444c53f08a641386d211e4e6f3eebe01cd906d3f3c99d3c14b3225475"
+        },
+        {
+          "path": "qa/homepage-browser-20/14/script.js",
+          "bytes": 113,
+          "sha256": "348e4fd2c1faa15898fce35bfbf007b6f1d1fe1cb85041b66b7f7025415d8e74"
+        },
+        {
+          "path": "qa/homepage-browser-20/14/style.css",
+          "bytes": 13479,
+          "sha256": "fd777cdc6564ce3575394996f43afd18079c01b6d96a6a8354cdec17a5239128"
+        }
+      ]
+    },
+    {
+      "id": "15",
+      "title": "Split field",
+      "summary": "Current league work and historical memory occupy one uninterrupted, asymmetric split field.",
+      "author": "/root/browser15",
+      "retained": false,
+      "source": "qa/homepage-browser-20/15/index.html",
+      "report": "qa/homepage-browser-20/15/review/report.json",
+      "standalone": {
+        "path": "qa/homepage-browser-20/portable/GOAT-15-homepage.html",
+        "bytes": 974243,
+        "sha256": "9baaa02b7383905856ef800f682aa5fa574989cd417a34ca9e497bc18f02ea2e"
+      },
+      "captures": [
+        {
+          "stage": "designed",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/15/review/designed-desktop-full.jpg",
+            "bytes": 173716,
+            "sha256": "4dd696f7c35c864b8f8b9fce8fa6aa520eabbbf8c2e5077b9b05b270759b1966",
+            "width": 1440,
+            "height": 1943,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 143,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": [
+            {
+              "position": "top",
+              "offset": 0,
+              "path": "qa/homepage-browser-20/15/review/desktop-top.jpg",
+              "bytes": 89206,
+              "sha256": "f99d19f1d9833487e7712db344461c96d2efdc35e364fcf7a44fffb837385df5",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "middle",
+              "offset": 471,
+              "path": "qa/homepage-browser-20/15/review/desktop-middle.jpg",
+              "bytes": 94281,
+              "sha256": "fc7f1aba0a4903e36bb25294931bf63074867ddeb47143f4b3c4b695f3abb1de",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "bottom",
+              "offset": 943,
+              "path": "qa/homepage-browser-20/15/review/desktop-bottom.jpg",
+              "bytes": 87312,
+              "sha256": "74a3ac4999d569247d0b0b30bd2f83e3a1665d9cba9061ea58943781ff984adf",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            }
+          ]
+        },
+        {
+          "stage": "structure",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/15/review/structure-desktop-full.jpg",
+            "bytes": 155663,
+            "sha256": "27e98a6283548b6de56fcc14107beedb54c8f6e4832f418e89b8fe4771165ea9",
+            "width": 1440,
+            "height": 1943,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 143,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": []
+        }
+      ],
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-browser-20/15/index.html",
+          "bytes": 7796,
+          "sha256": "77cffc6814e06d77a96a0cec267b99b249b26e59d3be00ce532bffc303a78a77"
+        },
+        {
+          "path": "qa/homepage-browser-20/15/script.js",
+          "bytes": 113,
+          "sha256": "b1163b845b6fbdbca3570f2c60c3471471b2001656497230a28de2f4f2cd6638"
+        },
+        {
+          "path": "qa/homepage-browser-20/15/style.css",
+          "bytes": 10807,
+          "sha256": "b8ed2adf27c6c011a1d717aaf59268efa3599c27028387bdb6565cb7ae00f6a0"
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "title": "Ink game day",
+      "summary": "Original ink vignettes connect game context, rookie watch, roster moves and the title chase.",
+      "author": "/root/browser16",
+      "retained": false,
+      "source": "qa/homepage-browser-20/16/index.html",
+      "report": "qa/homepage-browser-20/16/review/report.json",
+      "standalone": {
+        "path": "qa/homepage-browser-20/portable/GOAT-16-homepage.html",
+        "bytes": 1036272,
+        "sha256": "e412ed1a50315e59828f266220961b3d99a08bb3a39872861a1cfa506c7aae03"
+      },
+      "captures": [
+        {
+          "stage": "designed",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/16/review/designed-desktop-full.jpg",
+            "bytes": 285851,
+            "sha256": "438479a995fcdb0ec24f81d82a545466c46d6066df58adc84a5aa4ae07cbfe6a",
+            "width": 1440,
+            "height": 2391,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 591,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": [
+            {
+              "position": "top",
+              "offset": 0,
+              "path": "qa/homepage-browser-20/16/review/desktop-top.jpg",
+              "bytes": 122165,
+              "sha256": "eb875a752a19e4139c64f27ed013b5bab4a2bee14f6d63557199a43b0f690094",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "middle",
+              "offset": 695,
+              "path": "qa/homepage-browser-20/16/review/desktop-middle.jpg",
+              "bytes": 131964,
+              "sha256": "359faa5616d59153c05bdb65804817b2da3df1202fe63d3f980f4e5c154290d9",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "bottom",
+              "offset": 1391,
+              "path": "qa/homepage-browser-20/16/review/desktop-bottom.jpg",
+              "bytes": 116968,
+              "sha256": "44bb15d1456bfabd296445cd0b85961773f8c1d0c198e819090714988325df4c",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            }
+          ]
+        },
+        {
+          "stage": "structure",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/16/review/structure-desktop-full.jpg",
+            "bytes": 271749,
+            "sha256": "67c183e1cc9fdc3112e8ebef74291e33187503ba0513bbedf481252931818c14",
+            "width": 1440,
+            "height": 2391,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 591,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": []
+        }
+      ],
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-browser-20/16/index.html",
+          "bytes": 14743,
+          "sha256": "d4ada24bbbf0ad6d4b4490baa5185b66330df3c32264f041b16270f958a377ad"
+        },
+        {
+          "path": "qa/homepage-browser-20/16/ink.css",
+          "bytes": 10162,
+          "sha256": "681a13cf465dce675318bf41c54924043d6acb32008882a82ba4a45fb44b5f6a"
+        },
+        {
+          "path": "qa/homepage-browser-20/16/ink.js",
+          "bytes": 242,
+          "sha256": "5fe2b956253052f8679a5d51ce918f611b92ee396c1f3d34b6ce6400d1dce69b"
+        }
+      ]
+    },
+    {
+      "id": "17",
+      "title": "GOAT wordscape",
+      "summary": "Editorial G/O/A/T letterforms hold pairing, court, historical title and club context.",
+      "author": "/root/browser17",
+      "retained": false,
+      "source": "qa/homepage-browser-20/17/index.html",
+      "report": "qa/homepage-browser-20/17/review/report.json",
+      "standalone": {
+        "path": "qa/homepage-browser-20/portable/GOAT-17-homepage.html",
+        "bytes": 1195158,
+        "sha256": "d71849d15b54a22a8f8a62279b84445eca8c1a03dfafb21f232160444b82faa1"
+      },
+      "captures": [
+        {
+          "stage": "designed",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/17/review/designed-desktop-full.jpg",
+            "bytes": 254518,
+            "sha256": "37826d67aa6a96bbbd59781491c9a225b8f781f9efec7bc4e434fc517a8808a4",
+            "width": 1440,
+            "height": 2174,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 374,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": [
+            {
+              "position": "top",
+              "offset": 0,
+              "path": "qa/homepage-browser-20/17/review/desktop-top.jpg",
+              "bytes": 138440,
+              "sha256": "4f2af7bad5871772391bd07c3dbb7fc93ac42b2b937f41f5643695ce6134e61d",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "middle",
+              "offset": 587,
+              "path": "qa/homepage-browser-20/17/review/desktop-middle.jpg",
+              "bytes": 123359,
+              "sha256": "27fd8376b5bc5ea25347207b41af45779debd18e5da1d3ba30f67d5e7b9b73fe",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "bottom",
+              "offset": 1174,
+              "path": "qa/homepage-browser-20/17/review/desktop-bottom.jpg",
+              "bytes": 95917,
+              "sha256": "0f4190ce2ceeda4d73a3870d8cf33acafa04f0748e56a7fbc96f144625c034ea",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            }
+          ]
+        },
+        {
+          "stage": "structure",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/17/review/structure-desktop-full.jpg",
+            "bytes": 212720,
+            "sha256": "af425c1c1666dfa1fd4944291b6beb4537159985fc2825c156be1be53f2c0f6c",
+            "width": 1440,
+            "height": 2174,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 374,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": []
+        }
+      ],
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-browser-20/17/index.html",
+          "bytes": 9064,
+          "sha256": "43d0ebb132da0f41e58e68c23f8932de37e2c52a076ff1cb57bfb87a87f0207b"
+        },
+        {
+          "path": "qa/homepage-browser-20/17/study.js",
+          "bytes": 99,
+          "sha256": "97d06d100e5fe4f3ce658262a6d48a10d2be723e8e80f43613fc2eed9c1fe0f7"
+        },
+        {
+          "path": "qa/homepage-browser-20/17/style.css",
+          "bytes": 10170,
+          "sha256": "f00c3d5c692d711caf7b35238cbe6462272f79c1832aa2b5dd09dba1f9057303"
+        }
+      ]
+    },
+    {
+      "id": "18",
+      "title": "One shot, whole league",
+      "summary": "A basketball shot arc links a champion, the current pairing and useful league routes.",
+      "author": "/root/browser18",
+      "retained": false,
+      "source": "qa/homepage-browser-20/18/index.html",
+      "report": "qa/homepage-browser-20/18/review/report.json",
+      "standalone": {
+        "path": "qa/homepage-browser-20/portable/GOAT-18-homepage.html",
+        "bytes": 671201,
+        "sha256": "5e7e7a0724af4b6f73808597d55736028935c7294169bcc9db6b02f390d42393"
+      },
+      "captures": [
+        {
+          "stage": "designed",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/18/review/designed-desktop-full.jpg",
+            "bytes": 228673,
+            "sha256": "e3bf9eb49a3678fdb75cf19e62b61bf453747a1b994f9869835615c5cbda4772",
+            "width": 1440,
+            "height": 2296,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 496,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": [
+            {
+              "position": "top",
+              "offset": 0,
+              "path": "qa/homepage-browser-20/18/review/desktop-top.jpg",
+              "bytes": 111552,
+              "sha256": "7e21c39a717e2230c4f2193cb8efd47c7869cbbead3e084c01cd9fd4bab67957",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "middle",
+              "offset": 648,
+              "path": "qa/homepage-browser-20/18/review/desktop-middle.jpg",
+              "bytes": 116703,
+              "sha256": "dd8071d945dbda47815cc7a05750c463b8afc54a699c7ad144009aaba7228853",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "bottom",
+              "offset": 1296,
+              "path": "qa/homepage-browser-20/18/review/desktop-bottom.jpg",
+              "bytes": 85710,
+              "sha256": "dcb8daf7e57d7cb4a035a5400d176a8079c26f358ba82945bc13894773b81715",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            }
+          ]
+        },
+        {
+          "stage": "structure",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/18/review/structure-desktop-full.jpg",
+            "bytes": 178338,
+            "sha256": "b3bdcc230f966ccdfc868f3df2f5e7b68f45aaf8605014d8015fc36bb1b05bae",
+            "width": 1440,
+            "height": 2296,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 496,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": []
+        }
+      ],
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-browser-20/18/index.html",
+          "bytes": 7214,
+          "sha256": "997efd83e0d7d4ae52718bece359196bec6cc3674c80b85f32677b14e3bed3ce"
+        },
+        {
+          "path": "qa/homepage-browser-20/18/script.js",
+          "bytes": 1409,
+          "sha256": "cc5fd0d211b5c9398eb918b7d86546f658130d4ad65e58dcd19cc1d96115d7f9"
+        },
+        {
+          "path": "qa/homepage-browser-20/18/style.css",
+          "bytes": 9489,
+          "sha256": "3b3594c0d0f060787b30933a97c5664f1ae2f505ce6bd09f77bbcaa9a6f8c8e2"
+        }
+      ]
+    },
+    {
+      "id": "19",
+      "title": "The league argument",
+      "summary": "The saved choice and stronger alternative probability lead an open debate with roster evidence.",
+      "author": "/root/browser19",
+      "retained": false,
+      "source": "qa/homepage-browser-20/19/index.html",
+      "report": "qa/homepage-browser-20/19/review/report.json",
+      "standalone": {
+        "path": "qa/homepage-browser-20/portable/GOAT-19-homepage.html",
+        "bytes": 900279,
+        "sha256": "3d868d4a3b3ad080b7b91503b49ddfb769b6642d8d10e730136cbbcc98961dc3"
+      },
+      "captures": [
+        {
+          "stage": "designed",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/19/review/designed-desktop-full.jpg",
+            "bytes": 229105,
+            "sha256": "57a0dcd4bf8d19bee08f63062bf596296335ed23f81807c1d7732e318d7c7549",
+            "width": 1440,
+            "height": 2208,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 408,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": [
+            {
+              "position": "top",
+              "offset": 0,
+              "path": "qa/homepage-browser-20/19/review/desktop-top.jpg",
+              "bytes": 109178,
+              "sha256": "1ab8525e89648f35468a75f7f2ca037a3f0a06f2fb46ea410936831990c4a5a1",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "middle",
+              "offset": 604,
+              "path": "qa/homepage-browser-20/19/review/desktop-middle.jpg",
+              "bytes": 111898,
+              "sha256": "c2ebfd0ace55155e7ce68d3cdd5e0a4b67b1257c704a3d20b4d9cd41664e7d2b",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "bottom",
+              "offset": 1208,
+              "path": "qa/homepage-browser-20/19/review/desktop-bottom.jpg",
+              "bytes": 104164,
+              "sha256": "888ccdb0d8e1cb5c29579cd687cc5818f31ae3d50597ff11a71a51a80355df03",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            }
+          ]
+        },
+        {
+          "stage": "structure",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/19/review/structure-desktop-full.jpg",
+            "bytes": 221679,
+            "sha256": "0e076d48b6c03a9352f40684de6f2ea39cb607f360fe23158f7844fc9eae4e8d",
+            "width": 1440,
+            "height": 2208,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 408,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": []
+        }
+      ],
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-browser-20/19/index.html",
+          "bytes": 8694,
+          "sha256": "a374a06e242314dc5854fba96c3a8f982e6bd44ef6e9cc5b2e90b30adf864e47"
+        },
+        {
+          "path": "qa/homepage-browser-20/19/script.js",
+          "bytes": 99,
+          "sha256": "3b2ec4549475bb997a81a936f5ad4851d2e27bada1f06e772acb23dcfd7ea9a0"
+        },
+        {
+          "path": "qa/homepage-browser-20/19/style.css",
+          "bytes": 11538,
+          "sha256": "82ab252ea9bfaafd567751438060af1001f6c7b2b154cf2fae48d9482dea1857"
+        }
+      ]
+    },
+    {
+      "id": "20",
+      "title": "Names make the league",
+      "summary": "Club names of unequal scale form a franchise-index home with inline current and season context.",
+      "author": "/root/browser20",
+      "retained": false,
+      "source": "qa/homepage-browser-20/20/index.html",
+      "report": "qa/homepage-browser-20/20/review/report.json",
+      "standalone": {
+        "path": "qa/homepage-browser-20/portable/GOAT-20-homepage.html",
+        "bytes": 1081170,
+        "sha256": "e4bd6278f0feefedbbe2a1c9009f62e49d7df9f9f2785d056c3c704f6d84b64e"
+      },
+      "captures": [
+        {
+          "stage": "designed",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/20/review/designed-desktop-full.jpg",
+            "bytes": 247805,
+            "sha256": "6d9c446716ff90357d0068fd62637ea3ca7f90625f10c4d1f2e46a44cfc53c53",
+            "width": 1440,
+            "height": 2759,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 959,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": [
+            {
+              "position": "top",
+              "offset": 0,
+              "path": "qa/homepage-browser-20/20/review/desktop-top.jpg",
+              "bytes": 98199,
+              "sha256": "441488dc0c68b1cbb49d836435c6fcb3886a6a905cf65d0ebb2ad7f9bf68a9bf",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "middle",
+              "offset": 879,
+              "path": "qa/homepage-browser-20/20/review/desktop-middle.jpg",
+              "bytes": 87771,
+              "sha256": "6242afb53bcd23be89726889db4735414cf12524d5c1fa8a9a66400012f99d61",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            },
+            {
+              "position": "bottom",
+              "offset": 1759,
+              "path": "qa/homepage-browser-20/20/review/desktop-bottom.jpg",
+              "bytes": 85552,
+              "sha256": "69f3f626624806fdb339a4ec6796a3ace3e5c0c7b033000c5f08c8dc1e9812a0",
+              "width": 1440,
+              "height": 1000,
+              "quality": 91
+            }
+          ]
+        },
+        {
+          "stage": "structure",
+          "device": "desktop",
+          "image": {
+            "path": "qa/homepage-browser-20/20/review/structure-desktop-full.jpg",
+            "bytes": 225595,
+            "sha256": "f3c183504ec8c98acd64e1159ca01cde9a1d8f602f314ffe3b81efd277e80631",
+            "width": 1440,
+            "height": 2759,
+            "quality": 91,
+            "offsets": [
+              {
+                "y": 0,
+                "height": 1800,
+                "method": "CDP document clip at actual viewport width"
+              },
+              {
+                "y": 1800,
+                "height": 959,
+                "method": "CDP document clip at actual viewport width"
+              }
+            ],
+            "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+          },
+          "native": []
+        }
+      ],
+      "sourceHashes": [
+        {
+          "path": "qa/homepage-browser-20/20/index.html",
+          "bytes": 9390,
+          "sha256": "493fc667cad79e626c2712d1ebb5c2d15b4e98ea645335d64916b8bce0173e28"
+        },
+        {
+          "path": "qa/homepage-browser-20/20/study.js",
+          "bytes": 99,
+          "sha256": "7d2008e07f4cc47dc058a27d670cf185282e9813dd77c35bff6453321d5e3e42"
+        },
+        {
+          "path": "qa/homepage-browser-20/20/style.css",
+          "bytes": 10023,
+          "sha256": "1740c132f74c20ab761fc3e3c3b0d39f555315b1f470aeaa2fbe47803ef7ba38"
+        }
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "ids": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05"
+      ],
+      "stage": "designed",
+      "scope": "Whole documents at reduced scale, never opening snippets. Use full originals for reading detail.",
+      "path": "qa/homepage-browser-20/delivery/GOAT-desktop-01-05-designed-FULL-comparison.jpg",
+      "width": 1500,
+      "height": 1039,
+      "bytes": 195106,
+      "sha256": "885dc9614d9b4d31cafbab03f610d8b406cd6ef90375172e8e246b9be344152a"
+    },
+    {
+      "ids": [
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "stage": "designed",
+      "scope": "Whole documents at reduced scale, never opening snippets. Use full originals for reading detail.",
+      "path": "qa/homepage-browser-20/delivery/GOAT-desktop-06-10-designed-FULL-comparison.jpg",
+      "width": 1500,
+      "height": 572,
+      "bytes": 133877,
+      "sha256": "2b428e6683f097df711e621942a07c28da6bcb26212ba3edc3fe3228f4e08215"
+    },
+    {
+      "ids": [
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "stage": "designed",
+      "scope": "Whole documents at reduced scale, never opening snippets. Use full originals for reading detail.",
+      "path": "qa/homepage-browser-20/delivery/GOAT-desktop-11-15-designed-FULL-comparison.jpg",
+      "width": 1500,
+      "height": 512,
+      "bytes": 116942,
+      "sha256": "cf7fe12f3b515e49d7bcbfda39282bf1c3edd7295d5c08e6273cdac04dea9bbf"
+    },
+    {
+      "ids": [
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "stage": "designed",
+      "scope": "Whole documents at reduced scale, never opening snippets. Use full originals for reading detail.",
+      "path": "qa/homepage-browser-20/delivery/GOAT-desktop-16-20-designed-FULL-comparison.jpg",
+      "width": 1500,
+      "height": 596,
+      "bytes": 141000,
+      "sha256": "af66a8d3606e1629ce22869fda10161b501a26988b3d25a081494ea74bb279be"
+    },
+    {
+      "ids": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "stage": "designed",
+      "scope": "All20 whole-page silhouettes; full native originals linked separately.",
+      "path": "qa/homepage-browser-20/delivery/GOAT-all20-designed-FULL-atlas.jpg",
+      "width": 1500,
+      "height": 4180,
+      "bytes": 601765,
+      "sha256": "bd47c43a51a9818f821d0865c943ca7ed7322d5ece51ee96e8a5c9edd2dec4e7"
+    },
+    {
+      "ids": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05"
+      ],
+      "stage": "structure",
+      "scope": "Whole documents at reduced scale, never opening snippets. Use full originals for reading detail.",
+      "path": "qa/homepage-browser-20/delivery/GOAT-desktop-01-05-structure-FULL-comparison.jpg",
+      "width": 1500,
+      "height": 1039,
+      "bytes": 157977,
+      "sha256": "2dc9fbd771b5d7385725dcccc0cb40359e0b1af057120647cb860d3eac5ac927"
+    },
+    {
+      "ids": [
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "stage": "structure",
+      "scope": "Whole documents at reduced scale, never opening snippets. Use full originals for reading detail.",
+      "path": "qa/homepage-browser-20/delivery/GOAT-desktop-06-10-structure-FULL-comparison.jpg",
+      "width": 1500,
+      "height": 572,
+      "bytes": 111482,
+      "sha256": "0caa402502f45ba7383082a1b979b38fa2b115599aec9e6f99628d294396cbb8"
+    },
+    {
+      "ids": [
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "stage": "structure",
+      "scope": "Whole documents at reduced scale, never opening snippets. Use full originals for reading detail.",
+      "path": "qa/homepage-browser-20/delivery/GOAT-desktop-11-15-structure-FULL-comparison.jpg",
+      "width": 1500,
+      "height": 512,
+      "bytes": 105458,
+      "sha256": "c67f76f47ab06c437028638d8ccf2b738531d7c58ed14f6e2d63639abfdfdb36"
+    },
+    {
+      "ids": [
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "stage": "structure",
+      "scope": "Whole documents at reduced scale, never opening snippets. Use full originals for reading detail.",
+      "path": "qa/homepage-browser-20/delivery/GOAT-desktop-16-20-structure-FULL-comparison.jpg",
+      "width": 1500,
+      "height": 596,
+      "bytes": 127936,
+      "sha256": "5c5450b1ca94b44c51b47d02910db7bcce52c3925fc762fb36d23e5d29157d18"
+    },
+    {
+      "ids": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "stage": "structure",
+      "scope": "All20 whole-page silhouettes; full native originals linked separately.",
+      "path": "qa/homepage-browser-20/delivery/GOAT-all20-structure-FULL-atlas.jpg",
+      "width": 1500,
+      "height": 4180,
+      "bytes": 518838,
+      "sha256": "c2294de5c7e72a94e7a8dc3c9d4dcd93169779b9a8a587e61644cd4589962c85"
+    }
+  ],
+  "archives": [
+    {
+      "ids": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05"
+      ],
+      "path": "qa/homepage-browser-20/delivery/GOAT-desktop-options-01-05.zip",
+      "bytes": 5857529,
+      "sha256": "87250b48cd915efd78799ad4c3b48654fb967ba496df431312552bb363960c2b"
+    },
+    {
+      "ids": [
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "path": "qa/homepage-browser-20/delivery/GOAT-desktop-options-06-10.zip",
+      "bytes": 3975130,
+      "sha256": "42ab2772d5b1d8108d623f27df53b20ddd3da3e12272af14e2f6d62cd5eab94a"
+    },
+    {
+      "ids": [
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "path": "qa/homepage-browser-20/delivery/GOAT-desktop-options-11-15.zip",
+      "bytes": 4586525,
+      "sha256": "79887e87543871a7a98da7cc3b6cc4154eadf95516361c26a43a4afc15e232d1"
+    },
+    {
+      "ids": [
+        "16",
+        "17",
+        "18",
+        "19",
+        "20"
+      ],
+      "path": "qa/homepage-browser-20/delivery/GOAT-desktop-options-16-20.zip",
+      "bytes": 4751319,
+      "sha256": "0c62fb2c0f67deaac3477126271c99eb4f29077024bf0dfabdf2beaf85f52f58"
+    }
+  ]
+}

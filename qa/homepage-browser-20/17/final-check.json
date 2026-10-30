@@ -1,0 +1,39 @@
+{
+  "url": "http://127.0.0.1:4207/qa/homepage-browser-20/17/",
+  "browser": "Installed system Chromium via Playwright",
+  "date": "2026-10-30",
+  "viewports": [
+    {
+      "width": 1440,
+      "status": 200,
+      "scrollWidth": 1440,
+      "documentHeight": 2174,
+      "imagesDecoded": true,
+      "mainCount": 1,
+      "h1Count": 1
+    },
+    {
+      "width": 1120,
+      "status": 200,
+      "scrollWidth": 1120,
+      "documentHeight": 2149,
+      "imagesDecoded": true,
+      "mainCount": 1,
+      "h1Count": 1
+    }
+  ],
+  "structureGeometryIdentical": true,
+  "firstKeyboardFocus": {
+    "text": "Skip to league home",
+    "outline": "solid",
+    "top": 0
+  },
+  "nativeSourceDisclosure": true,
+  "enlarged": {
+    "width": 1120,
+    "scrollWidth": 1120,
+    "documentHeight": 7071,
+    "overflowingTextElements": []
+  },
+  "pageErrors": []
+}

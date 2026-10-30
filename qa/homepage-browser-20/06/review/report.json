@@ -1,0 +1,603 @@
+{
+  "id": "06",
+  "scope": "Seventeen new independent desktop homepage worlds plus three retained pilots; technical observations do not establish visual diversity or craft. No footer/section/data-family/length quota.",
+  "sources": [
+    {
+      "path": "qa/homepage-browser-20/06/index.html",
+      "bytes": 6598,
+      "sha256": "1449378e0abf55840397156a17535d7d9f979fe54e7d95ca516ce580bba5e1de"
+    },
+    {
+      "path": "qa/homepage-browser-20/06/script.js",
+      "bytes": 99,
+      "sha256": "000ffb09d28f9487601475baa7845a688ad227d198a1c4704a89c4ad800909bb"
+    },
+    {
+      "path": "qa/homepage-browser-20/06/style.css",
+      "bytes": 8109,
+      "sha256": "ac84ce5b5dbf9e2e685ade502f95477434f365aeea1654c68b511fbe5e5b661c"
+    }
+  ],
+  "checks": [
+    {
+      "stage": "designed",
+      "width": 1440,
+      "textScale": 1,
+      "textScaleMethod": "Authored normal size",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1440,
+        "documentWidth": 1440,
+        "height": 2619,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 1604,
+        "headings": [
+          {
+            "text": "Ten teams.Six places.One crown.",
+            "top": 164.1875
+          },
+          {
+            "text": "Week 3 putstwo names together.",
+            "top": 771.34375
+          },
+          {
+            "text": "One placefrom the crown.",
+            "top": 1149.765625
+          },
+          {
+            "text": "Records end.Clubs carry on.",
+            "top": 1576.84375
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to the league",
+            "href": "#league-home"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "The table",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "The clubs",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "Stocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Play",
+            "href": "https://goathoopers.com/arcade"
+          },
+          {
+            "text": "Log in ↗",
+            "href": "https://goathoopers.com/login"
+          },
+          {
+            "text": "See where everybody stands ↗",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Open matchup intel ↗",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "papichooter",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "NeuralNets.",
+            "href": "https://goathoopers.com/teams/8"
+          },
+          {
+            "text": "papichooter.",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "Josh Diddy’s Roster",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Go back to the first season ↗",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "papichooter",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "NeuralNets",
+            "href": "https://goathoopers.com/teams/8"
+          },
+          {
+            "text": "Lebron Theme Team",
+            "href": "https://goathoopers.com/teams/9"
+          },
+          {
+            "text": "T Halibooty",
+            "href": "https://goathoopers.com/teams/10"
+          },
+          {
+            "text": "Meet the whole league ↗",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "Keep the receipts. ↗",
+            "href": "https://goathoopers.com/weekly"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "designed",
+      "width": 1120,
+      "textScale": 1,
+      "textScaleMethod": "Authored normal size",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1120,
+        "documentWidth": 1120,
+        "height": 2347,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 1604,
+        "headings": [
+          {
+            "text": "Ten teams.Six places.One crown.",
+            "top": 164.1875
+          },
+          {
+            "text": "Week 3 putstwo names together.",
+            "top": 669.53125
+          },
+          {
+            "text": "One placefrom the crown.",
+            "top": 1024.90625
+          },
+          {
+            "text": "Records end.Clubs carry on.",
+            "top": 1418
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to the league",
+            "href": "#league-home"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "The table",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "The clubs",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "Stocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Play",
+            "href": "https://goathoopers.com/arcade"
+          },
+          {
+            "text": "Log in ↗",
+            "href": "https://goathoopers.com/login"
+          },
+          {
+            "text": "See where everybody stands ↗",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Open matchup intel ↗",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "papichooter",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "NeuralNets.",
+            "href": "https://goathoopers.com/teams/8"
+          },
+          {
+            "text": "papichooter.",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "Josh Diddy’s Roster",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Go back to the first season ↗",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "papichooter",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "NeuralNets",
+            "href": "https://goathoopers.com/teams/8"
+          },
+          {
+            "text": "Lebron Theme Team",
+            "href": "https://goathoopers.com/teams/9"
+          },
+          {
+            "text": "T Halibooty",
+            "href": "https://goathoopers.com/teams/10"
+          },
+          {
+            "text": "Meet the whole league ↗",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "Keep the receipts. ↗",
+            "href": "https://goathoopers.com/weekly"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "designed",
+      "width": 1280,
+      "textScale": 2,
+      "textScaleMethod": "Computed HTML font sizes snapshotted then doubled; explicit text-only stress emulation, not native browser zoom",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1280,
+        "documentWidth": 1280,
+        "height": 6755,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 1604,
+        "headings": [
+          {
+            "text": "Ten teams.Six places.One crown.",
+            "top": 164.1875
+          },
+          {
+            "text": "Week 3 putstwo names together.",
+            "top": 2269.921875
+          },
+          {
+            "text": "One placefrom the crown.",
+            "top": 3240.59375
+          },
+          {
+            "text": "Records end.Clubs carry on.",
+            "top": 4204.515625
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to the league",
+            "href": "#league-home"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "The table",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "The clubs",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "Stocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Play",
+            "href": "https://goathoopers.com/arcade"
+          },
+          {
+            "text": "Log in ↗",
+            "href": "https://goathoopers.com/login"
+          },
+          {
+            "text": "See where everybody stands ↗",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Open matchup intel ↗",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "papichooter",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "NeuralNets.",
+            "href": "https://goathoopers.com/teams/8"
+          },
+          {
+            "text": "papichooter.",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "Josh Diddy’s Roster",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Go back to the first season ↗",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "papichooter",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "NeuralNets",
+            "href": "https://goathoopers.com/teams/8"
+          },
+          {
+            "text": "Lebron Theme Team",
+            "href": "https://goathoopers.com/teams/9"
+          },
+          {
+            "text": "T Halibooty",
+            "href": "https://goathoopers.com/teams/10"
+          },
+          {
+            "text": "Meet the whole league ↗",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "Keep the receipts. ↗",
+            "href": "https://goathoopers.com/weekly"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "structure",
+      "width": 1440,
+      "textScale": 1,
+      "textScaleMethod": "Authored normal size",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1440,
+        "documentWidth": 1440,
+        "height": 2619,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 1604,
+        "headings": [
+          {
+            "text": "Ten teams.Six places.One crown.",
+            "top": 164.1875
+          },
+          {
+            "text": "Week 3 putstwo names together.",
+            "top": 771.34375
+          },
+          {
+            "text": "One placefrom the crown.",
+            "top": 1149.765625
+          },
+          {
+            "text": "Records end.Clubs carry on.",
+            "top": 1576.84375
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to the league",
+            "href": "#league-home"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "The table",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "The clubs",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "Stocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Play",
+            "href": "https://goathoopers.com/arcade"
+          },
+          {
+            "text": "Log in ↗",
+            "href": "https://goathoopers.com/login"
+          },
+          {
+            "text": "See where everybody stands ↗",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Open matchup intel ↗",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "papichooter",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "NeuralNets.",
+            "href": "https://goathoopers.com/teams/8"
+          },
+          {
+            "text": "papichooter.",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "Josh Diddy’s Roster",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Go back to the first season ↗",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "papichooter",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "NeuralNets",
+            "href": "https://goathoopers.com/teams/8"
+          },
+          {
+            "text": "Lebron Theme Team",
+            "href": "https://goathoopers.com/teams/9"
+          },
+          {
+            "text": "T Halibooty",
+            "href": "https://goathoopers.com/teams/10"
+          },
+          {
+            "text": "Meet the whole league ↗",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "Keep the receipts. ↗",
+            "href": "https://goathoopers.com/weekly"
+          }
+        ]
+      }
+    }
+  ],
+  "captures": [
+    {
+      "stage": "designed",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-browser-20/06/review/designed-desktop-full.jpg",
+        "bytes": 335811,
+        "sha256": "2435a89bc1b11a24e7e2c300c43b8d3c705fd508d9107f8a7e6b7854cb77393d",
+        "width": 1440,
+        "height": 2619,
+        "quality": 91,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "CDP document clip at actual viewport width"
+          },
+          {
+            "y": 1800,
+            "height": 819,
+            "method": "CDP document clip at actual viewport width"
+          }
+        ],
+        "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+      },
+      "native": [
+        {
+          "position": "top",
+          "offset": 0,
+          "path": "qa/homepage-browser-20/06/review/desktop-top.jpg",
+          "bytes": 144649,
+          "sha256": "180ae5da3925479c438f0b6b832aea409c7c0c11657aeb81dc9866b8ca7ab351",
+          "width": 1440,
+          "height": 1000,
+          "quality": 91
+        },
+        {
+          "position": "middle",
+          "offset": 809,
+          "path": "qa/homepage-browser-20/06/review/desktop-middle.jpg",
+          "bytes": 142340,
+          "sha256": "a36bfd1be95779afc3e46f86a08a71ebc8ba604b9901bb2ff4eb57a3ce238e8a",
+          "width": 1440,
+          "height": 1000,
+          "quality": 91
+        },
+        {
+          "position": "bottom",
+          "offset": 1619,
+          "path": "qa/homepage-browser-20/06/review/desktop-bottom.jpg",
+          "bytes": 113232,
+          "sha256": "f4fb663f0520f82e8f47a21c048e21da5a2d72cfe9f22672b9a3153b8faa4367",
+          "width": 1440,
+          "height": 1000,
+          "quality": 91
+        }
+      ]
+    },
+    {
+      "stage": "structure",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-browser-20/06/review/structure-desktop-full.jpg",
+        "bytes": 236163,
+        "sha256": "798a1fa7ab0c338ff0549b0b65940c977347de727b8fa4dbce8b065a0bc1373f",
+        "width": 1440,
+        "height": 2619,
+        "quality": 91,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "CDP document clip at actual viewport width"
+          },
+          {
+            "y": 1800,
+            "height": 819,
+            "method": "CDP document clip at actual viewport width"
+          }
+        ],
+        "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+      },
+      "native": []
+    }
+  ],
+  "passed": 4,
+  "total": 4,
+  "limits": "Desktop-only synthetic/draft design study. Headless Linux Chromium at1440/1120 and explicit2xtext at1280; not nativezoom, AT, live/auth destination or production performance acceptance. No new mobile work. Structure view is authored neutral geometry, not screenshot editing."
+}

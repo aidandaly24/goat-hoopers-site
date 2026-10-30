@@ -1,0 +1,836 @@
+[
+  {
+    "id": "04",
+    "path": "qa/homepage-browser-20/portable/GOAT-04-homepage.html",
+    "bytes": 858784,
+    "sha256": "3624e966f6a539e2274f05337032b78ed2fa35910ece96906e65aedf1dd4245e",
+    "sources": [
+      {
+        "path": "qa/homepage-browser-20/04/index.html",
+        "sha256": "5fb5992789fa139c3621757cf579958562ce6ce19fd0d722b8e3659f0cb801e8"
+      },
+      {
+        "path": "qa/homepage-browser-20/04/style.css",
+        "sha256": "6935a72f37b4357c09684c6c7db56773a5bb9a4cd645e4dcffea61c445eb6af4"
+      },
+      {
+        "path": "qa/homepage-browser-20/04/script.js",
+        "sha256": "284e9818528b3386354ed545525cdcc2f570cdb470291a593c76e8b3aa2c00dc"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+        "bytes": 90988,
+        "sha256": "dd9a89a019b4849f66ab75455fe7bdf931311042cbb0f0f97acc061539703180"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "bytes": 240164,
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+        "bytes": 102480,
+        "sha256": "583cec5da3b84bc4dc7c9c72e2a565c94d34e431518b19d7e250b7830ad5f996"
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "bytes": 5117,
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156"
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "bytes": 68824,
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9"
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "bytes": 64753,
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94"
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "bytes": 47200,
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c"
+      }
+    ]
+  },
+  {
+    "id": "05",
+    "path": "qa/homepage-browser-20/portable/GOAT-05-homepage.html",
+    "bytes": 696791,
+    "sha256": "f567bdff5b23f41b5dc3c174827e2176f9df3c6e8d9966b29871bb0f3571a992",
+    "sources": [
+      {
+        "path": "qa/homepage-browser-20/05/index.html",
+        "sha256": "598002a556b922645c4b1867f05fd71eac973482e216d708b6a1bd194b0a9498"
+      },
+      {
+        "path": "qa/homepage-browser-20/05/style.css",
+        "sha256": "cbade8c4825795cd58efd82ee71c2cebc072eb29f32f25b7080d135af581b2c5"
+      },
+      {
+        "path": "qa/homepage-browser-20/05/app.js",
+        "sha256": "0f453cde2d3769099b4ba5de0656c94a73e30ea2157d414eba149ea646c81ddf"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+        "bytes": 61400,
+        "sha256": "08e4623805102d819f58601e46e345648846075e363b2ceb23313c2d1c83ec73"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "bytes": 240164,
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d"
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "bytes": 5117,
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9"
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "bytes": 65120,
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64"
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "bytes": 62900,
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb"
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "bytes": 63970,
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676"
+      }
+    ]
+  },
+  {
+    "id": "06",
+    "path": "qa/homepage-browser-20/portable/GOAT-06-homepage.html",
+    "bytes": 581714,
+    "sha256": "a6b7465323574cb0e6f2a5064e94d364d1eeb83e2c2171cfdf7e8d8b3ecebee4",
+    "sources": [
+      {
+        "path": "qa/homepage-browser-20/06/index.html",
+        "sha256": "1449378e0abf55840397156a17535d7d9f979fe54e7d95ca516ce580bba5e1de"
+      },
+      {
+        "path": "qa/homepage-browser-20/06/style.css",
+        "sha256": "ac84ce5b5dbf9e2e685ade502f95477434f365aeea1654c68b511fbe5e5b661c"
+      },
+      {
+        "path": "qa/homepage-browser-20/06/script.js",
+        "sha256": "000ffb09d28f9487601475baa7845a688ad227d198a1c4704a89c4ad800909bb"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/oswald/Oswald[wght].ttf",
+        "bytes": 172088,
+        "sha256": "5b38c246e255a12f5712d640d56bcced0472466fc68983d2d0410ec0457c2817"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "bytes": 240164,
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d"
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "bytes": 5117,
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9"
+      }
+    ]
+  },
+  {
+    "id": "07",
+    "path": "qa/homepage-browser-20/portable/GOAT-07-homepage.html",
+    "bytes": 1173571,
+    "sha256": "6b0e182be000258bed936481dfab7c3ec15f645cb857cfdb53653d8e4b151e38",
+    "sources": [
+      {
+        "path": "qa/homepage-browser-20/07/index.html",
+        "sha256": "2de685cae801cb91ea347ca6e3febead27dcdae5b3da82390e30c39ebcdafd0c"
+      },
+      {
+        "path": "qa/homepage-browser-20/07/style.css",
+        "sha256": "5687acc207d1fa08919e46c1c046775074c4ae583aee8d46fc5a324d065624f0"
+      },
+      {
+        "path": "qa/homepage-browser-20/07/script.js",
+        "sha256": "cb330bfff41fc49d7bc01218ca84a1a4cc4cddcb0d049f251627c01ba282561f"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "bytes": 240164,
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/oswald/Oswald[wght].ttf",
+        "bytes": 172088,
+        "sha256": "5b38c246e255a12f5712d640d56bcced0472466fc68983d2d0410ec0457c2817"
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-white.svg",
+        "bytes": 5117,
+        "sha256": "67e99ff7ed0527c017d0d63955c149983e5dde78284f7382be5c65647a2bede9"
+      },
+      {
+        "path": "public/courtside/portraits/player-4866.png",
+        "bytes": 53860,
+        "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506"
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "bytes": 329398,
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177"
+      },
+      {
+        "path": "public/courtside/portraits/player-1272.png",
+        "bytes": 57909,
+        "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe"
+      }
+    ]
+  },
+  {
+    "id": "08",
+    "path": "qa/homepage-browser-20/portable/GOAT-08-homepage.html",
+    "bytes": 672734,
+    "sha256": "32ad71d50d818315657efe26e47e62464f0c91db9659077ac7919b522bf91877",
+    "sources": [
+      {
+        "path": "qa/homepage-browser-20/08/index.html",
+        "sha256": "acfd5d63fd44c7d45ecdada2bec8cd56680e3a0924ebaaafa39e73f611a07ffa"
+      },
+      {
+        "path": "qa/homepage-browser-20/08/style.css",
+        "sha256": "54f8b5cd80dbfa47d3d32c662148a845a37acebf8f9e8156c66ff600c5b38a58"
+      },
+      {
+        "path": "qa/homepage-browser-20/08/study.js",
+        "sha256": "90ded951841c85938322bcd53b448b70b44f62e03fee46464a89befd0b4f2517"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "bytes": 240164,
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/graduate/Graduate-Regular.ttf",
+        "bytes": 59296,
+        "sha256": "971222b309851d86f2513f89b510dc52d52ef7798b5f43af2c6f58d43df568e5"
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "bytes": 5117,
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156"
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "bytes": 62900,
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb"
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "bytes": 47200,
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c"
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "bytes": 65120,
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64"
+      }
+    ]
+  },
+  {
+    "id": "09",
+    "path": "qa/homepage-browser-20/portable/GOAT-09-homepage.html",
+    "bytes": 515323,
+    "sha256": "9334d87f537701e005d74516f202c2625ae3894f151c10a35b9c46dedace39f2",
+    "sources": [
+      {
+        "path": "qa/homepage-browser-20/09/index.html",
+        "sha256": "7151388d3a74e8252ac34eb990093c99cac2d174f807ba105651cd3239c1b68f"
+      },
+      {
+        "path": "qa/homepage-browser-20/09/style.css",
+        "sha256": "92c7837fa87a18a684477a6b57b37e3dfdf33fffc4c8c49c6e4b6af1bf939b00"
+      },
+      {
+        "path": "qa/homepage-browser-20/09/script.js",
+        "sha256": "a0fda949170739e9aadbbd3cfac3ab39fe81f5ee7392674ec3c7b847bccb67f1"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/graduate/Graduate-Regular.ttf",
+        "bytes": 59296,
+        "sha256": "971222b309851d86f2513f89b510dc52d52ef7798b5f43af2c6f58d43df568e5"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "bytes": 240164,
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d"
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "bytes": 5117,
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156"
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "bytes": 63970,
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676"
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "path": "qa/homepage-browser-20/portable/GOAT-10-homepage.html",
+    "bytes": 771546,
+    "sha256": "ae19881d2cd0e3e515272a54adff2f1d7ba61269ddc3f4755db26c4ae767207a",
+    "sources": [
+      {
+        "path": "qa/homepage-browser-20/10/index.html",
+        "sha256": "d56807f258427742f7377c986e1be4e96380170f51893acefc943f01cb2c5423"
+      },
+      {
+        "path": "qa/homepage-browser-20/10/style.css",
+        "sha256": "1a574d9027b2668cde43ced7b5926651f91ffa14fa9a76fe803144bf9bff052a"
+      },
+      {
+        "path": "qa/homepage-browser-20/10/script.js",
+        "sha256": "0a1903dd255736394de54fca02af45829842c7be074121b1ce05f1bff3501cfa"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "bytes": 240164,
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk[wght].ttf",
+        "bytes": 136676,
+        "sha256": "acad6de1fc93436f5c0f1f4137751ef04f1aea3063e7036535970ffcfbd79f72"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+        "bytes": 102480,
+        "sha256": "583cec5da3b84bc4dc7c9c72e2a565c94d34e431518b19d7e250b7830ad5f996"
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "bytes": 5117,
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156"
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "bytes": 68824,
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9"
+      }
+    ]
+  },
+  {
+    "id": "11",
+    "path": "qa/homepage-browser-20/portable/GOAT-11-homepage.html",
+    "bytes": 1303151,
+    "sha256": "059563754ebbcf41d8c1fafe2da7eeffef0771e8076bce1e49c61ec93eb1f746",
+    "sources": [
+      {
+        "path": "qa/homepage-browser-20/11/index.html",
+        "sha256": "ad93a2ff21a8c4e2824fe8f2ffac2ac8564acf226220888af968cfc33f2a93ef"
+      },
+      {
+        "path": "qa/homepage-browser-20/11/styles.css",
+        "sha256": "032f0d036936cee8bbe425e6d6ff074cc2814082c84cfbc45dd7ece2f03dde93"
+      },
+      {
+        "path": "qa/homepage-browser-20/11/script.js",
+        "sha256": "dc4dc92c7b38133e25e71267e53d80cdcf230e12f16d4bca76829ec4a8df76b3"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "bytes": 240164,
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/lora/Lora[wght].ttf",
+        "bytes": 212196,
+        "sha256": "822a6621ccbe8d97d20ac88c1c41f5615c9c2c202eaa75f272cd452aac6475a7"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/kalam/Kalam-Regular.ttf",
+        "bytes": 427360,
+        "sha256": "57cecb63d4608019371954274ae1d8c397764debd5b19d4a33c1efa4dc923c0b"
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "bytes": 5117,
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156"
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "bytes": 64753,
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94"
+      }
+    ]
+  },
+  {
+    "id": "12",
+    "path": "qa/homepage-browser-20/portable/GOAT-12-homepage.html",
+    "bytes": 684100,
+    "sha256": "7867429f1e7a73eaa3952599d40b308bd07d8676f0cea7dfff799385344a4e8e",
+    "sources": [
+      {
+        "path": "qa/homepage-browser-20/12/index.html",
+        "sha256": "da910e8810ad66782dfc6eafada519e58b983227a6f18ab3636fdbed64189a87"
+      },
+      {
+        "path": "qa/homepage-browser-20/12/pass.css",
+        "sha256": "1c965c0220ceefd6ea92295ccd3bb7583087644ce0aabc0b560d8db5bd47d725"
+      },
+      {
+        "path": "qa/homepage-browser-20/12/pass.js",
+        "sha256": "ca7553d729b13df75e8a1c6e9f9ece97716ce31a73a533c655b4fdedd2023248"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/anton/Anton-Regular.ttf",
+        "bytes": 170812,
+        "sha256": "a4ba3a92350ebb031da0cb47630ac49eb265082ca1bc0450442f4a83ab947cab"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "bytes": 240164,
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d"
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "bytes": 5117,
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156"
+      },
+      {
+        "path": "public/courtside/portraits/player-1658.png",
+        "bytes": 75511,
+        "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2"
+      }
+    ]
+  },
+  {
+    "id": "13",
+    "path": "qa/homepage-browser-20/portable/GOAT-13-homepage.html",
+    "bytes": 1428863,
+    "sha256": "6652ffc6286de9bfcc9cf4ebe3fc3bf19aceb8b2d582ec3c96c685228c8f47f1",
+    "sources": [
+      {
+        "path": "qa/homepage-browser-20/13/index.html",
+        "sha256": "0aabb25ded6fb10ad9ff6701707c03ff42e6550e900c92c49e82e2c85e4bbce2"
+      },
+      {
+        "path": "qa/homepage-browser-20/13/letter.css",
+        "sha256": "ed2a69560f27c9f6fcfd72e231959cba944d0087230d5285d77a7b876e1f221c"
+      },
+      {
+        "path": "qa/homepage-browser-20/13/letter.js",
+        "sha256": "23c102dc5d2bb55a337fc0a4f3c140ad24be9a1f8db4e141b657ea21aaa3c964"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "bytes": 240164,
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/kalam/Kalam-Regular.ttf",
+        "bytes": 427360,
+        "sha256": "57cecb63d4608019371954274ae1d8c397764debd5b19d4a33c1efa4dc923c0b"
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "bytes": 5117,
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156"
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "bytes": 329398,
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177"
+      },
+      {
+        "path": "public/courtside/portraits/player-4866.png",
+        "bytes": 53860,
+        "sha256": "2df65fedc173f2f069402fd3aaa02f4c2ef8b55f65dbcd82c94b4d64e213d506"
+      }
+    ]
+  },
+  {
+    "id": "14",
+    "path": "qa/homepage-browser-20/portable/GOAT-14-homepage.html",
+    "bytes": 886153,
+    "sha256": "de1b101f3d47750c59992cf365c49f4f938d860bbd7a18ad9bb6fdef570cf310",
+    "sources": [
+      {
+        "path": "qa/homepage-browser-20/14/index.html",
+        "sha256": "1ff1001444c53f08a641386d211e4e6f3eebe01cd906d3f3c99d3c14b3225475"
+      },
+      {
+        "path": "qa/homepage-browser-20/14/style.css",
+        "sha256": "fd777cdc6564ce3575394996f43afd18079c01b6d96a6a8354cdec17a5239128"
+      },
+      {
+        "path": "qa/homepage-browser-20/14/script.js",
+        "sha256": "348e4fd2c1faa15898fce35bfbf007b6f1d1fe1cb85041b66b7f7025415d8e74"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "bytes": 240164,
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/lora/Lora[wght].ttf",
+        "bytes": 212196,
+        "sha256": "822a6621ccbe8d97d20ac88c1c41f5615c9c2c202eaa75f272cd452aac6475a7"
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "bytes": 5117,
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156"
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "bytes": 68824,
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9"
+      },
+      {
+        "path": "public/courtside/portraits/player-1739.png",
+        "bytes": 64753,
+        "sha256": "a3cb37e0a5aa4f8a0b9d79313dcfddb4ef29f6c3bd4f36bf5b3bdf832e2f8c94"
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "bytes": 47200,
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c"
+      }
+    ]
+  },
+  {
+    "id": "15",
+    "path": "qa/homepage-browser-20/portable/GOAT-15-homepage.html",
+    "bytes": 974243,
+    "sha256": "9baaa02b7383905856ef800f682aa5fa574989cd417a34ca9e497bc18f02ea2e",
+    "sources": [
+      {
+        "path": "qa/homepage-browser-20/15/index.html",
+        "sha256": "77cffc6814e06d77a96a0cec267b99b249b26e59d3be00ce532bffc303a78a77"
+      },
+      {
+        "path": "qa/homepage-browser-20/15/style.css",
+        "sha256": "b8ed2adf27c6c011a1d717aaf59268efa3599c27028387bdb6565cb7ae00f6a0"
+      },
+      {
+        "path": "qa/homepage-browser-20/15/script.js",
+        "sha256": "b1163b845b6fbdbca3570f2c60c3471471b2001656497230a28de2f4f2cd6638"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "bytes": 240164,
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/oswald/Oswald[wght].ttf",
+        "bytes": 172088,
+        "sha256": "5b38c246e255a12f5712d640d56bcced0472466fc68983d2d0410ec0457c2817"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/lora/Lora[wght].ttf",
+        "bytes": 212196,
+        "sha256": "822a6621ccbe8d97d20ac88c1c41f5615c9c2c202eaa75f272cd452aac6475a7"
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "bytes": 5117,
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156"
+      },
+      {
+        "path": "public/courtside/portraits/player-1658.png",
+        "bytes": 75511,
+        "sha256": "690d6de52fd20e577dea40dfb02a3271b69c06e6ed65c574e61a46d4be9414c2"
+      }
+    ]
+  },
+  {
+    "id": "16",
+    "path": "qa/homepage-browser-20/portable/GOAT-16-homepage.html",
+    "bytes": 1036272,
+    "sha256": "e412ed1a50315e59828f266220961b3d99a08bb3a39872861a1cfa506c7aae03",
+    "sources": [
+      {
+        "path": "qa/homepage-browser-20/16/index.html",
+        "sha256": "d4ada24bbbf0ad6d4b4490baa5185b66330df3c32264f041b16270f958a377ad"
+      },
+      {
+        "path": "qa/homepage-browser-20/16/ink.css",
+        "sha256": "681a13cf465dce675318bf41c54924043d6acb32008882a82ba4a45fb44b5f6a"
+      },
+      {
+        "path": "qa/homepage-browser-20/16/ink.js",
+        "sha256": "5fe2b956253052f8679a5d51ce918f611b92ee396c1f3d34b6ce6400d1dce69b"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/lora/Lora[wght].ttf",
+        "bytes": 212196,
+        "sha256": "822a6621ccbe8d97d20ac88c1c41f5615c9c2c202eaa75f272cd452aac6475a7"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/kalam/Kalam-Regular.ttf",
+        "bytes": 427360,
+        "sha256": "57cecb63d4608019371954274ae1d8c397764debd5b19d4a33c1efa4dc923c0b"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+        "bytes": 102480,
+        "sha256": "583cec5da3b84bc4dc7c9c72e2a565c94d34e431518b19d7e250b7830ad5f996"
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "bytes": 5117,
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156"
+      }
+    ]
+  },
+  {
+    "id": "17",
+    "path": "qa/homepage-browser-20/portable/GOAT-17-homepage.html",
+    "bytes": 1195158,
+    "sha256": "d71849d15b54a22a8f8a62279b84445eca8c1a03dfafb21f232160444b82faa1",
+    "sources": [
+      {
+        "path": "qa/homepage-browser-20/17/index.html",
+        "sha256": "43d0ebb132da0f41e58e68c23f8932de37e2c52a076ff1cb57bfb87a87f0207b"
+      },
+      {
+        "path": "qa/homepage-browser-20/17/style.css",
+        "sha256": "f00c3d5c692d711caf7b35238cbe6462272f79c1832aa2b5dd09dba1f9057303"
+      },
+      {
+        "path": "qa/homepage-browser-20/17/study.js",
+        "sha256": "97d06d100e5fe4f3ce658262a6d48a10d2be723e8e80f43613fc2eed9c1fe0f7"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/archivoblack/ArchivoBlack-Regular.ttf",
+        "bytes": 90988,
+        "sha256": "dd9a89a019b4849f66ab75455fe7bdf931311042cbb0f0f97acc061539703180"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "bytes": 240164,
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/ibmplexmono/IBMPlexMono-Regular.ttf",
+        "bytes": 135580,
+        "sha256": "6a3412f058c7d8dfd9170c41e85ade48e5156ecb89356110ca57a0a27734af46"
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "bytes": 5117,
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156"
+      },
+      {
+        "path": "public/courtside/arena.jpg",
+        "bytes": 329398,
+        "sha256": "f7d50f1d34260f213d792d7b61257956e88fa7400ec6bb1d7ae24bae7e2e7177"
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "bytes": 68824,
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9"
+      }
+    ]
+  },
+  {
+    "id": "18",
+    "path": "qa/homepage-browser-20/portable/GOAT-18-homepage.html",
+    "bytes": 671201,
+    "sha256": "5e7e7a0724af4b6f73808597d55736028935c7294169bcc9db6b02f390d42393",
+    "sources": [
+      {
+        "path": "qa/homepage-browser-20/18/index.html",
+        "sha256": "997efd83e0d7d4ae52718bece359196bec6cc3674c80b85f32677b14e3bed3ce"
+      },
+      {
+        "path": "qa/homepage-browser-20/18/style.css",
+        "sha256": "3b3594c0d0f060787b30933a97c5664f1ae2f505ce6bd09f77bbcaa9a6f8c8e2"
+      },
+      {
+        "path": "qa/homepage-browser-20/18/script.js",
+        "sha256": "cc5fd0d211b5c9398eb918b7d86546f658130d4ad65e58dcd19cc1d96115d7f9"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/bebasneue/BebasNeue-Regular.ttf",
+        "bytes": 61400,
+        "sha256": "08e4623805102d819f58601e46e345648846075e363b2ceb23313c2d1c83ec73"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "bytes": 240164,
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d"
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "bytes": 5117,
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156"
+      },
+      {
+        "path": "public/courtside/portraits/player-1085.png",
+        "bytes": 62900,
+        "sha256": "b62695cb783e3846e2c21f759ac41c417eab28592dce7a6d2ffb24a627693dfb"
+      },
+      {
+        "path": "public/courtside/portraits/player-1957.png",
+        "bytes": 47200,
+        "sha256": "bd350911adc94d26c9a3a3be7d05d263d16b3583a68ff156e3582bbe4244dc2c"
+      },
+      {
+        "path": "public/courtside/portraits/player-1967.png",
+        "bytes": 65120,
+        "sha256": "d40ecfbafe7842dc54a4e0087d0980f8014c3833062fa83e9a325b6232c85f64"
+      }
+    ]
+  },
+  {
+    "id": "19",
+    "path": "qa/homepage-browser-20/portable/GOAT-19-homepage.html",
+    "bytes": 900279,
+    "sha256": "3d868d4a3b3ad080b7b91503b49ddfb769b6642d8d10e730136cbbcc98961dc3",
+    "sources": [
+      {
+        "path": "qa/homepage-browser-20/19/index.html",
+        "sha256": "a374a06e242314dc5854fba96c3a8f982e6bd44ef6e9cc5b2e90b30adf864e47"
+      },
+      {
+        "path": "qa/homepage-browser-20/19/style.css",
+        "sha256": "82ab252ea9bfaafd567751438060af1001f6c7b2b154cf2fae48d9482dea1857"
+      },
+      {
+        "path": "qa/homepage-browser-20/19/script.js",
+        "sha256": "3b2ec4549475bb997a81a936f5ad4851d2e27bada1f06e772acb23dcfd7ea9a0"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/spacegrotesk/SpaceGrotesk[wght].ttf",
+        "bytes": 136676,
+        "sha256": "acad6de1fc93436f5c0f1f4137751ef04f1aea3063e7036535970ffcfbd79f72"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/lora/Lora[wght].ttf",
+        "bytes": 212196,
+        "sha256": "822a6621ccbe8d97d20ac88c1c41f5615c9c2c202eaa75f272cd452aac6475a7"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/barlowcondensed/BarlowCondensed-Regular.ttf",
+        "bytes": 102480,
+        "sha256": "583cec5da3b84bc4dc7c9c72e2a565c94d34e431518b19d7e250b7830ad5f996"
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "bytes": 5117,
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156"
+      },
+      {
+        "path": "public/courtside/portraits/player-1380.png",
+        "bytes": 60668,
+        "sha256": "2eae70dd8e6efd327379bd312048f3ec8697e5e6079c9a01f4963fdc9bb41f45"
+      },
+      {
+        "path": "public/courtside/portraits/player-1970.png",
+        "bytes": 67211,
+        "sha256": "91573743c02bffa34e2b5747176ab0fb950d31cdb2428ff97fca7d06f429c842"
+      },
+      {
+        "path": "public/courtside/portraits/player-1845.png",
+        "bytes": 63970,
+        "sha256": "89aa26843e6f9dd73cf5db81467f37d5f3e6efa757236ee724591a1c6d9de676"
+      }
+    ]
+  },
+  {
+    "id": "20",
+    "path": "qa/homepage-browser-20/portable/GOAT-20-homepage.html",
+    "bytes": 1081170,
+    "sha256": "e4bd6278f0feefedbbe2a1c9009f62e49d7df9f9f2785d056c3c704f6d84b64e",
+    "sources": [
+      {
+        "path": "qa/homepage-browser-20/20/index.html",
+        "sha256": "493fc667cad79e626c2712d1ebb5c2d15b4e98ea645335d64916b8bce0173e28"
+      },
+      {
+        "path": "qa/homepage-browser-20/20/style.css",
+        "sha256": "1740c132f74c20ab761fc3e3c3b0d39f555315b1f470aeaa2fbe47803ef7ba38"
+      },
+      {
+        "path": "qa/homepage-browser-20/20/study.js",
+        "sha256": "7d2008e07f4cc47dc058a27d670cf185282e9813dd77c35bff6453321d5e3e42"
+      }
+    ],
+    "assets": [
+      {
+        "path": "qa/homepage-structures/assets/fonts/oswald/Oswald[wght].ttf",
+        "bytes": 172088,
+        "sha256": "5b38c246e255a12f5712d640d56bcced0472466fc68983d2d0410ec0457c2817"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/dmsans/DMSans[opsz,wght].ttf",
+        "bytes": 240164,
+        "sha256": "8cd08d97e89c24d0aa92edd2f0f4c8ee6195eee9b7c9f154865a58b02f0c1c0d"
+      },
+      {
+        "path": "qa/homepage-structures/assets/fonts/lora/Lora[wght].ttf",
+        "bytes": 212196,
+        "sha256": "822a6621ccbe8d97d20ac88c1c41f5615c9c2c202eaa75f272cd452aac6475a7"
+      },
+      {
+        "path": "public/courtside/GOAT-HOOPERS-horizontal-black.svg",
+        "bytes": 5117,
+        "sha256": "91549f5610605c095841ffe8361e4b72474ed0b51d489cd909d5484bcb288156"
+      },
+      {
+        "path": "public/courtside/portraits/player-1362.png",
+        "bytes": 28190,
+        "sha256": "2d967dce03b234e4506e701ea1e826b3f426d2f334aceca4f7f1b3253234f411"
+      },
+      {
+        "path": "public/courtside/portraits/player-1272.png",
+        "bytes": 57909,
+        "sha256": "d673e5e8d4fcba950100577bf32554052efb6f901fb21c943299d2801e654abe"
+      },
+      {
+        "path": "public/courtside/portraits/player-1511.png",
+        "bytes": 68824,
+        "sha256": "780a052526bbe4f550133dc4e7143a13a9f7c746ba54f8780ba7ffb8ae1250c9"
+      }
+    ]
+  }
+]

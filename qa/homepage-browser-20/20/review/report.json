@@ -1,0 +1,907 @@
+{
+  "id": "20",
+  "scope": "Seventeen new independent desktop homepage worlds plus three retained pilots; technical observations do not establish visual diversity or craft. No footer/section/data-family/length quota.",
+  "sources": [
+    {
+      "path": "qa/homepage-browser-20/20/index.html",
+      "bytes": 9390,
+      "sha256": "493fc667cad79e626c2712d1ebb5c2d15b4e98ea645335d64916b8bce0173e28"
+    },
+    {
+      "path": "qa/homepage-browser-20/20/study.js",
+      "bytes": 99,
+      "sha256": "7d2008e07f4cc47dc058a27d670cf185282e9813dd77c35bff6453321d5e3e42"
+    },
+    {
+      "path": "qa/homepage-browser-20/20/style.css",
+      "bytes": 10023,
+      "sha256": "1740c132f74c20ab761fc3e3c3b0d39f555315b1f470aeaa2fbe47803ef7ba38"
+    }
+  ],
+  "checks": [
+    {
+      "stage": "designed",
+      "width": 1440,
+      "textScale": 1,
+      "textScaleMethod": "Authored normal size",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1440,
+        "documentWidth": 1440,
+        "height": 2759,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 1884,
+        "headings": [
+          {
+            "text": "Names makethe league.",
+            "top": 169.65625
+          },
+          {
+            "text": "On the same floor",
+            "top": 289.171875
+          },
+          {
+            "text": "LebronTheme Team↗",
+            "top": 359.96875
+          },
+          {
+            "text": "T Halibooty↗",
+            "top": 433.5625
+          },
+          {
+            "text": "ReavesDropper↗",
+            "top": 848.703125
+          },
+          {
+            "text": "Ware theHoes At? ↗",
+            "top": 1227.5
+          },
+          {
+            "text": "Joel Embiid",
+            "top": 899.21875
+          },
+          {
+            "text": "StephonCastle’s Back↗",
+            "top": 1500.484375
+          },
+          {
+            "text": "TheFun Guys↗",
+            "top": 1503.5625
+          },
+          {
+            "text": "Josh Diddy’s Roster↗",
+            "top": 1843.125
+          },
+          {
+            "text": "papichooter↗",
+            "top": 1983.125
+          },
+          {
+            "text": "NeuralNets↗",
+            "top": 2235.890625
+          },
+          {
+            "text": "Huff n’Puff↗",
+            "top": 2272.625
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to the league",
+            "href": "#league"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "The names",
+            "href": "#franchises"
+          },
+          {
+            "text": "NBA news",
+            "href": "https://goathoopers.com/news"
+          },
+          {
+            "text": "Player stocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Arcade",
+            "href": "https://goathoopers.com/arcade"
+          },
+          {
+            "text": "My team ↗",
+            "href": "https://goathoopers.com/team"
+          },
+          {
+            "text": "Open matchup previews ↗",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "LebronTheme Team↗",
+            "href": "https://goathoopers.com/teams/9"
+          },
+          {
+            "text": "On the rosterLeBron James · PF",
+            "href": "https://goathoopers.com/player/1362"
+          },
+          {
+            "text": "T Halibooty↗",
+            "href": "https://goathoopers.com/teams/10"
+          },
+          {
+            "text": "On the rosterAnthony Davis · C",
+            "href": "https://goathoopers.com/player/1272"
+          },
+          {
+            "text": "ReavesDropper↗",
+            "href": "https://goathoopers.com/teams/1"
+          },
+          {
+            "text": "Ware theHoes At? ↗",
+            "href": "https://goathoopers.com/teams/2"
+          },
+          {
+            "text": "Joel Embiid player profile",
+            "href": "https://goathoopers.com/player/1511"
+          },
+          {
+            "text": "Joel Embiid",
+            "href": "https://goathoopers.com/player/1511"
+          },
+          {
+            "text": "NBA.com source",
+            "href": "https://www.nba.com/stats/player/203954/traditional"
+          },
+          {
+            "text": "Put a trade on the table ↗",
+            "href": "https://goathoopers.com/trade-analyzer"
+          },
+          {
+            "text": "StephonCastle’s Back↗",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "See how the rookie draft fell ↗",
+            "href": "https://goathoopers.com/draft"
+          },
+          {
+            "text": "TheFun Guys↗",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Josh Diddy’s Roster↗",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "papichooter↗",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "Revisit the final 2025 season ↗",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "NeuralNets↗",
+            "href": "https://goathoopers.com/teams/8"
+          },
+          {
+            "text": "Follow the league’s moves ↗",
+            "href": "https://goathoopers.com/transactions"
+          },
+          {
+            "text": "Huff n’Puff↗",
+            "href": "https://goathoopers.com/teams/6"
+          },
+          {
+            "text": "All team profiles ↗",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "The Table ↗",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Weekly archive ↗",
+            "href": "https://goathoopers.com/weekly"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "designed",
+      "width": 1120,
+      "textScale": 1,
+      "textScaleMethod": "Authored normal size",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1120,
+        "documentWidth": 1120,
+        "height": 2677,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 1884,
+        "headings": [
+          {
+            "text": "Names makethe league.",
+            "top": 169.65625
+          },
+          {
+            "text": "On the same floor",
+            "top": 289.171875
+          },
+          {
+            "text": "LebronTheme Team↗",
+            "top": 359.96875
+          },
+          {
+            "text": "T Halibooty↗",
+            "top": 433.5625
+          },
+          {
+            "text": "ReavesDropper↗",
+            "top": 812.609375
+          },
+          {
+            "text": "Ware theHoes At? ↗",
+            "top": 1168.53125
+          },
+          {
+            "text": "Joel Embiid",
+            "top": 863.125
+          },
+          {
+            "text": "StephonCastle’s Back↗",
+            "top": 1441.515625
+          },
+          {
+            "text": "TheFun Guys↗",
+            "top": 1444.59375
+          },
+          {
+            "text": "Josh Diddy’s Roster↗",
+            "top": 1784.15625
+          },
+          {
+            "text": "papichooter↗",
+            "top": 1910.15625
+          },
+          {
+            "text": "NeuralNets↗",
+            "top": 2162.921875
+          },
+          {
+            "text": "Huff n’Puff↗",
+            "top": 2205.421875
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to the league",
+            "href": "#league"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "The names",
+            "href": "#franchises"
+          },
+          {
+            "text": "NBA news",
+            "href": "https://goathoopers.com/news"
+          },
+          {
+            "text": "Player stocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Arcade",
+            "href": "https://goathoopers.com/arcade"
+          },
+          {
+            "text": "My team ↗",
+            "href": "https://goathoopers.com/team"
+          },
+          {
+            "text": "Open matchup previews ↗",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "LebronTheme Team↗",
+            "href": "https://goathoopers.com/teams/9"
+          },
+          {
+            "text": "On the rosterLeBron James · PF",
+            "href": "https://goathoopers.com/player/1362"
+          },
+          {
+            "text": "T Halibooty↗",
+            "href": "https://goathoopers.com/teams/10"
+          },
+          {
+            "text": "On the rosterAnthony Davis · C",
+            "href": "https://goathoopers.com/player/1272"
+          },
+          {
+            "text": "ReavesDropper↗",
+            "href": "https://goathoopers.com/teams/1"
+          },
+          {
+            "text": "Ware theHoes At? ↗",
+            "href": "https://goathoopers.com/teams/2"
+          },
+          {
+            "text": "Joel Embiid player profile",
+            "href": "https://goathoopers.com/player/1511"
+          },
+          {
+            "text": "Joel Embiid",
+            "href": "https://goathoopers.com/player/1511"
+          },
+          {
+            "text": "NBA.com source",
+            "href": "https://www.nba.com/stats/player/203954/traditional"
+          },
+          {
+            "text": "Put a trade on the table ↗",
+            "href": "https://goathoopers.com/trade-analyzer"
+          },
+          {
+            "text": "StephonCastle’s Back↗",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "See how the rookie draft fell ↗",
+            "href": "https://goathoopers.com/draft"
+          },
+          {
+            "text": "TheFun Guys↗",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Josh Diddy’s Roster↗",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "papichooter↗",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "Revisit the final 2025 season ↗",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "NeuralNets↗",
+            "href": "https://goathoopers.com/teams/8"
+          },
+          {
+            "text": "Follow the league’s moves ↗",
+            "href": "https://goathoopers.com/transactions"
+          },
+          {
+            "text": "Huff n’Puff↗",
+            "href": "https://goathoopers.com/teams/6"
+          },
+          {
+            "text": "All team profiles ↗",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "The Table ↗",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Weekly archive ↗",
+            "href": "https://goathoopers.com/weekly"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "designed",
+      "width": 1280,
+      "textScale": 2,
+      "textScaleMethod": "Computed HTML font sizes snapshotted then doubled; explicit text-only stress emulation, not native browser zoom",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1280,
+        "documentWidth": 1280,
+        "height": 5919,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 1884,
+        "headings": [
+          {
+            "text": "Names makethe league.",
+            "top": 169.65625
+          },
+          {
+            "text": "On the same floor",
+            "top": 363.796875
+          },
+          {
+            "text": "LebronTheme Team↗",
+            "top": 473.625
+          },
+          {
+            "text": "T Halibooty↗",
+            "top": 547.21875
+          },
+          {
+            "text": "ReavesDropper↗",
+            "top": 1885.125
+          },
+          {
+            "text": "Ware theHoes At? ↗",
+            "top": 2803.8125
+          },
+          {
+            "text": "Joel Embiid",
+            "top": 1964.859375
+          },
+          {
+            "text": "StephonCastle’s Back↗",
+            "top": 3262.65625
+          },
+          {
+            "text": "TheFun Guys↗",
+            "top": 3301.578125
+          },
+          {
+            "text": "Josh Diddy’s Roster↗",
+            "top": 3980.078125
+          },
+          {
+            "text": "papichooter↗",
+            "top": 4492.078125
+          },
+          {
+            "text": "NeuralNets↗",
+            "top": 5016.78125
+          },
+          {
+            "text": "Huff n’Puff↗",
+            "top": 5009.25
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to the league",
+            "href": "#league"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "The names",
+            "href": "#franchises"
+          },
+          {
+            "text": "NBA news",
+            "href": "https://goathoopers.com/news"
+          },
+          {
+            "text": "Player stocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Arcade",
+            "href": "https://goathoopers.com/arcade"
+          },
+          {
+            "text": "My team ↗",
+            "href": "https://goathoopers.com/team"
+          },
+          {
+            "text": "Open matchup previews ↗",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "LebronTheme Team↗",
+            "href": "https://goathoopers.com/teams/9"
+          },
+          {
+            "text": "On the rosterLeBron James · PF",
+            "href": "https://goathoopers.com/player/1362"
+          },
+          {
+            "text": "T Halibooty↗",
+            "href": "https://goathoopers.com/teams/10"
+          },
+          {
+            "text": "On the rosterAnthony Davis · C",
+            "href": "https://goathoopers.com/player/1272"
+          },
+          {
+            "text": "ReavesDropper↗",
+            "href": "https://goathoopers.com/teams/1"
+          },
+          {
+            "text": "Ware theHoes At? ↗",
+            "href": "https://goathoopers.com/teams/2"
+          },
+          {
+            "text": "Joel Embiid player profile",
+            "href": "https://goathoopers.com/player/1511"
+          },
+          {
+            "text": "Joel Embiid",
+            "href": "https://goathoopers.com/player/1511"
+          },
+          {
+            "text": "NBA.com source",
+            "href": "https://www.nba.com/stats/player/203954/traditional"
+          },
+          {
+            "text": "Put a trade on the table ↗",
+            "href": "https://goathoopers.com/trade-analyzer"
+          },
+          {
+            "text": "StephonCastle’s Back↗",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "See how the rookie draft fell ↗",
+            "href": "https://goathoopers.com/draft"
+          },
+          {
+            "text": "TheFun Guys↗",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Josh Diddy’s Roster↗",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "papichooter↗",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "Revisit the final 2025 season ↗",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "NeuralNets↗",
+            "href": "https://goathoopers.com/teams/8"
+          },
+          {
+            "text": "Follow the league’s moves ↗",
+            "href": "https://goathoopers.com/transactions"
+          },
+          {
+            "text": "Huff n’Puff↗",
+            "href": "https://goathoopers.com/teams/6"
+          },
+          {
+            "text": "All team profiles ↗",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "The Table ↗",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Weekly archive ↗",
+            "href": "https://goathoopers.com/weekly"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "structure",
+      "width": 1440,
+      "textScale": 1,
+      "textScaleMethod": "Authored normal size",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1440,
+        "documentWidth": 1440,
+        "height": 2759,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 1884,
+        "headings": [
+          {
+            "text": "Names makethe league.",
+            "top": 169.65625
+          },
+          {
+            "text": "On the same floor",
+            "top": 289.171875
+          },
+          {
+            "text": "LebronTheme Team↗",
+            "top": 359.96875
+          },
+          {
+            "text": "T Halibooty↗",
+            "top": 433.5625
+          },
+          {
+            "text": "ReavesDropper↗",
+            "top": 848.703125
+          },
+          {
+            "text": "Ware theHoes At? ↗",
+            "top": 1227.5
+          },
+          {
+            "text": "Joel Embiid",
+            "top": 899.21875
+          },
+          {
+            "text": "StephonCastle’s Back↗",
+            "top": 1500.484375
+          },
+          {
+            "text": "TheFun Guys↗",
+            "top": 1503.5625
+          },
+          {
+            "text": "Josh Diddy’s Roster↗",
+            "top": 1843.125
+          },
+          {
+            "text": "papichooter↗",
+            "top": 1983.125
+          },
+          {
+            "text": "NeuralNets↗",
+            "top": 2235.890625
+          },
+          {
+            "text": "Huff n’Puff↗",
+            "top": 2272.625
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to the league",
+            "href": "#league"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "The names",
+            "href": "#franchises"
+          },
+          {
+            "text": "NBA news",
+            "href": "https://goathoopers.com/news"
+          },
+          {
+            "text": "Player stocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Arcade",
+            "href": "https://goathoopers.com/arcade"
+          },
+          {
+            "text": "My team ↗",
+            "href": "https://goathoopers.com/team"
+          },
+          {
+            "text": "Open matchup previews ↗",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "LebronTheme Team↗",
+            "href": "https://goathoopers.com/teams/9"
+          },
+          {
+            "text": "On the rosterLeBron James · PF",
+            "href": "https://goathoopers.com/player/1362"
+          },
+          {
+            "text": "T Halibooty↗",
+            "href": "https://goathoopers.com/teams/10"
+          },
+          {
+            "text": "On the rosterAnthony Davis · C",
+            "href": "https://goathoopers.com/player/1272"
+          },
+          {
+            "text": "ReavesDropper↗",
+            "href": "https://goathoopers.com/teams/1"
+          },
+          {
+            "text": "Ware theHoes At? ↗",
+            "href": "https://goathoopers.com/teams/2"
+          },
+          {
+            "text": "Joel Embiid player profile",
+            "href": "https://goathoopers.com/player/1511"
+          },
+          {
+            "text": "Joel Embiid",
+            "href": "https://goathoopers.com/player/1511"
+          },
+          {
+            "text": "NBA.com source",
+            "href": "https://www.nba.com/stats/player/203954/traditional"
+          },
+          {
+            "text": "Put a trade on the table ↗",
+            "href": "https://goathoopers.com/trade-analyzer"
+          },
+          {
+            "text": "StephonCastle’s Back↗",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "See how the rookie draft fell ↗",
+            "href": "https://goathoopers.com/draft"
+          },
+          {
+            "text": "TheFun Guys↗",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Josh Diddy’s Roster↗",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "papichooter↗",
+            "href": "https://goathoopers.com/teams/7"
+          },
+          {
+            "text": "Revisit the final 2025 season ↗",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "NeuralNets↗",
+            "href": "https://goathoopers.com/teams/8"
+          },
+          {
+            "text": "Follow the league’s moves ↗",
+            "href": "https://goathoopers.com/transactions"
+          },
+          {
+            "text": "Huff n’Puff↗",
+            "href": "https://goathoopers.com/teams/6"
+          },
+          {
+            "text": "All team profiles ↗",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "The Table ↗",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Weekly archive ↗",
+            "href": "https://goathoopers.com/weekly"
+          }
+        ]
+      }
+    }
+  ],
+  "captures": [
+    {
+      "stage": "designed",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-browser-20/20/review/designed-desktop-full.jpg",
+        "bytes": 247805,
+        "sha256": "6d9c446716ff90357d0068fd62637ea3ca7f90625f10c4d1f2e46a44cfc53c53",
+        "width": 1440,
+        "height": 2759,
+        "quality": 91,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "CDP document clip at actual viewport width"
+          },
+          {
+            "y": 1800,
+            "height": 959,
+            "method": "CDP document clip at actual viewport width"
+          }
+        ],
+        "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+      },
+      "native": [
+        {
+          "position": "top",
+          "offset": 0,
+          "path": "qa/homepage-browser-20/20/review/desktop-top.jpg",
+          "bytes": 98199,
+          "sha256": "441488dc0c68b1cbb49d836435c6fcb3886a6a905cf65d0ebb2ad7f9bf68a9bf",
+          "width": 1440,
+          "height": 1000,
+          "quality": 91
+        },
+        {
+          "position": "middle",
+          "offset": 879,
+          "path": "qa/homepage-browser-20/20/review/desktop-middle.jpg",
+          "bytes": 87771,
+          "sha256": "6242afb53bcd23be89726889db4735414cf12524d5c1fa8a9a66400012f99d61",
+          "width": 1440,
+          "height": 1000,
+          "quality": 91
+        },
+        {
+          "position": "bottom",
+          "offset": 1759,
+          "path": "qa/homepage-browser-20/20/review/desktop-bottom.jpg",
+          "bytes": 85552,
+          "sha256": "69f3f626624806fdb339a4ec6796a3ace3e5c0c7b033000c5f08c8dc1e9812a0",
+          "width": 1440,
+          "height": 1000,
+          "quality": 91
+        }
+      ]
+    },
+    {
+      "stage": "structure",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-browser-20/20/review/structure-desktop-full.jpg",
+        "bytes": 225595,
+        "sha256": "f3c183504ec8c98acd64e1159ca01cde9a1d8f602f314ffe3b81efd277e80631",
+        "width": 1440,
+        "height": 2759,
+        "quality": 91,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1800,
+            "method": "CDP document clip at actual viewport width"
+          },
+          {
+            "y": 1800,
+            "height": 959,
+            "method": "CDP document clip at actual viewport width"
+          }
+        ],
+        "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+      },
+      "native": []
+    }
+  ],
+  "passed": 4,
+  "total": 4,
+  "limits": "Desktop-only synthetic/draft design study. Headless Linux Chromium at1440/1120 and explicit2xtext at1280; not nativezoom, AT, live/auth destination or production performance acceptance. No new mobile work. Structure view is authored neutral geometry, not screenshot editing."
+}

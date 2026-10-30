@@ -1,0 +1,497 @@
+{
+  "id": "13",
+  "scope": "Seventeen new independent desktop homepage worlds plus three retained pilots; technical observations do not establish visual diversity or craft. No footer/section/data-family/length quota.",
+  "sources": [
+    {
+      "path": "qa/homepage-browser-20/13/index.html",
+      "bytes": 5605,
+      "sha256": "0aabb25ded6fb10ad9ff6701707c03ff42e6550e900c92c49e82e2c85e4bbce2"
+    },
+    {
+      "path": "qa/homepage-browser-20/13/letter.css",
+      "bytes": 4705,
+      "sha256": "ed2a69560f27c9f6fcfd72e231959cba944d0087230d5285d77a7b876e1f221c"
+    },
+    {
+      "path": "qa/homepage-browser-20/13/letter.js",
+      "bytes": 230,
+      "sha256": "23c102dc5d2bb55a337fc0a4f3c140ad24be9a1f8db4e141b657ea21aaa3c964"
+    }
+  ],
+  "checks": [
+    {
+      "stage": "designed",
+      "width": 1440,
+      "textScale": 1,
+      "textScaleMethod": "Authored normal size",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1440,
+        "documentWidth": 1440,
+        "height": 1716,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 1862,
+        "headings": [
+          {
+            "text": "Dear league,",
+            "top": 207.578125
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to the letter",
+            "href": "#letter"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "Find your team",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "The Table",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "My team ↗",
+            "href": "https://goathoopers.com/team"
+          },
+          {
+            "text": "go back to that season ↗",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "NeuralNets",
+            "href": "https://goathoopers.com/teams/8"
+          },
+          {
+            "text": "AJ Dybantsa",
+            "href": "https://goathoopers.com/player/4866"
+          },
+          {
+            "text": "See how the draft fell ↗",
+            "href": "https://goathoopers.com/draft"
+          },
+          {
+            "text": "Keep a place in the weekly archive ↗",
+            "href": "https://goathoopers.com/weekly"
+          },
+          {
+            "text": "Lebron Theme Team",
+            "href": "https://goathoopers.com/teams/9"
+          },
+          {
+            "text": "Lonzo Ball",
+            "href": "https://goathoopers.com/player/1798"
+          },
+          {
+            "text": "transaction trail",
+            "href": "https://goathoopers.com/transactions"
+          },
+          {
+            "text": "Price a player in Stocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "work through a trade",
+            "href": "https://goathoopers.com/trade-analyzer"
+          },
+          {
+            "text": "look closer at the league",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "one more free throw ↗",
+            "href": "https://goathoopers.com/arcade/free-throw"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "designed",
+      "width": 1120,
+      "textScale": 1,
+      "textScaleMethod": "Authored normal size",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1120,
+        "documentWidth": 1120,
+        "height": 1620,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 1862,
+        "headings": [
+          {
+            "text": "Dear league,",
+            "top": 207.578125
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to the letter",
+            "href": "#letter"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "Find your team",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "The Table",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "My team ↗",
+            "href": "https://goathoopers.com/team"
+          },
+          {
+            "text": "go back to that season ↗",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "NeuralNets",
+            "href": "https://goathoopers.com/teams/8"
+          },
+          {
+            "text": "AJ Dybantsa",
+            "href": "https://goathoopers.com/player/4866"
+          },
+          {
+            "text": "See how the draft fell ↗",
+            "href": "https://goathoopers.com/draft"
+          },
+          {
+            "text": "Keep a place in the weekly archive ↗",
+            "href": "https://goathoopers.com/weekly"
+          },
+          {
+            "text": "Lebron Theme Team",
+            "href": "https://goathoopers.com/teams/9"
+          },
+          {
+            "text": "Lonzo Ball",
+            "href": "https://goathoopers.com/player/1798"
+          },
+          {
+            "text": "transaction trail",
+            "href": "https://goathoopers.com/transactions"
+          },
+          {
+            "text": "Price a player in Stocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "work through a trade",
+            "href": "https://goathoopers.com/trade-analyzer"
+          },
+          {
+            "text": "look closer at the league",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "one more free throw ↗",
+            "href": "https://goathoopers.com/arcade/free-throw"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "designed",
+      "width": 1280,
+      "textScale": 2,
+      "textScaleMethod": "Computed HTML font sizes snapshotted then doubled; explicit text-only stress emulation, not native browser zoom",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1280,
+        "documentWidth": 1280,
+        "height": 4221,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 1862,
+        "headings": [
+          {
+            "text": "Dear league,",
+            "top": 227.03125
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to the letter",
+            "href": "#letter"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "Find your team",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "The Table",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "My team ↗",
+            "href": "https://goathoopers.com/team"
+          },
+          {
+            "text": "go back to that season ↗",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "NeuralNets",
+            "href": "https://goathoopers.com/teams/8"
+          },
+          {
+            "text": "AJ Dybantsa",
+            "href": "https://goathoopers.com/player/4866"
+          },
+          {
+            "text": "See how the draft fell ↗",
+            "href": "https://goathoopers.com/draft"
+          },
+          {
+            "text": "Keep a place in the weekly archive ↗",
+            "href": "https://goathoopers.com/weekly"
+          },
+          {
+            "text": "Lebron Theme Team",
+            "href": "https://goathoopers.com/teams/9"
+          },
+          {
+            "text": "Lonzo Ball",
+            "href": "https://goathoopers.com/player/1798"
+          },
+          {
+            "text": "transaction trail",
+            "href": "https://goathoopers.com/transactions"
+          },
+          {
+            "text": "Price a player in Stocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "work through a trade",
+            "href": "https://goathoopers.com/trade-analyzer"
+          },
+          {
+            "text": "look closer at the league",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "one more free throw ↗",
+            "href": "https://goathoopers.com/arcade/free-throw"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "structure",
+      "width": 1440,
+      "textScale": 1,
+      "textScaleMethod": "Authored normal size",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1440,
+        "documentWidth": 1440,
+        "height": 1716,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 1862,
+        "headings": [
+          {
+            "text": "Dear league,",
+            "top": 207.578125
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to the letter",
+            "href": "#letter"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "Find your team",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "The Table",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "My team ↗",
+            "href": "https://goathoopers.com/team"
+          },
+          {
+            "text": "go back to that season ↗",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "NeuralNets",
+            "href": "https://goathoopers.com/teams/8"
+          },
+          {
+            "text": "AJ Dybantsa",
+            "href": "https://goathoopers.com/player/4866"
+          },
+          {
+            "text": "See how the draft fell ↗",
+            "href": "https://goathoopers.com/draft"
+          },
+          {
+            "text": "Keep a place in the weekly archive ↗",
+            "href": "https://goathoopers.com/weekly"
+          },
+          {
+            "text": "Lebron Theme Team",
+            "href": "https://goathoopers.com/teams/9"
+          },
+          {
+            "text": "Lonzo Ball",
+            "href": "https://goathoopers.com/player/1798"
+          },
+          {
+            "text": "transaction trail",
+            "href": "https://goathoopers.com/transactions"
+          },
+          {
+            "text": "Price a player in Stocks",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "work through a trade",
+            "href": "https://goathoopers.com/trade-analyzer"
+          },
+          {
+            "text": "look closer at the league",
+            "href": "https://goathoopers.com/intel"
+          },
+          {
+            "text": "one more free throw ↗",
+            "href": "https://goathoopers.com/arcade/free-throw"
+          }
+        ]
+      }
+    }
+  ],
+  "captures": [
+    {
+      "stage": "designed",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-browser-20/13/review/designed-desktop-full.jpg",
+        "bytes": 347710,
+        "sha256": "0b91022a20b6b49618bde16ecef853d2e8f1f6462502d21681ce328c74947c46",
+        "width": 1440,
+        "height": 1716,
+        "quality": 91,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1716,
+            "method": "CDP document clip at actual viewport width"
+          }
+        ],
+        "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+      },
+      "native": [
+        {
+          "position": "top",
+          "offset": 0,
+          "path": "qa/homepage-browser-20/13/review/desktop-top.jpg",
+          "bytes": 218622,
+          "sha256": "0771f77c70ec7abcf8290a481886a23a4846ec815e67bc923ccb9ce3ecf6675a",
+          "width": 1440,
+          "height": 1000,
+          "quality": 91
+        },
+        {
+          "position": "middle",
+          "offset": 358,
+          "path": "qa/homepage-browser-20/13/review/desktop-middle.jpg",
+          "bytes": 252846,
+          "sha256": "c45ec4718b8b44b5674f2a641a7823dc39ac186f0ae63d2fe782491f083254b2",
+          "width": 1440,
+          "height": 1000,
+          "quality": 91
+        },
+        {
+          "position": "bottom",
+          "offset": 716,
+          "path": "qa/homepage-browser-20/13/review/desktop-bottom.jpg",
+          "bytes": 200901,
+          "sha256": "b3d80ecc1e5587e807809ac34c75441528641c7b597c39d86e16a00ba023c13f",
+          "width": 1440,
+          "height": 1000,
+          "quality": 91
+        }
+      ]
+    },
+    {
+      "stage": "structure",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-browser-20/13/review/structure-desktop-full.jpg",
+        "bytes": 270025,
+        "sha256": "81babc5f8439d949d14790587d78c9b5cb515b3e6bc8fb396f19c87ff15ab6a7",
+        "width": 1440,
+        "height": 1716,
+        "quality": 91,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1716,
+            "method": "CDP document clip at actual viewport width"
+          }
+        ],
+        "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+      },
+      "native": []
+    }
+  ],
+  "passed": 4,
+  "total": 4,
+  "limits": "Desktop-only synthetic/draft design study. Headless Linux Chromium at1440/1120 and explicit2xtext at1280; not nativezoom, AT, live/auth destination or production performance acceptance. No new mobile work. Structure view is authored neutral geometry, not screenshot editing."
+}

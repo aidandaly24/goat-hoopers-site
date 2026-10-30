@@ -1,0 +1,27 @@
+# 07 — Courtside cinema
+
+Original geometry: a shallow arena aperture beside a modest franchise title, then a tall Dybantsa crop, open college context and a lower, narrow previous-manager history field. A warmer wire plane shifts the photographic center to a wider Davis crop. The final pairing sits offset from the opponent’s historical record. The image cuts and captions govern the whole page. There is no media player, carousel, tab or internal reader.
+
+Content priorities: NeuralNets’ rebuild from Roster 8 / QBs Gremlins, with the 2025 1–20 record explicitly attributed to the previous manager; AJ Dybantsa’s No. 1 league rookie selection and separately labelled 2025–26 BYU college averages; the dated Monk/Jović/Risacher/Lonzo wire; a current T Halibooty / Anthony Davis roster link and modeled FAAB value; and a synthetic Week 3 papichooter–NeuralNets pairing with historical opponent context. No model forecast or full standings inventory. Current values and records are synthetic, visibly labelled with the supplied Nov 12 fixture period and future-date qualification. Historical records, the unpublished opening draft, and the current fixture are distinct. The coordinator redirected the original overlap-heavy factual selection before source freeze; no Reaves/Ware or Jokić/crown material remains.
+
+User question → where does the NeuralNets rebuild start, what changed, and who is across the floor? Primary actions → NeuralNets and Dybantsa profiles, then transactions and history. Relevant states → current synthetic records/value/pairing with no game scores provided, previous-manager historical record, unpublished opening-edition draft. Desktop → independent 1440/1120 composition; no mobile work requested. Forbidden patterns → repeated photo bands, equal-card grids, huge hero then sampler, hidden primary content, invented results and auto-running media.
+
+## Exact reads and applications
+
+- `AGENTS.md`, `ARCHITECTURE.md` (repo map/data/auth and account contracts), `DESIGN.md`, `.agents/skills/goat-hoopers-design/SKILL.md`, and its `references/navigation-accessibility.md`. Production composition/palette rules are excluded by this assignment’s explicit experimental contract; source/access rules remain. Actual `src/ui/SiteHeader.tsx` and `src/ui/siteDestinations.ts` supplied existing destination names/paths, without changing shared chrome.
+- `../AUTHOR-CONTRACT.md`, own `FACTS.json`, `qa/homepage-structures/reference-notes/craft.md`, and existing `assets/fonts/catalog.json`.
+- [Hallmark custom direction](https://github.com/Nutlope/hallmark/blob/main/skills/hallmark/references/direction.md), read primary text. Applied the client-specific whole-page idea, content-led geometry and full useful page. Did not adopt section quotas, palette/font prohibitions, scaffold scripts, installers, stamps or catalog mechanics.
+- [Hallmark macrostructures](https://github.com/Nutlope/hallmark/blob/main/skills/hallmark/references/macrostructures.md), read the fingerprint/index guidance; [Photographic](https://github.com/Nutlope/hallmark/blob/main/skills/hallmark/references/macrostructures/08-photographic.md), read primary text. Applied photographic pacing and readable corner-adjacent captions; rejected its suggested repeated image/text bands as explicitly forbidden here. Unequal portrait cuts and the wider archival composition are original.
+- Cloud runtime skill and environment status read; local-only implementation requires no credentials or external network runtime.
+
+## Materials and behavior
+
+Approved local arena, horizontal white GOAT logo, and supplied local Dybantsa / Anthony Davis portraits. No image downloads or generated imitation players. Local OFL DM Sans for reading and Oswald for numerical emphasis. Captions are real text. Normal flow grid/flex layouts have intrinsic wrapping and no fixed-height text containers. No motion is needed: photography supplies the pacing; reduced motion preserves the same static page. `?stage=structure` changes only color and image treatment. All geometry and text remain identical. `document.fonts.ready` sets `dataset.browserStudyReady='07'`.
+
+## Verification
+
+Final local Chromium checks via existing Playwright and `/usr/bin/chromium`: 1440×1000 and 1120×1000 renders; zero page errors or missing images at 1440; no horizontal overflow at either width. Explicit 1120 text-only stress doubled every element’s computed font size, including fixed pixel values: 1120px scroll width, 4554px document height, 70.4px actual h1. Inspected the three local screenshots; the franchise title remains intact, with intrinsic wrapping throughout and no observed overlap or clipping. Final 1120 normal height is 2620px. At 1440, all body element bounding boxes and document geometry matched exactly between designed and structure stages. Keyboard: first Tab exposes the outlined skip link, Enter reaches #home, and native summary Enter opens/closes the provenance disclosure. `git diff --check` had no findings. Root owns the final capture set and broader keyboard/reflow review. No claim of screen-reader, production routing, authentication or live-source validation.
+
+## Frozen checkpoint
+
+Source frozen for coordinator capture at `http://localhost:4207/qa/homepage-browser-20/07/`; neutral treatment at the same URL with `?stage=structure`. Deliverables: `index.html`, `style.css`, `script.js`, this note, and three bounded local rendering evidence PNGs. No production/shared files, dependencies, accounts, services, mobile changes, commits or deployments.

@@ -1,0 +1,33 @@
+{
+  "method": "Chromium via Python Playwright; desktop 1440/1120; explicit computed-font doubling at 1120",
+  "checks": [
+    {
+      "neutralGeometryIdentical": true,
+      "elementsCompared": 23
+    },
+    {
+      "firstKeyboardFocus": "Skip to the letter",
+      "focusOnscreen": true
+    },
+    {
+      "skipTarget": "letter"
+    },
+    {
+      "nativeProvenanceOpens": true
+    },
+    {
+      "nativeProvenanceCloses": true
+    },
+    {
+      "textStressViewport": 1120,
+      "scrollWidth": 1120,
+      "openingFont": "47.36px",
+      "overflowingElements": []
+    }
+  ],
+  "contrast": {
+    "ink": 7.19,
+    "blue": 5.18,
+    "subtle": 5.13
+  }
+}

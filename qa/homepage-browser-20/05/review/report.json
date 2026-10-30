@@ -1,0 +1,673 @@
+{
+  "id": "05",
+  "scope": "Seventeen new independent desktop homepage worlds plus three retained pilots; technical observations do not establish visual diversity or craft. No footer/section/data-family/length quota.",
+  "sources": [
+    {
+      "path": "qa/homepage-browser-20/05/app.js",
+      "bytes": 268,
+      "sha256": "0f453cde2d3769099b4ba5de0656c94a73e30ea2157d414eba149ea646c81ddf"
+    },
+    {
+      "path": "qa/homepage-browser-20/05/index.html",
+      "bytes": 9378,
+      "sha256": "598002a556b922645c4b1867f05fd71eac973482e216d708b6a1bd194b0a9498"
+    },
+    {
+      "path": "qa/homepage-browser-20/05/style.css",
+      "bytes": 11693,
+      "sha256": "cbade8c4825795cd58efd82ee71c2cebc072eb29f32f25b7080d135af581b2c5"
+    }
+  ],
+  "checks": [
+    {
+      "stage": "designed",
+      "width": 1440,
+      "textScale": 1,
+      "textScaleMethod": "Authored normal size",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1440,
+        "documentWidth": 1440,
+        "height": 1539,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 1457,
+        "headings": [
+          {
+            "text": "One season.One first crown.",
+            "top": 231.390625
+          },
+          {
+            "text": "GOAT HOOPERS",
+            "top": 364.046875
+          },
+          {
+            "text": "Huff meetsthe champ.",
+            "top": 267.59375
+          },
+          {
+            "text": "Across the league",
+            "top": 758.46875
+          },
+          {
+            "text": "Same league.Different go-to guys.",
+            "top": 942.421875
+          },
+          {
+            "text": "New name.New hands.",
+            "top": 983.8125
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to the home court",
+            "href": "#home-court"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "The clubs",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "Player values",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "AI Decides",
+            "href": "https://goathoopers.com/ai-decides"
+          },
+          {
+            "text": "Arcade ↗",
+            "href": "https://goathoopers.com/arcade"
+          },
+          {
+            "text": "My team ↗",
+            "href": "https://goathoopers.com/team"
+          },
+          {
+            "text": "Josh Diddy’s Roster ↗",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Back through the season ↗",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "See the league table ↗",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Josh Diddy’s Roster",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Huff n’ Puff",
+            "href": "https://goathoopers.com/teams/6"
+          },
+          {
+            "text": "Read the saved slate ↗",
+            "href": "https://goathoopers.com/ai-decides"
+          },
+          {
+            "text": "Stephon Castle’s Back",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "The Fun Guys",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Jalen Brunson ↗",
+            "href": "https://goathoopers.com/player/1967"
+          },
+          {
+            "text": "The Fun Guys",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Stephen Curry ↗",
+            "href": "https://goathoopers.com/player/1085"
+          },
+          {
+            "text": "Josh Diddy’s Roster",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Donovan Mitchell ↗",
+            "href": "https://goathoopers.com/player/1845"
+          },
+          {
+            "text": "Huff n’ Puff",
+            "href": "https://goathoopers.com/teams/6"
+          },
+          {
+            "text": "Every player has a price. Explore the market ↗",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Follow the rebuild ↗",
+            "href": "https://goathoopers.com/teams/8"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "designed",
+      "width": 1120,
+      "textScale": 1,
+      "textScaleMethod": "Authored normal size",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1120,
+        "documentWidth": 1120,
+        "height": 1464,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 1457,
+        "headings": [
+          {
+            "text": "One season.One first crown.",
+            "top": 224.390625
+          },
+          {
+            "text": "GOAT HOOPERS",
+            "top": 354.6875
+          },
+          {
+            "text": "Huff meetsthe champ.",
+            "top": 259.59375
+          },
+          {
+            "text": "Across the league",
+            "top": 730.28125
+          },
+          {
+            "text": "Same league.Different go-to guys.",
+            "top": 914.234375
+          },
+          {
+            "text": "New name.New hands.",
+            "top": 955.625
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to the home court",
+            "href": "#home-court"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "The clubs",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "Player values",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "AI Decides",
+            "href": "https://goathoopers.com/ai-decides"
+          },
+          {
+            "text": "Arcade ↗",
+            "href": "https://goathoopers.com/arcade"
+          },
+          {
+            "text": "My team ↗",
+            "href": "https://goathoopers.com/team"
+          },
+          {
+            "text": "Josh Diddy’s Roster ↗",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Back through the season ↗",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "See the league table ↗",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Josh Diddy’s Roster",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Huff n’ Puff",
+            "href": "https://goathoopers.com/teams/6"
+          },
+          {
+            "text": "Read the saved slate ↗",
+            "href": "https://goathoopers.com/ai-decides"
+          },
+          {
+            "text": "Stephon Castle’s Back",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "The Fun Guys",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Jalen Brunson ↗",
+            "href": "https://goathoopers.com/player/1967"
+          },
+          {
+            "text": "The Fun Guys",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Stephen Curry ↗",
+            "href": "https://goathoopers.com/player/1085"
+          },
+          {
+            "text": "Josh Diddy’s Roster",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Donovan Mitchell ↗",
+            "href": "https://goathoopers.com/player/1845"
+          },
+          {
+            "text": "Huff n’ Puff",
+            "href": "https://goathoopers.com/teams/6"
+          },
+          {
+            "text": "Every player has a price. Explore the market ↗",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Follow the rebuild ↗",
+            "href": "https://goathoopers.com/teams/8"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "designed",
+      "width": 1280,
+      "textScale": 2,
+      "textScaleMethod": "Computed HTML font sizes snapshotted then doubled; explicit text-only stress emulation, not native browser zoom",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1280,
+        "documentWidth": 1280,
+        "height": 2722,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 1457,
+        "headings": [
+          {
+            "text": "One season.One first crown.",
+            "top": 265.796875
+          },
+          {
+            "text": "GOAT HOOPERS",
+            "top": 482.484375
+          },
+          {
+            "text": "Huff meetsthe champ.",
+            "top": 318.1875
+          },
+          {
+            "text": "Across the league",
+            "top": 1452.390625
+          },
+          {
+            "text": "Same league.Different go-to guys.",
+            "top": 1763.796875
+          },
+          {
+            "text": "New name.New hands.",
+            "top": 1822.59375
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to the home court",
+            "href": "#home-court"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "The clubs",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "Player values",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "AI Decides",
+            "href": "https://goathoopers.com/ai-decides"
+          },
+          {
+            "text": "Arcade ↗",
+            "href": "https://goathoopers.com/arcade"
+          },
+          {
+            "text": "My team ↗",
+            "href": "https://goathoopers.com/team"
+          },
+          {
+            "text": "Josh Diddy’s Roster ↗",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Back through the season ↗",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "See the league table ↗",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Josh Diddy’s Roster",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Huff n’ Puff",
+            "href": "https://goathoopers.com/teams/6"
+          },
+          {
+            "text": "Read the saved slate ↗",
+            "href": "https://goathoopers.com/ai-decides"
+          },
+          {
+            "text": "Stephon Castle’s Back",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "The Fun Guys",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Jalen Brunson ↗",
+            "href": "https://goathoopers.com/player/1967"
+          },
+          {
+            "text": "The Fun Guys",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Stephen Curry ↗",
+            "href": "https://goathoopers.com/player/1085"
+          },
+          {
+            "text": "Josh Diddy’s Roster",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Donovan Mitchell ↗",
+            "href": "https://goathoopers.com/player/1845"
+          },
+          {
+            "text": "Huff n’ Puff",
+            "href": "https://goathoopers.com/teams/6"
+          },
+          {
+            "text": "Every player has a price. Explore the market ↗",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Follow the rebuild ↗",
+            "href": "https://goathoopers.com/teams/8"
+          }
+        ]
+      }
+    },
+    {
+      "stage": "structure",
+      "width": 1440,
+      "textScale": 1,
+      "textScaleMethod": "Authored normal size",
+      "pass": true,
+      "errors": [],
+      "remoteRequests": 0,
+      "observed": {
+        "width": 1440,
+        "documentWidth": 1440,
+        "height": 1539,
+        "mainCount": 1,
+        "h1Count": 1,
+        "textCharacters": 1457,
+        "headings": [
+          {
+            "text": "One season.One first crown.",
+            "top": 231.390625
+          },
+          {
+            "text": "GOAT HOOPERS",
+            "top": 364.046875
+          },
+          {
+            "text": "Huff meetsthe champ.",
+            "top": 267.59375
+          },
+          {
+            "text": "Across the league",
+            "top": 758.46875
+          },
+          {
+            "text": "Same league.Different go-to guys.",
+            "top": 942.421875
+          },
+          {
+            "text": "New name.New hands.",
+            "top": 983.8125
+          }
+        ],
+        "inkOverflow": [],
+        "innerReaders": [],
+        "duplicateIds": [],
+        "unnamedControls": [],
+        "imagesMissingAlt": 0,
+        "invalidHashLinks": [],
+        "links": [
+          {
+            "text": "Skip to the home court",
+            "href": "#home-court"
+          },
+          {
+            "text": "GOAT Hoopers home",
+            "href": "https://goathoopers.com/"
+          },
+          {
+            "text": "The clubs",
+            "href": "https://goathoopers.com/teams"
+          },
+          {
+            "text": "Player values",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "AI Decides",
+            "href": "https://goathoopers.com/ai-decides"
+          },
+          {
+            "text": "Arcade ↗",
+            "href": "https://goathoopers.com/arcade"
+          },
+          {
+            "text": "My team ↗",
+            "href": "https://goathoopers.com/team"
+          },
+          {
+            "text": "Josh Diddy’s Roster ↗",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Back through the season ↗",
+            "href": "https://goathoopers.com/history"
+          },
+          {
+            "text": "See the league table ↗",
+            "href": "https://goathoopers.com/table"
+          },
+          {
+            "text": "Josh Diddy’s Roster",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Huff n’ Puff",
+            "href": "https://goathoopers.com/teams/6"
+          },
+          {
+            "text": "Read the saved slate ↗",
+            "href": "https://goathoopers.com/ai-decides"
+          },
+          {
+            "text": "Stephon Castle’s Back",
+            "href": "https://goathoopers.com/teams/3"
+          },
+          {
+            "text": "The Fun Guys",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Jalen Brunson ↗",
+            "href": "https://goathoopers.com/player/1967"
+          },
+          {
+            "text": "The Fun Guys",
+            "href": "https://goathoopers.com/teams/4"
+          },
+          {
+            "text": "Stephen Curry ↗",
+            "href": "https://goathoopers.com/player/1085"
+          },
+          {
+            "text": "Josh Diddy’s Roster",
+            "href": "https://goathoopers.com/teams/5"
+          },
+          {
+            "text": "Donovan Mitchell ↗",
+            "href": "https://goathoopers.com/player/1845"
+          },
+          {
+            "text": "Huff n’ Puff",
+            "href": "https://goathoopers.com/teams/6"
+          },
+          {
+            "text": "Every player has a price. Explore the market ↗",
+            "href": "https://goathoopers.com/stocks"
+          },
+          {
+            "text": "Follow the rebuild ↗",
+            "href": "https://goathoopers.com/teams/8"
+          }
+        ]
+      }
+    }
+  ],
+  "captures": [
+    {
+      "stage": "designed",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-browser-20/05/review/designed-desktop-full.jpg",
+        "bytes": 233187,
+        "sha256": "b2cba6204f58c81b10484767c50be1077c724abe11a39e516f82bc093f6380d8",
+        "width": 1440,
+        "height": 1539,
+        "quality": 91,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1539,
+            "method": "CDP document clip at actual viewport width"
+          }
+        ],
+        "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+      },
+      "native": [
+        {
+          "position": "top",
+          "offset": 0,
+          "path": "qa/homepage-browser-20/05/review/desktop-top.jpg",
+          "bytes": 153672,
+          "sha256": "4fa93b64c6f338008411ebc854dd92d7b1597df4e06ddb04afdb1b8dc13f6cbd",
+          "width": 1440,
+          "height": 1000,
+          "quality": 91
+        },
+        {
+          "position": "middle",
+          "offset": 269,
+          "path": "qa/homepage-browser-20/05/review/desktop-middle.jpg",
+          "bytes": 177543,
+          "sha256": "9d024c6f48ddbd72b5cee92bf98bf4777eb0897876352601fa1bcd8d5d8d303d",
+          "width": 1440,
+          "height": 1000,
+          "quality": 91
+        },
+        {
+          "position": "bottom",
+          "offset": 539,
+          "path": "qa/homepage-browser-20/05/review/desktop-bottom.jpg",
+          "bytes": 146060,
+          "sha256": "7a80ba9d6ad5cab9383701a71838e0da9af614d7f6c8c9817c42ff0cf10c88e2",
+          "width": 1440,
+          "height": 1000,
+          "quality": 91
+        }
+      ]
+    },
+    {
+      "stage": "structure",
+      "device": "desktop",
+      "image": {
+        "path": "qa/homepage-browser-20/05/review/structure-desktop-full.jpg",
+        "bytes": 178723,
+        "sha256": "743792f97eed2aed3eca11d0c87a22035b3bf26fdf947d91e8917760c7d4b058",
+        "width": 1440,
+        "height": 1539,
+        "quality": 91,
+        "offsets": [
+          {
+            "y": 0,
+            "height": 1539,
+            "method": "CDP document clip at actual viewport width"
+          }
+        ],
+        "method": "Entire actual initial browser document at viewport width. Browser fullPage can enlarge to offscreen decorative ink; viewport document clips preserve the actual phone/desktop boundary. No authored CSS alteration or hidden-state montage."
+      },
+      "native": []
+    }
+  ],
+  "passed": 4,
+  "total": 4,
+  "limits": "Desktop-only synthetic/draft design study. Headless Linux Chromium at1440/1120 and explicit2xtext at1280; not nativezoom, AT, live/auth destination or production performance acceptance. No new mobile work. Structure view is authored neutral geometry, not screenshot editing."
+}
