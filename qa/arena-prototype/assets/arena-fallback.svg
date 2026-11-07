@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 1000">
+  <defs><linearGradient id="sky" x2="0" y2="1"><stop stop-color="#0a0e1a"/><stop offset="1" stop-color="#1e2932"/></linearGradient><linearGradient id="floor" x2="1" y2="1"><stop stop-color="#345b77"/><stop offset="1" stop-color="#455462"/></linearGradient><pattern id="seats" width="32" height="24" patternUnits="userSpaceOnUse"><path fill="#293844" d="M3 3h24v16H3z"/><path stroke="#455462" d="M3 20h24"/></pattern></defs>
+  <path fill="url(#sky)" d="M0 0h1440v1000H0z"/>
+  <path fill="url(#seats)" d="M0 190h1440v260H0zM0 820h1440v180H0z"/>
+  <g stroke="#455462" stroke-width="4" opacity=".7"><path d="M-80 50l1520 250M0 60v390M250 95v355M520 140v310M800 185v265M1080 230v220M1370 275v175"/></g>
+  <path fill="#151d24" stroke="#9fc3de" stroke-width="3" d="M-100 445h1640v35H-100z"/>
+  <path fill="url(#floor)" d="M210 480h1020l500 460H-290z"/>
+  <g fill="none" stroke="#bcc5cd" stroke-width="3" opacity=".8"><path d="M255 505h930l380 385H-125zM720 505v385"/><ellipse cx="720" cy="688" rx="128" ry="59"/><path d="M-20 570h340l90 240H-5M1460 570h-340l-90 240h415"/><ellipse cx="295" cy="691" rx="155" ry="100"/><ellipse cx="1145" cy="691" rx="155" ry="100"/></g>
+  <text x="720" y="722" fill="#f5f4ef" font-family="sans-serif" font-weight="800" font-size="85" text-anchor="middle" transform="translate(0 245) scale(1 .65)">GOAT</text>
+  <text x="720" y="390" fill="#9fc3de" font-family="sans-serif" font-size="24" letter-spacing="12" text-anchor="middle">HOME OF THE HOOPERS</text>
+</svg>

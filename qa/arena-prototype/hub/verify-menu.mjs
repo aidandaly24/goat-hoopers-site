@@ -1,0 +1,96 @@
+import assert from "node:assert/strict";
+import { mkdir, writeFile } from "node:fs/promises";
+import { execFileSync } from "node:child_process";
+import sharp from "sharp";
+const { chromium } = await import(process.env.PLAYWRIGHT_MODULE ?? "/opt/codex/cua_node/lib/node_modules/playwright/index.mjs");
+const origin = process.env.ARENA_ORIGIN ?? "http://127.0.0.1:4196";
+const out = process.env.HUB_EVIDENCE ?? "/tmp/goat-hub-review";
+await mkdir(out, { recursive: true });
+const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH ?? "/usr/bin/chromium", args: ["--no-sandbox", "--enable-unsafe-swiftshader", "--use-angle=swiftshader"] });
+const results = [], errors = [], external = [];
+const revision = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+try {
+  for (const state of [
+    { width: 1440, member: false, theme: "dark" }, { width: 1440, member: true, theme: "light" },
+    { width: 390, member: false, theme: "dark" }, { width: 390, member: true, theme: "light" },
+    { width: 320, member: true, theme: "dark" }, { width: 390, member: true, theme: "dark", text: 200 },
+    { width: 390, member: true, theme: "light", still: true }, { width: 390, member: false, theme: "dark", reduce: true },
+  ]) {
+    const context = await browser.newContext({ viewport: { width: state.width, height: state.width < 600 ? 844 : 1000 }, reducedMotion: state.reduce ? "reduce" : "no-preference" });
+    await context.addInitScript(theme => localStorage.setItem("goat-hoopers.theme", theme), state.theme);
+    const p = await context.newPage(); p.on("pageerror", e => errors.push(e.message));
+    await p.route("**/*", route => { if (new URL(route.request().url()).origin === origin) return route.continue(); external.push(route.request().url()); return route.abort(); });
+    await p.goto(`${origin}/arena.html?view=${state.member ? "member" : "public"}${state.still ? "&scene=still" : ""}`, { waitUntil: "networkidle" });
+    if (!state.still && !state.reduce) await p.waitForFunction(() => window.goatHubMetrics?.props === 3);
+    await p.evaluate(() => document.fonts.ready);
+    if (state.text) await p.evaluate(() => document.documentElement.style.fontSize = "200%");
+    const read = () => p.evaluate(() => ({
+      stage: document.querySelector(".hub-stage").clientHeight,
+      minimumStage: parseFloat(getComputedStyle(document.documentElement).fontSize) * 26,
+      header: document.querySelector(".hub-header").getBoundingClientRect().height,
+      panel: document.querySelector("#site-navigation-panel").getBoundingClientRect().height,
+      rows: getComputedStyle(document.querySelector(".hub-shell")).gridTemplateRows,
+      overflow: document.documentElement.scrollWidth > innerWidth,
+      canvases: document.querySelectorAll(".hub-court canvas").length,
+      pinsVisible: [...document.querySelectorAll(".hub-pin")].filter(e => e.getClientRects().length).length,
+      directoryTargets: [...document.querySelectorAll(".hub-directory button")].map(e => ({ width: e.getBoundingClientRect().width, height: e.getBoundingClientRect().height })),
+    }));
+    const closed = await read();
+    const trigger = p.getByRole("button", { name: state.width < 600 ? /^Menu/ : /^League tools/ });
+    await trigger.focus(); await p.keyboard.press("Enter"); await p.locator("#site-navigation-panel").waitFor({ state: "visible" });
+    await p.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
+    const expanded = await read();
+    assert(expanded.stage >= expanded.minimumStage - 1, "Expanded navigation collapsed the arena");
+    assert(Math.abs(expanded.stage - closed.stage) <= 1, "Disclosure reduced the closed-menu arena height");
+    assert(expanded.panel > 0 && expanded.panel < expanded.header, "Disclosure did not stay inside the header grid item");
+    assert.equal(expanded.overflow, false);
+    assert.equal(expanded.canvases, state.still || state.reduce ? 0 : 1);
+    assert.equal(expanded.pinsVisible, expanded.stage < expanded.minimumStage / 26 * 32 ? 0 : 6);
+    assert.equal(expanded.directoryTargets.length, 6);
+    assert(expanded.directoryTargets.every(e => e.width >= 44 && e.height >= 44));
+    const visited = [];
+    for (let step = 0; step < 5; step++) {
+      await p.keyboard.press("Tab");
+      visited.push(await p.evaluate(() => ({ tag: document.activeElement.tagName, text: document.activeElement.textContent.trim(), inPanel: Boolean(document.activeElement.closest("#site-navigation-panel")) })));
+    }
+    assert(visited.some(item => item.inPanel && item.tag === "A"), "Keyboard traversal never reaches disclosure links");
+    const name = `menu-${state.width}-${state.member ? "member" : "public"}-${state.theme}${state.text ? "-200" : ""}${state.still ? "-still" : ""}${state.reduce ? "-reduced" : ""}`;
+    await p.screenshot({ path: `${out}/${name}-expanded.jpg`, type: "jpeg", quality: 86, animations: "disabled" });
+    await p.locator(".hub-stage").scrollIntoViewIfNeeded();
+    await p.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
+    const arenaImage = `${out}/${name}-arena.jpg`;
+    await p.screenshot({ path: arenaImage, type: "jpeg", quality: 86, animations: "disabled" });
+    const title = await p.locator("#hub-title").boundingBox();
+    assert(title.x >= 0 && title.y >= 0 && title.x + title.width <= state.width && title.y + title.height <= (state.width < 600 ? 844 : 1000));
+    const headingProof = `${out}/${name}-heading.png`;
+    // OCR only the actual title pixels, avoiding unrelated menu/court text.
+    // The native viewport JPEG above is never altered.
+    await sharp(arenaImage).extract({ left: Math.floor(title.x), top: Math.floor(title.y), width: Math.ceil(title.width), height: Math.ceil(title.height) }).resize({ width: Math.ceil(title.width) * 3 }).png().toFile(headingProof);
+    const pixelText = execFileSync("tesseract", [headingProof, "stdout", "--psm", "6"], { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).toLowerCase().replace(/[^a-z]/g, "");
+    await writeFile(`${out}/${name}-capture.json`, JSON.stringify({ revision, state, title, pixelText, viewportImagesUnaltered: true }, null, 2) + "\n");
+    assert(pixelText.includes(state.member ? "homecourt" : "teamsonehouse"), "Actual arena screenshot lost the foreground title");
+    await p.keyboard.press("Escape"); await p.locator("#site-navigation-panel").waitFor({ state: "hidden" });
+    await p.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
+    assert.equal(await trigger.evaluate(e => document.activeElement === e), true);
+    assert.equal(await trigger.evaluate(e => { const r = e.getBoundingClientRect(); return r.top >= 0 && r.bottom <= innerHeight; }), true, "Restored menu focus is outside the viewport");
+    const restored = await read(); assert(Math.abs(restored.stage - closed.stage) <= 1);
+    await p.locator('[data-directory="standings"]').click(); await p.locator("[data-league-section]").waitFor({ state: "visible" });
+    await p.keyboard.press("Escape"); await p.locator("#hub-reader").waitFor({ state: "hidden" });
+    await trigger.click(); await p.locator("#site-navigation-panel").waitFor({ state: "visible" });
+    await trigger.click(); await p.locator("#site-navigation-panel").waitFor({ state: "hidden" });
+    assert((await read()).stage >= closed.minimumStage - 1);
+    await trigger.click(); await p.locator("#site-navigation-panel").waitFor({ state: "visible" });
+    await Promise.all([p.waitForNavigation({ waitUntil: "networkidle" }), p.getByRole("link", { name: "Home", exact: true }).click()]);
+    await p.locator(".hub-stage").waitFor();
+    assert.equal(await p.locator("#site-navigation-panel").isVisible(), false);
+    // Text enlargement is a test-driver setting and resets on document load.
+    if (state.text) await p.evaluate(() => document.documentElement.style.fontSize = "200%");
+    await p.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
+    const afterHome = await read(); assert(Math.abs(afterHome.stage - closed.stage) <= 1);
+    results.push({ state, closed, expanded, restored, afterHome, visited, screenshot: name, foregroundTitlePixelVerified: true });
+    console.log("PASS menu state", JSON.stringify(state), `${closed.stage}→${expanded.stage}→${restored.stage}px; reader/focus/reopen intact`);
+    await context.close();
+  }
+  assert.deepEqual(errors, []); assert.deepEqual(external, []);
+  await writeFile(`${out}/menu-checks.json`, JSON.stringify({ revision, results, errors, external }, null, 2) + "\n");
+} finally { await browser.close(); }

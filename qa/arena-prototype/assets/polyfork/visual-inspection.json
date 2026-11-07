@@ -1,0 +1,102 @@
+{
+  "records": [
+    {
+      "id": "yard-basketball-post-b71ee3",
+      "bounds": {
+        "min": [
+          -0.6000000238418579,
+          0,
+          -0.5080000162124634
+        ],
+        "max": [
+          0.6000000238418579,
+          3,
+          0.5076974034309387
+        ],
+        "size": [
+          1.2000000476837158,
+          3,
+          1.015697419643402
+        ]
+      },
+      "meshes": 2,
+      "materials": 1,
+      "triangles": 558,
+      "geometryBytes": 63612,
+      "clips": [],
+      "animationPlayback": false
+    },
+    {
+      "id": "match-scoreboard-58f51e",
+      "bounds": {
+        "min": [
+          -1.5,
+          0,
+          -0.25
+        ],
+        "max": [
+          1.5,
+          4.777092933654785,
+          0.25
+        ],
+        "size": [
+          3,
+          4.777092933654785,
+          0.5
+        ]
+      },
+      "meshes": 9,
+      "materials": 1,
+      "triangles": 592,
+      "geometryBytes": 67488,
+      "clips": [
+        {
+          "name": "tick",
+          "duration": 13.600000381469727,
+          "tracks": [
+            "pennant-0.quaternion",
+            "pennant-1.quaternion",
+            "pennant-2.quaternion",
+            "pennant-3.quaternion",
+            "pennant-4.quaternion",
+            "pennant-5.quaternion",
+            "fixture-card.quaternion"
+          ]
+        }
+      ],
+      "animationPlayback": false
+    },
+    {
+      "id": "trophy-cabinet-e963ac",
+      "bounds": {
+        "min": [
+          -0.625,
+          0,
+          -0.20000000298023224
+        ],
+        "max": [
+          0.625,
+          2,
+          0.20000000298023224
+        ],
+        "size": [
+          1.25,
+          2,
+          0.4000000059604645
+        ]
+      },
+      "meshes": 10,
+      "materials": 2,
+      "triangles": 671,
+      "geometryBytes": 76494,
+      "clips": [],
+      "animationPlayback": false
+    }
+  ],
+  "renderer": {
+    "calls": 21,
+    "triangles": 1821,
+    "geometries": 21,
+    "textures": 1
+  }
+}

@@ -1,0 +1,207 @@
+{
+  "method": "bounded viewport PNG tiles; integer document offsets; no native fullPage capture",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "width": 1440,
+  "height": 8930,
+  "bytes": 872724,
+  "jpegQuality": 81,
+  "tiles": [
+    {
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 1000,
+      "scrollY": 1000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 2000,
+      "scrollY": 2000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 3000,
+      "scrollY": 3000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 5000,
+      "scrollY": 5000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 6000,
+      "scrollY": 6000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 7000,
+      "scrollY": 7000,
+      "cropTop": 0,
+      "height": 1000
+    },
+    {
+      "documentY": 8000,
+      "scrollY": 7930,
+      "cropTop": 70,
+      "height": 930
+    }
+  ],
+  "checkpoints": [
+    {
+      "name": "top",
+      "documentY": 0,
+      "scrollY": 0,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 731,
+      "differingRatio": 0.0005076388888888889,
+      "meanChannelError": 0.0006194444444444445,
+      "maxChannelError": 41,
+      "rasterOnlyMediaPixels": 266,
+      "materialDifferences": 465,
+      "materialDifferenceRatio": 0.00032291666666666666,
+      "nonMediaMeanError": 0.0006635055750651368,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "middle",
+      "documentY": 4000,
+      "scrollY": 4000,
+      "cropTop": 0,
+      "width": 1440,
+      "height": 1000,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "full viewport"
+    },
+    {
+      "name": "bottom",
+      "documentY": 8000,
+      "scrollY": 7930,
+      "cropTop": 70,
+      "width": 1440,
+      "height": 930,
+      "differingPixels": 0,
+      "differingRatio": 0,
+      "meanChannelError": 0,
+      "maxChannelError": 0,
+      "rasterOnlyMediaPixels": 0,
+      "materialDifferences": 0,
+      "materialDifferenceRatio": 0,
+      "nonMediaMeanError": 0,
+      "tolerance": "non-media >=99.9% exact with mean error <=0.02/255; inside actual image bounds <=12/255 raster variance; overall mean <=0.2/255",
+      "comparedRegion": "final overlapping tile slice; normal bottom crop shows the full viewport"
+    }
+  ],
+  "headings": [
+    {
+      "text": "Reaves Dropper vs Ware the Hoes At?",
+      "y": 437
+    },
+    {
+      "text": "Reaves Dropper",
+      "y": 626
+    },
+    {
+      "text": "Your roster.",
+      "y": 1393
+    },
+    {
+      "text": "Players to watch.",
+      "y": 1823
+    },
+    {
+      "text": "Weekly performers.",
+      "y": 2503
+    },
+    {
+      "text": "News & recent moves.",
+      "y": 2503
+    },
+    {
+      "text": "Player spotlights.",
+      "y": 3319
+    },
+    {
+      "text": "A league of our own.",
+      "y": 3690
+    },
+    {
+      "text": "Faces of the league",
+      "y": 4568
+    },
+    {
+      "text": "Around the league",
+      "y": 5192
+    },
+    {
+      "text": "Know who you’re playing.",
+      "y": 5596
+    },
+    {
+      "text": "Standings, leaders & moves.",
+      "y": 7082
+    },
+    {
+      "text": "Standings",
+      "y": 7159
+    },
+    {
+      "text": "League stats",
+      "y": 7159
+    },
+    {
+      "text": "Recent activity",
+      "y": 7310
+    },
+    {
+      "text": "Stocks",
+      "y": 8093
+    },
+    {
+      "text": "Arcade",
+      "y": 8093
+    },
+    {
+      "text": "Every week has a story.",
+      "y": 8275
+    }
+  ],
+  "footer": {
+    "text": "2026 season · In SeasonA fan-made league hub. Not affiliated with the NBA or Sleeper.HomeArcadeTeamsTransactionsWeekly archiveCopyright 2026 GOAT Hoopers. Built for the league, by the league.",
+    "y": 8677
+  },
+  "teams": 10,
+  "rosterReferences": 228,
+  "maxTextureSize": 8192,
+  "inventorySha256": "a6a686c505b737477e537e74ac55ae5587532f44c9587d991903ddc470a00980",
+  "captureOnlyStyle": "sticky header static; animation and caret suppressed",
+  "contentPreserved": true
+}
