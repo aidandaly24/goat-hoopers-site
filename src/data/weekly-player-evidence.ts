@@ -1,5 +1,6 @@
 import type { CompletedPlayerWeek } from "@/domain/team-player-guide";
 import weekOneReceipt from "./weekly-receipts/2026-week-01.json";
+import weekTwoReceipt from "./weekly-receipts/2026-week-02.json";
 
 /**
  * Weekly player evidence for completed fantasy weeks (issue #190).
@@ -287,6 +288,7 @@ export function parseWeeklyEvidenceReceipt(value: unknown): WeeklyEvidenceReceip
 /** Receipts committed to the repo, validated at load; invalid ones drop out. */
 export const WEEKLY_EVIDENCE_RECEIPTS: WeeklyEvidenceReceipt[] = [
   parseWeeklyEvidenceReceipt(weekOneReceipt),
+  parseWeeklyEvidenceReceipt(weekTwoReceipt),
 ].filter((receipt): receipt is WeeklyEvidenceReceipt => receipt !== null);
 
 function findReceipt(
