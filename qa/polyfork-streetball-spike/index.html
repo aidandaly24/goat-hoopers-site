@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>GOAT Hoopers — 3D Streetball Spike</title>
+<style>
+  html, body { margin:0; padding:0; height:100%; background:#0a0f16; overflow:hidden; }
+  #app { position:fixed; inset:0; touch-action:none; }
+  canvas { display:block; }
+  .chip {
+    position:fixed; top:max(14px, env(safe-area-inset-top)); left:14px; z-index:10;
+    background:#0e1319; border:1px solid #26303c; border-left:3px solid #e8703a;
+    padding:10px 14px 11px; max-width:min(78vw, 340px);
+  }
+  .chip h1 {
+    margin:0; font-family:Georgia, 'Times New Roman', serif; font-weight:700;
+    font-size:15px; letter-spacing:.18em; color:#f2ede3; white-space:nowrap;
+  }
+  .chip p {
+    margin:4px 0 0; font-family:system-ui, -apple-system, sans-serif;
+    font-size:11px; line-height:1.45; letter-spacing:.04em; color:#b9c2cc;
+  }
+  .chip p .status { color:#e8b98a; }
+  .hint {
+    position:fixed; left:14px; bottom:max(12px, env(safe-area-inset-bottom)); z-index:10;
+    font-family:system-ui, -apple-system, sans-serif; font-size:11px; letter-spacing:.05em; color:#8b96a1;
+  }
+  .credit {
+    position:fixed; right:14px; bottom:max(12px, env(safe-area-inset-bottom)); z-index:10; text-align:right;
+    font-family:system-ui, -apple-system, sans-serif; font-size:10.5px; line-height:1.5; letter-spacing:.03em; color:#77828d;
+  }
+  @media (max-width:560px){ .credit{ display:none; } }
+</style>
+<script type="importmap">
+{ "imports": {
+    "three": "https://unpkg.com/three@0.180.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.180.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="app"></div>
+<div class="chip">
+  <h1>GOAT HOOPERS</h1>
+  <p>STREETBALL SPIKE — a Polyfork proof-of-concept<br><span class="status" id="status">Loading the court…</span></p>
+</div>
+<div class="hint">Drag to orbit &middot; Pinch or scroll to zoom</div>
+<div class="credit">Models: Polyfork catalog (free, no attribution)<br>Court surface &amp; lines: hand-made geometry</div>
+
+<script>
+  // Honest failure surface: if the 3D module stalls or throws, say so in the chip.
+  window.__courtReady = false;
+  function courtError(msg){
+    var s = document.getElementById('status');
+    if (s && !window.__courtReady) s.textContent = msg;
+  }
+  window.addEventListener('error', function(e){
+    if (e && e.message) courtError('Hit a snag: ' + e.message);
+  });
+  window.addEventListener('unhandledrejection', function(e){
+    courtError('Hit a snag loading a 3D module. Check connection and reload.');
+  });
+  setTimeout(function(){
+    courtError('Still loading — a CDN module may have failed. Check connection and reload.');
+  }, 20000);
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const statusEl = document.getElementById('status');
+const setStatus = t => { statusEl.textContent = t; };
+
+// ---------- renderer / scene / camera (up first, so the court renders even if a model lags) ----------
+const app = document.getElementById('app');
+const renderer = new THREE.WebGLRenderer({ antialias:true, preserveDrawingBuffer:true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+renderer.toneMapping = THREE.NoToneMapping; // Polyfork colors are authored for no tone mapping
+app.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0a0f16);
+scene.fog = new THREE.Fog(0x0a0f16, 34, 95);
+const camera = new THREE.PerspectiveCamera(42, window.innerWidth/window.innerHeight, 0.1, 400);
+camera.position.set(17, 9, 20);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(0, 1.1, 0);
+controls.enableDamping = true;
+controls.dampingFactor = 0.06;
+controls.minDistance = 5;
+controls.maxDistance = 55;
+controls.maxPolarAngle = 1.45;
+controls.autoRotate = true;
+controls.autoRotateSpeed = -0.55;
+controls.addEventListener('start', () => { controls.autoRotate = false; });
+
+// Base lights (Polyfork stage() night rig is layered on top once its module arrives)
+scene.add(new THREE.HemisphereLight(0x2a3c55, 0x0b0d10, 0.35));
+function addSpot(x, z, tx, tz){
+  const s = new THREE.SpotLight(0xffd9a3, 900, 70, 0.58, 0.7, 1.6);
+  s.position.set(x, 7.7, z);
+  s.target.position.set(tx, 0, tz);
+  s.castShadow = true;
+  s.shadow.mapSize.set(1024, 1024);
+  s.shadow.camera.near = 2; s.shadow.camera.far = 45;
+  s.shadow.bias = -0.0005;
+  scene.add(s); scene.add(s.target);
+}
+addSpot(-9.5, -14.5, -1.5, -5);
+addSpot( 9.5,  14.5,  1.5,  5);
+
+// ---------- hand-made court (NOT Polyfork): asphalt pad + painted lines + balls ----------
+const paintMat = new THREE.MeshStandardMaterial({ color:0xe8e6df, roughness:0.9, metalness:0 });
+
+const ground = new THREE.Mesh(
+  new THREE.PlaneGeometry(120, 120),
+  new THREE.MeshStandardMaterial({ color:0x0c0f13, roughness:1 })
+);
+ground.rotation.x = -Math.PI/2; ground.position.y = -0.02; ground.receiveShadow = true;
+scene.add(ground);
+
+const pad = new THREE.Mesh(
+  new THREE.PlaneGeometry(15.6, 26.6),
+  new THREE.MeshStandardMaterial({ color:0x23262b, roughness:0.97, metalness:0 })
+);
+pad.rotation.x = -Math.PI/2; pad.position.y = 0.012; pad.receiveShadow = true;
+scene.add(pad);
+
+function strip(w, d, x, z){
+  const m = new THREE.Mesh(new THREE.BoxGeometry(w, 0.006, d), paintMat);
+  m.position.set(x, 0.02, z); m.receiveShadow = true; scene.add(m); return m;
+}
+function ring(rIn, rOut, x, z){
+  const g = new THREE.RingGeometry(rIn, rOut, 56); g.rotateX(-Math.PI/2);
+  const m = new THREE.Mesh(g, paintMat); m.position.set(x, 0.021, z); m.receiveShadow = true; scene.add(m); return m;
+}
+function arcStrip(rIn, rOut, a0, a1, x, z){
+  const s = new THREE.Shape();
+  s.absarc(0, 0, rOut, a0, a1, false);
+  s.absarc(0, 0, rIn, a1, a0, true);
+  const g = new THREE.ShapeGeometry(s, 48); g.rotateX(-Math.PI/2);
+  const m = new THREE.Mesh(g, paintMat); m.position.set(x, 0.021, z); m.receiveShadow = true; scene.add(m); return m;
+}
+// boundary (court 15 x 26, lines inset 0.4)
+strip(0.12, 25.2, -7.1, 0); strip(0.12, 25.2, 7.1, 0);
+strip(14.32, 0.12, 0, -12.6); strip(14.32, 0.12, 0, 12.6);
+strip(14.32, 0.12, 0, 0);                    // center line
+ring(1.74, 1.86, 0, 0);                       // center circle
+// keys + free-throw circles + 3pt arcs, both ends
+for (const e of [-1, 1]) {
+  const bz = 12.6 * e;                        // baseline z
+  const fz = 6.8 * e;                         // free-throw line z
+  strip(0.12, 5.8, -2.45, (bz + fz)/2);
+  strip(0.12, 5.8,  2.45, (bz + fz)/2);
+  strip(5.02, 0.12, 0, fz);
+  ring(1.74, 1.86, 0, fz);
+  // 3pt arc r=6.75 around rim projection (0, 11.0*e); shape +Y maps to world -Z after rotateX(-90)
+  if (e < 0) arcStrip(6.63, 6.87, Math.PI, 2*Math.PI, 0, -11.0);
+  else       arcStrip(6.63, 6.87, 0, Math.PI, 0, 11.0);
+}
+// two hand-made balls (the catalog has no basketball)
+const ballMat = new THREE.MeshStandardMaterial({ color:0xd96c33, roughness:0.8, flatShading:true });
+for (const [bx, bz] of [[1.1, -2.5], [7.3, 6.3]]) {
+  const b = new THREE.Mesh(new THREE.IcosahedronGeometry(0.121, 2), ballMat);
+  b.position.set(bx, 0.121, bz); b.castShadow = true; scene.add(b);
+}
+
+// ---------- render loop starts now; catalog models stream in below ----------
+const tickers = [];
+const clock = new THREE.Clock();
+function animate(){
+  requestAnimationFrame(animate);
+  const t = clock.getElapsedTime();
+  for (const o of tickers) { try { o.userData.tick(t); } catch (e) {} }
+  controls.update();
+  renderer.render(scene, camera);
+}
+animate();
+window.__courtReady = true;
+setStatus('Court is up — rolling the equipment out…');
+
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// ---------- Polyfork catalog modules (defensive: one bad apple must not kill the scene) ----------
+const CDN = 'https://polyfork.dev/cdn/';
+const skipped = [];
+async function loadModule(id){
+  try { return await import(CDN + id + '.mjs'); }
+  catch (e) { console.warn('Polyfork module skipped:', id, e); skipped.push(id); return null; }
+}
+const [
+  mPost, mHoop, mBoard, mBin, mCart, mFlood, mTile, mRail, mBench, mWall, mMerge, mStage
+] = await Promise.all([
+  loadModule('yard-basketball-post-b71ee3'),
+  loadModule('driveway-basketball-hoop-40deb7'),
+  loadModule('basketball-backboard-2624e9'),
+  loadModule('ball-bin-3198fe'),
+  loadModule('ball-cart-8274fd'),
+  loadModule('skatepark-floodlight-column-5f7964'),
+  loadModule('yard-hardstanding-tile-2afb6a'),
+  loadModule('railing-and-gate-run-5c8137'),
+  loadModule('substitutes-bench-ea0ef7'),
+  loadModule('perimeter-wall-run-adc811'),
+  loadModule('merge'),
+  loadModule('stage')
+]);
+
+// Staging: Polyfork stage() night rig, guarded; re-assert brand sky/fog afterwards
+if (mStage && typeof mStage.stage === 'function') {
+  try {
+    mStage.stage(renderer, scene, { time:'night' });
+    scene.background = new THREE.Color(0x0a0f16);
+    scene.fog = new THREE.Fog(0x0a0f16, 34, 95);
+  } catch (e) { console.warn('stage() failed, keeping base lights', e); }
+}
+
+// ---------- Polyfork tile apron (instanced) ----------
+if (mTile) {
+  try {
+    const probe = mTile.createAsset();
+    probe.updateMatrixWorld(true);
+    let src = null;
+    probe.traverse(o => { if (o.isMesh && !src) src = o; });
+    if (src) {
+      const geo = src.geometry.clone().applyMatrix4(src.matrixWorld);
+      const cells = [];
+      for (let x = -10; x <= 10; x++) for (let z = -16; z <= 16; z++) {
+        if (Math.abs(x) <= 7 && Math.abs(z) <= 13) continue; // court hole
+        cells.push([x, z]);
+      }
+      const inst = new THREE.InstancedMesh(geo, src.material, cells.length);
+      const d = new THREE.Object3D();
+      cells.forEach(([x, z], i) => { d.position.set(x, 0, z); d.updateMatrix(); inst.setMatrixAt(i, d.matrix); });
+      inst.receiveShadow = true;
+      scene.add(inst);
+    }
+  } catch (e) { console.warn('tile apron failed', e); skipped.push('tile-apron'); }
+}
+
+// ---------- Polyfork assets: place, then merge the statics ----------
+function place(mod, params, x, y, z, ry){
+  if (!mod) return null;
+  try {
+    const o = params ? mod.createAsset(params) : mod.createAsset();
+    o.position.set(x, y, z); if (ry) o.rotation.y = ry;
+    o.traverse(n => { if (n.isMesh) { n.castShadow = true; n.receiveShadow = true; } });
+    if (o.userData && typeof o.userData.tick === 'function') tickers.push(o);
+    return o;
+  } catch (e) { console.warn('createAsset failed', e); return null; }
+}
+
+const statics = [];
+function keep(o, mergeIt){ if (!o) return; if (mergeIt) statics.push(o); else scene.add(o); }
+
+keep(place(mPost,  null, 0, 0, -13.8, 0), true);                 // hero post, far end, faces +Z
+keep(place(mHoop,  null, 0, 0,  13.8, Math.PI), true);           // driveway hoop, near end, faces -Z
+keep(place(mBoard, null, 9.0, 0, 0, -Math.PI/2), true);          // wall board, east side, faces -X
+for (const wz of [-2, 0, 2]) keep(place(mWall, null, 9.45, 0, wz, -Math.PI/2), true); // wall run behind it
+keep(place(mBench, null, -8.6, 0, -3, Math.PI/2), true);         // benches, west side
+keep(place(mBench, null, -8.6, 0,  3, Math.PI/2), true);
+keep(place(mBin,   null, -8.2, 0, -6, Math.PI/2), true);          // ball bin
+keep(place(mCart,  null,  8.3, 0,  5.5, -Math.PI/2), true);      // ball cart
+for (let i = 0; i < 6; i++) {                                     // railing runs along both backs
+  const x = -7.5 + i * 3;
+  keep(place(mRail, null, x, 0, -15.2, 0), true);
+  keep(place(mRail, null, x, 0,  15.2, Math.PI), true);
+}
+// floodlights stay unmerged (rigged door part + lit lens/pool rig)
+keep(place(mFlood, { heads:'four', aim:40, lit:true }, -9.5, 0, -14.5,  0.58), false);
+keep(place(mFlood, { heads:'four', aim:40, lit:true },  9.5, 0,  14.5, -2.56), false);
+
+let mergedOk = false;
+if (mMerge && typeof mMerge.mergeAssets === 'function' && statics.length) {
+  try {
+    const { merged, dynamic } = mMerge.mergeAssets(statics);
+    if (merged) { scene.add(merged); mergedOk = true; }
+    (dynamic || []).forEach(o => scene.add(o));
+  } catch (e) { console.warn('mergeAssets failed, adding unmerged', e); }
+}
+if (!mergedOk) statics.forEach(o => scene.add(o));
+
+setStatus(skipped.length
+  ? 'Night game — some pieces skipped: ' + skipped.join(', ')
+  : 'Night game at the blacktop — floodlights on.');
+</script>
+</body>
+</html>
