@@ -10,7 +10,7 @@ import type { WeeklyEdition } from "../domain/weekly-spotlight";
  */
 export const weeklyEditions: WeeklyEdition[] = [
   {
-    id: "2026-W44", season: "2026", title: "The record week", dateLabel: "Oct 26–Nov 1, 2026",
+    id: "2026-W44", season: "2026", title: "Settled by two.", dateLabel: "Oct 26–Nov 1, 2026",
     startsAt: "2026-10-26T23:00:00Z", endsAt: "2026-11-03T00:00:00Z",
     status: "published", publishedAt: "2026-11-06",
     game: {
@@ -33,17 +33,17 @@ export const weeklyEditions: WeeklyEdition[] = [
       },
       {
         role: "underperformer", playerId: "2574", name: "Amen Thompson", position: "SG", teamId: "6",
-        periodLabel: "Week 2 · Chud",
+        periodLabel: "Week 2 · Chud (provisional)",
         headline: "Four games in. Ten points counted.",
         opinion: "He was available all week — the game that counted was simply the quiet one. The talent is real; Week 2 wasn’t his.",
-        stats: [{ value: "10.0", label: "Fantasy pts · counted game" }],
-        statPeriod: "Week 2 counted game · leg-verified",
-        selectionReason: "Computed award, not an editorial pick: the lowest counted game among Week 2 starters who played, from the same leg-verified weekly evidence receipt. No DNP or non-playing starter is ever named here — Thompson played four games that week.",
+        stats: [{ value: "10.0", label: "Fantasy pts · counted game (provisional)" }],
+        statPeriod: "Week 2 counted game · provisional — estimated team receipt",
+        selectionReason: "Computed from the Week 2 evidence receipt: the lowest nominal counted game among starters who played. Provisional, not a verified league low — his team’s player evidence is estimated (reconstructed 232.0 against the official 230.0, the −2.0 unattributed to any player), and two other starters sit at a nominal 11.0 on estimated teams, inside that same margin. No DNP or non-playing starter is ever named here — Thompson played four games that week.",
         source: { label: "Week 2 evidence receipt", url: "https://github.com/aidandaly24/goat-hoopers-site/blob/main/src/data/weekly-receipts/2026-week-02.json", checkedAt: "2026-11-06" },
       },
     ],
     happenings: [
-      { title: "A league record", text: "The Fun Guys (philbiag) put up 320.5 — the highest official team total in league history, and Week 2’s Stud team.", href: "https://goathoopers.com/teams/4", dateLabel: "Week 2" },
+      { title: "The week’s high", text: "The Fun Guys (philbiag) put up 320.5 — Week 2’s highest official team total, and the week’s Stud team.", href: "https://goathoopers.com/teams/4", dateLabel: "Week 2" },
       { title: "The week’s floor", text: "Huff n’ Puff (GriffinHealy) posted 230.0, Week 2’s lowest official team total — the Chud team.", href: "https://goathoopers.com/teams/6", dateLabel: "Week 2" },
     ],
     sources: [

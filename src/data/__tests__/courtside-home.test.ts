@@ -7,7 +7,9 @@ import {
   selectWeeklyEdition,
   weeklyEditions,
   getWeeklyArchive,
+  getWeeklyEdition,
 } from "../weekly-spotlight";
+import { WEEKLY_EVIDENCE_RECEIPTS } from "../weekly-player-evidence";
 import { clubhouseDirectory } from "../clubhouse-directory";
 import type { Team, Player, Transaction } from "@/domain";
 
@@ -135,6 +137,58 @@ describe("weekly editorial calendar", () => {
     // The preseason samples are never the current edition again.
     expect(current?.id).not.toBe("2026-W41");
     expect(current?.id).not.toBe("2026-W40");
+  });
+  it("ties the published Week 2 awards and their wording to the receipt's per-team status", () => {
+    const edition = getWeeklyEdition("2026-W44");
+    const receipt = WEEKLY_EVIDENCE_RECEIPTS.find(
+      (entry) => entry.season === "2026" && entry.week === 2,
+    );
+    expect(receipt).toBeDefined();
+    const counted = receipt!.teams.flatMap((team) =>
+      team.players
+        .filter((player) => player.countedPoints !== null)
+        .map((player) => ({ team, player })),
+    );
+    const byPoints = [...counted].sort(
+      (a, b) => (b.player.countedPoints ?? 0) - (a.player.countedPoints ?? 0),
+    );
+    const stud = edition?.playerSpotlights.find(
+      (spotlight) => spotlight.role === "player-of-week",
+    );
+    const chud = edition?.playerSpotlights.find(
+      (spotlight) => spotlight.role === "underperformer",
+    );
+    // The published players are the receipt's nominal max/min counted
+    // games — derived from the receipt here, never just hard-coded IDs.
+    expect(stud?.playerId).toBe(byPoints[0].player.playerId);
+    expect(chud?.playerId).toBe(byPoints[byPoints.length - 1].player.playerId);
+    // Wording follows the team's receipt status: a verified label may
+    // only attach to a verified team's player; any other status must
+    // read provisional and must not claim leg-verified.
+    for (const spotlight of edition?.playerSpotlights ?? []) {
+      const status = receipt!.teams.find(
+        (team) => team.teamId === spotlight.teamId,
+      )?.status;
+      const copy = [
+        spotlight.periodLabel,
+        spotlight.statPeriod,
+        spotlight.selectionReason,
+        ...spotlight.stats.map((stat) => stat.label),
+      ].join(" ");
+      if (status === "verified") {
+        expect(copy).not.toContain("provisional");
+      } else {
+        expect(copy).toContain("provisional");
+        expect(copy).not.toContain("leg-verified");
+      }
+    }
+    // The team-Stud claim is scoped to Week 2 — no all-history record
+    // claim anywhere in the edition (the archive's 2025 final was 326.0).
+    expect(JSON.stringify(edition)).not.toContain("league history");
+    expect(edition?.title).not.toMatch(/record/i);
+    expect(edition?.happenings.map((h) => h.text).join(" ")).toContain(
+      "Week 2’s highest official team total",
+    );
   });
   it("keeps proposed drafts, upcoming empty scores and verified historical finals distinct", () => {
     const archive = getWeeklyArchive();
