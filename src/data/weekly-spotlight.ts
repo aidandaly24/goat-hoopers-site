@@ -1,11 +1,56 @@
 import type { WeeklyEdition } from "../domain/weekly-spotlight";
 
 /**
- * Sample editorial editions for the concept. Facts are verified; copy is a
- * proposed draft, not an assertion that Muse published these editions.
+ * Weekly editions for the league homepage. Entries with status
+ * "published" are real, dated editions; the 2026-W41 and 2026-W40 entries
+ * are the original concept samples, retained as labeled drafts for the
+ * archive — selection serves the newest edition whose window has
+ * started, so a draft is only ever current before a real edition exists.
  * Add a new immutable entry weekly. Retain older entries for the archive.
  */
 export const weeklyEditions: WeeklyEdition[] = [
+  {
+    id: "2026-W44", season: "2026", title: "The record week", dateLabel: "Oct 26–Nov 1, 2026",
+    startsAt: "2026-10-26T23:00:00Z", endsAt: "2026-11-03T00:00:00Z",
+    status: "published", publishedAt: "2026-11-06",
+    game: {
+      title: "papichooter takes the champ by two.",
+      note: "Game of the week · Week 2",
+      leagueWeek: 2, teamIds: ["7", "5"], state: "final", scores: [298.5, 296.5],
+      context: "NeuralNetanyahu (papichooter) beat Josh Diddy’s Roster (vannweinkauf, the defending champion) 298.5–296.5 — the closest finish of Week 2, on the matchup leg’s official totals.",
+      selectionReason: "Week 2’s closest game: a 2.0-point margin, the tightest of the week’s five pairings on official leg totals (Week 2 evidence receipt).",
+    },
+    playerSpotlights: [
+      {
+        role: "player-of-week", playerId: "1970", name: "Luka Dončić", position: "PG", teamId: "7",
+        periodLabel: "Week 2 · Stud",
+        headline: "55.5. The week’s biggest counted game.",
+        opinion: "A lock-in week asks for one game, and Luka’s counted game outscored every other starter in the league.",
+        stats: [{ value: "55.5", label: "Fantasy pts · counted game" }],
+        statPeriod: "Week 2 counted game · leg-verified",
+        selectionReason: "Computed award, not an editorial pick: the highest counted game among all 110 Week 2 starters in the leg-verified weekly evidence receipt. His team’s player evidence reconciles exactly (verified), so the 55.5 stands as an actual.",
+        source: { label: "Week 2 evidence receipt", url: "https://github.com/aidandaly24/goat-hoopers-site/blob/main/src/data/weekly-receipts/2026-week-02.json", checkedAt: "2026-11-06" },
+      },
+      {
+        role: "underperformer", playerId: "2574", name: "Amen Thompson", position: "SG", teamId: "6",
+        periodLabel: "Week 2 · Chud",
+        headline: "Four games in. Ten points counted.",
+        opinion: "He was available all week — the game that counted was simply the quiet one. The talent is real; Week 2 wasn’t his.",
+        stats: [{ value: "10.0", label: "Fantasy pts · counted game" }],
+        statPeriod: "Week 2 counted game · leg-verified",
+        selectionReason: "Computed award, not an editorial pick: the lowest counted game among Week 2 starters who played, from the same leg-verified weekly evidence receipt. No DNP or non-playing starter is ever named here — Thompson played four games that week.",
+        source: { label: "Week 2 evidence receipt", url: "https://github.com/aidandaly24/goat-hoopers-site/blob/main/src/data/weekly-receipts/2026-week-02.json", checkedAt: "2026-11-06" },
+      },
+    ],
+    happenings: [
+      { title: "A league record", text: "The Fun Guys (philbiag) put up 320.5 — the highest official team total in league history, and Week 2’s Stud team.", href: "https://goathoopers.com/teams/4", dateLabel: "Week 2" },
+      { title: "The week’s floor", text: "Huff n’ Puff (GriffinHealy) posted 230.0, Week 2’s lowest official team total — the Chud team.", href: "https://goathoopers.com/teams/6", dateLabel: "Week 2" },
+    ],
+    sources: [
+      { label: "Week 2 evidence receipt · leg totals + ESPN box scores", url: "https://github.com/aidandaly24/goat-hoopers-site/blob/main/src/data/weekly-receipts/2026-week-02.json", checkedAt: "2026-11-06" },
+      { label: "Sleeper · Week 2 matchups", url: "https://api.sleeper.app/v1/league/1387473752807190528/matchups/2", checkedAt: "2026-11-06" },
+    ],
+  },
   {
     id: "2026-W41", season: "2026", title: "The next chapter", dateLabel: "Oct 5–11, 2026",
     startsAt: "2026-10-05T00:00:00Z", endsAt: "2026-10-12T00:00:00Z",

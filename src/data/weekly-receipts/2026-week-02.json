@@ -1,0 +1,881 @@
+{
+  "season": "2026",
+  "week": 2,
+  "startsAt": "2026-10-26T23:00:00Z",
+  "endsAt": "2026-11-03T00:00:00Z",
+  "generatedAt": "2026-11-07T00:43:23.231977Z",
+  "generator": "scripts/generate-weekly-evidence.py",
+  "source": "Sleeper authenticated matchup leg (starters, lock map, official totals) + ESPN box scores scored with the league's scoring_settings",
+  "teams": [
+    {
+      "teamId": "1",
+      "officialPoints": 290.5,
+      "computedPoints": 290.5,
+      "residual": 0.0,
+      "status": "verified",
+      "evidenceComplete": true,
+      "players": [
+        {
+          "playerId": "2308",
+          "gamesPlayed": 2,
+          "countedPoints": 41.0,
+          "countedGameId": "1393723769662472192",
+          "locked": true
+        },
+        {
+          "playerId": "2133",
+          "gamesPlayed": 1,
+          "countedPoints": 40.0,
+          "countedGameId": "1393723764625113088",
+          "locked": true
+        },
+        {
+          "playerId": "2568",
+          "gamesPlayed": 4,
+          "countedPoints": 37.0,
+          "countedGameId": "1393723765749186560",
+          "locked": true
+        },
+        {
+          "playerId": "4864",
+          "gamesPlayed": 4,
+          "countedPoints": 34.0,
+          "countedGameId": "1393723771256307712",
+          "locked": true
+        },
+        {
+          "playerId": "2454",
+          "gamesPlayed": 4,
+          "countedPoints": 28.5,
+          "countedGameId": "1393723764625113088",
+          "locked": true
+        },
+        {
+          "playerId": "2146",
+          "gamesPlayed": 3,
+          "countedPoints": 23.0,
+          "countedGameId": "1393723785676324864",
+          "locked": true
+        },
+        {
+          "playerId": "2157",
+          "gamesPlayed": 3,
+          "countedPoints": 23.0,
+          "countedGameId": "1393723781721096192",
+          "locked": true
+        },
+        {
+          "playerId": "1595",
+          "gamesPlayed": 3,
+          "countedPoints": 20.5,
+          "countedGameId": "1393723794631163904",
+          "locked": true
+        },
+        {
+          "playerId": "4751",
+          "gamesPlayed": 3,
+          "countedPoints": 15.0,
+          "countedGameId": "1393723794505334784",
+          "locked": true
+        },
+        {
+          "playerId": "2316",
+          "gamesPlayed": 4,
+          "countedPoints": 14.5,
+          "countedGameId": "1393723801048449024",
+          "locked": false
+        },
+        {
+          "playerId": "1830",
+          "gamesPlayed": 4,
+          "countedPoints": 14.0,
+          "countedGameId": "1393723797680422912",
+          "locked": false
+        }
+      ]
+    },
+    {
+      "teamId": "2",
+      "officialPoints": 291.0,
+      "computedPoints": 291.0,
+      "residual": 0.0,
+      "status": "verified",
+      "evidenceComplete": true,
+      "players": [
+        {
+          "playerId": "4750",
+          "gamesPlayed": 3,
+          "countedPoints": 43.5,
+          "countedGameId": "1393723788817858560",
+          "locked": true
+        },
+        {
+          "playerId": "4758",
+          "gamesPlayed": 3,
+          "countedPoints": 29.0,
+          "countedGameId": "1393723771277279232",
+          "locked": true
+        },
+        {
+          "playerId": "1739",
+          "gamesPlayed": 3,
+          "countedPoints": 28.5,
+          "countedGameId": "1393723795931398144",
+          "locked": true
+        },
+        {
+          "playerId": "2457",
+          "gamesPlayed": 3,
+          "countedPoints": 28.0,
+          "countedGameId": "1393285932274176000",
+          "locked": true
+        },
+        {
+          "playerId": "2029",
+          "gamesPlayed": 3,
+          "countedPoints": 26.0,
+          "countedGameId": "1393723767636623360",
+          "locked": true
+        },
+        {
+          "playerId": "2259",
+          "gamesPlayed": 4,
+          "countedPoints": 25.0,
+          "countedGameId": "1393723794631163904",
+          "locked": true
+        },
+        {
+          "playerId": "2726",
+          "gamesPlayed": 3,
+          "countedPoints": 25.0,
+          "countedGameId": "1393723769704415232",
+          "locked": true
+        },
+        {
+          "playerId": "1054",
+          "gamesPlayed": 3,
+          "countedPoints": 24.0,
+          "countedGameId": "1393723767636623360",
+          "locked": true
+        },
+        {
+          "playerId": "4737",
+          "gamesPlayed": 3,
+          "countedPoints": 21.0,
+          "countedGameId": "1393723792970219520",
+          "locked": true
+        },
+        {
+          "playerId": "1883",
+          "gamesPlayed": 3,
+          "countedPoints": 20.5,
+          "countedGameId": "1393285927010324480",
+          "locked": true
+        },
+        {
+          "playerId": "2285",
+          "gamesPlayed": 3,
+          "countedPoints": 20.5,
+          "countedGameId": "1393723788817858560",
+          "locked": true
+        }
+      ]
+    },
+    {
+      "teamId": "3",
+      "officialPoints": 286.0,
+      "computedPoints": 288.0,
+      "residual": 2.0,
+      "status": "estimated-foul-residual",
+      "evidenceComplete": true,
+      "players": [
+        {
+          "playerId": "4891",
+          "gamesPlayed": 3,
+          "countedPoints": 33.5,
+          "countedGameId": "1393723788817858560",
+          "locked": true
+        },
+        {
+          "playerId": "2289",
+          "gamesPlayed": 3,
+          "countedPoints": 32.0,
+          "countedGameId": "1393723781721096192",
+          "locked": true
+        },
+        {
+          "playerId": "2001",
+          "gamesPlayed": 3,
+          "countedPoints": 31.0,
+          "countedGameId": "1393723781721096192",
+          "locked": true
+        },
+        {
+          "playerId": "2304",
+          "gamesPlayed": 3,
+          "countedPoints": 29.0,
+          "countedGameId": "1393285927010324480",
+          "locked": true
+        },
+        {
+          "playerId": "2564",
+          "gamesPlayed": 4,
+          "countedPoints": 24.5,
+          "countedGameId": "1393723771256307712",
+          "locked": true
+        },
+        {
+          "playerId": "2722",
+          "gamesPlayed": 3,
+          "countedPoints": 24.5,
+          "countedGameId": "1393723785676324864",
+          "locked": true
+        },
+        {
+          "playerId": "2772",
+          "gamesPlayed": 3,
+          "countedPoints": 23.5,
+          "countedGameId": "1393723767997333504",
+          "locked": true
+        },
+        {
+          "playerId": "2036",
+          "gamesPlayed": 4,
+          "countedPoints": 23.0,
+          "countedGameId": "1393285925051584512",
+          "locked": true
+        },
+        {
+          "playerId": "2299",
+          "gamesPlayed": 4,
+          "countedPoints": 23.0,
+          "countedGameId": "1393723788809469952",
+          "locked": true
+        },
+        {
+          "playerId": "1589",
+          "gamesPlayed": 3,
+          "countedPoints": 22.5,
+          "countedGameId": "1393723767636623360",
+          "locked": true
+        },
+        {
+          "playerId": "1957",
+          "gamesPlayed": 3,
+          "countedPoints": 21.5,
+          "countedGameId": "1393723797357461504",
+          "locked": true
+        }
+      ]
+    },
+    {
+      "teamId": "4",
+      "officialPoints": 320.5,
+      "computedPoints": 324.5,
+      "residual": 4.0,
+      "status": "estimated-foul-residual",
+      "evidenceComplete": true,
+      "players": [
+        {
+          "playerId": "2577",
+          "gamesPlayed": 3,
+          "countedPoints": 41.5,
+          "countedGameId": "1393723772778840064",
+          "locked": true
+        },
+        {
+          "playerId": "1913",
+          "gamesPlayed": 2,
+          "countedPoints": 34.0,
+          "countedGameId": "1393285932274176000",
+          "locked": true
+        },
+        {
+          "playerId": "2474",
+          "gamesPlayed": 4,
+          "countedPoints": 33.5,
+          "countedGameId": "1393723765749186560",
+          "locked": true
+        },
+        {
+          "playerId": "1988",
+          "gamesPlayed": 3,
+          "countedPoints": 32.5,
+          "countedGameId": "1393723772736897024",
+          "locked": true
+        },
+        {
+          "playerId": "1967",
+          "gamesPlayed": 3,
+          "countedPoints": 32.0,
+          "countedGameId": "1393723784023769088",
+          "locked": true
+        },
+        {
+          "playerId": "2152",
+          "gamesPlayed": 3,
+          "countedPoints": 30.0,
+          "countedGameId": "1393723788817858560",
+          "locked": true
+        },
+        {
+          "playerId": "2128",
+          "gamesPlayed": 3,
+          "countedPoints": 27.5,
+          "countedGameId": "1393723774141988864",
+          "locked": true
+        },
+        {
+          "playerId": "2054",
+          "gamesPlayed": 3,
+          "countedPoints": 25.0,
+          "countedGameId": "1393723785454026752",
+          "locked": true
+        },
+        {
+          "playerId": "2126",
+          "gamesPlayed": 3,
+          "countedPoints": 25.0,
+          "countedGameId": "1393285928771932160",
+          "locked": true
+        },
+        {
+          "playerId": "2143",
+          "gamesPlayed": 3,
+          "countedPoints": 23.0,
+          "countedGameId": "1393285927010324480",
+          "locked": true
+        },
+        {
+          "playerId": "2055",
+          "gamesPlayed": 4,
+          "countedPoints": 20.5,
+          "countedGameId": "1393723788809469952",
+          "locked": true
+        }
+      ]
+    },
+    {
+      "teamId": "5",
+      "officialPoints": 296.5,
+      "computedPoints": 296.5,
+      "residual": 0.0,
+      "status": "verified",
+      "evidenceComplete": true,
+      "players": [
+        {
+          "playerId": "1085",
+          "gamesPlayed": 3,
+          "countedPoints": 43.0,
+          "countedGameId": "1393723784040546304",
+          "locked": true
+        },
+        {
+          "playerId": "1822",
+          "gamesPlayed": 4,
+          "countedPoints": 38.0,
+          "countedGameId": "1393723772736897024",
+          "locked": true
+        },
+        {
+          "playerId": "1613",
+          "gamesPlayed": 3,
+          "countedPoints": 33.0,
+          "countedGameId": "1393723774141988864",
+          "locked": true
+        },
+        {
+          "playerId": "1658",
+          "gamesPlayed": 3,
+          "countedPoints": 28.0,
+          "countedGameId": "1393285932274176000",
+          "locked": true
+        },
+        {
+          "playerId": "1240",
+          "gamesPlayed": 4,
+          "countedPoints": 26.0,
+          "countedGameId": "1393723764625113088",
+          "locked": true
+        },
+        {
+          "playerId": "1717",
+          "gamesPlayed": 3,
+          "countedPoints": 26.0,
+          "countedGameId": "1393723781712707584",
+          "locked": true
+        },
+        {
+          "playerId": "2301",
+          "gamesPlayed": 3,
+          "countedPoints": 26.0,
+          "countedGameId": "1393285930487402496",
+          "locked": true
+        },
+        {
+          "playerId": "2313",
+          "gamesPlayed": 3,
+          "countedPoints": 25.5,
+          "countedGameId": "1393723784023769088",
+          "locked": true
+        },
+        {
+          "playerId": "2275",
+          "gamesPlayed": 3,
+          "countedPoints": 24.0,
+          "countedGameId": "1393723799408476160",
+          "locked": true
+        },
+        {
+          "playerId": "2017",
+          "gamesPlayed": 4,
+          "countedPoints": 16.0,
+          "countedGameId": "1393723801048449024",
+          "locked": false
+        },
+        {
+          "playerId": "1736",
+          "gamesPlayed": 3,
+          "countedPoints": 11.0,
+          "countedGameId": "1393723801069420544",
+          "locked": false
+        }
+      ]
+    },
+    {
+      "teamId": "6",
+      "officialPoints": 230.0,
+      "computedPoints": 232.0,
+      "residual": 2.0,
+      "status": "estimated-foul-residual",
+      "evidenceComplete": true,
+      "players": [
+        {
+          "playerId": "1845",
+          "gamesPlayed": 4,
+          "countedPoints": 30.5,
+          "countedGameId": "1393723764625113088",
+          "locked": true
+        },
+        {
+          "playerId": "2752",
+          "gamesPlayed": 3,
+          "countedPoints": 27.0,
+          "countedGameId": "1393723795931398144",
+          "locked": true
+        },
+        {
+          "playerId": "1716",
+          "gamesPlayed": 4,
+          "countedPoints": 26.5,
+          "countedGameId": "1393723769704415232",
+          "locked": true
+        },
+        {
+          "playerId": "2267",
+          "gamesPlayed": 3,
+          "countedPoints": 26.5,
+          "countedGameId": "1393723774141988864",
+          "locked": true
+        },
+        {
+          "playerId": "1872",
+          "gamesPlayed": 3,
+          "countedPoints": 24.0,
+          "countedGameId": "1393723796111753216",
+          "locked": true
+        },
+        {
+          "playerId": "1787",
+          "gamesPlayed": 4,
+          "countedPoints": 22.0,
+          "countedGameId": "1393723764625113088",
+          "locked": true
+        },
+        {
+          "playerId": "1831",
+          "gamesPlayed": 3,
+          "countedPoints": 22.0,
+          "countedGameId": "1393723774141988864",
+          "locked": true
+        },
+        {
+          "playerId": "2296",
+          "gamesPlayed": 4,
+          "countedPoints": 17.0,
+          "countedGameId": "1393723774267817984",
+          "locked": true
+        },
+        {
+          "playerId": "2050",
+          "gamesPlayed": 3,
+          "countedPoints": 15.5,
+          "countedGameId": "1393723795931398144",
+          "locked": true
+        },
+        {
+          "playerId": "2329",
+          "gamesPlayed": 4,
+          "countedPoints": 11.0,
+          "countedGameId": "1393723772736897024",
+          "locked": true
+        },
+        {
+          "playerId": "2574",
+          "gamesPlayed": 4,
+          "countedPoints": 10.0,
+          "countedGameId": "1393723797357461504",
+          "locked": false
+        }
+      ]
+    },
+    {
+      "teamId": "7",
+      "officialPoints": 298.5,
+      "computedPoints": 298.5,
+      "residual": 0.0,
+      "status": "verified",
+      "evidenceComplete": true,
+      "players": [
+        {
+          "playerId": "1970",
+          "gamesPlayed": 3,
+          "countedPoints": 55.5,
+          "countedGameId": "1393723801048449024",
+          "locked": false
+        },
+        {
+          "playerId": "2161",
+          "gamesPlayed": 1,
+          "countedPoints": 31.0,
+          "countedGameId": "1393723769704415232",
+          "locked": true
+        },
+        {
+          "playerId": "2255",
+          "gamesPlayed": 4,
+          "countedPoints": 29.5,
+          "countedGameId": "1393723796111753216",
+          "locked": true
+        },
+        {
+          "playerId": "1074",
+          "gamesPlayed": 4,
+          "countedPoints": 25.5,
+          "countedGameId": "1393723772736897024",
+          "locked": true
+        },
+        {
+          "playerId": "2181",
+          "gamesPlayed": 3,
+          "countedPoints": 25.5,
+          "countedGameId": "1393723774267817984",
+          "locked": true
+        },
+        {
+          "playerId": "4748",
+          "gamesPlayed": 3,
+          "countedPoints": 25.0,
+          "countedGameId": "1393723771277279232",
+          "locked": true
+        },
+        {
+          "playerId": "2306",
+          "gamesPlayed": 4,
+          "countedPoints": 23.5,
+          "countedGameId": "1393723784040546304",
+          "locked": true
+        },
+        {
+          "playerId": "2566",
+          "gamesPlayed": 3,
+          "countedPoints": 23.5,
+          "countedGameId": "1393285927010324481",
+          "locked": true
+        },
+        {
+          "playerId": "1535",
+          "gamesPlayed": 3,
+          "countedPoints": 23.0,
+          "countedGameId": "1393723799408476160",
+          "locked": false
+        },
+        {
+          "playerId": "2737",
+          "gamesPlayed": 3,
+          "countedPoints": 22.5,
+          "countedGameId": "1393285931942825984",
+          "locked": true
+        },
+        {
+          "playerId": "2007",
+          "gamesPlayed": 3,
+          "countedPoints": 14.0,
+          "countedGameId": "1393723801069420544",
+          "locked": false
+        }
+      ]
+    },
+    {
+      "teamId": "8",
+      "officialPoints": 284.0,
+      "computedPoints": 284.0,
+      "residual": 0.0,
+      "status": "verified",
+      "evidenceComplete": true,
+      "players": [
+        {
+          "playerId": "1380",
+          "gamesPlayed": 3,
+          "countedPoints": 40.5,
+          "countedGameId": "1393723767636623360",
+          "locked": true
+        },
+        {
+          "playerId": "2086",
+          "gamesPlayed": 3,
+          "countedPoints": 33.0,
+          "countedGameId": "1393723769704415232",
+          "locked": true
+        },
+        {
+          "playerId": "1433",
+          "gamesPlayed": 4,
+          "countedPoints": 29.5,
+          "countedGameId": "1393723769662472192",
+          "locked": true
+        },
+        {
+          "playerId": "1350",
+          "gamesPlayed": 3,
+          "countedPoints": 28.5,
+          "countedGameId": "1393723764625113088",
+          "locked": true
+        },
+        {
+          "playerId": "2179",
+          "gamesPlayed": 4,
+          "countedPoints": 28.0,
+          "countedGameId": "1393285930353184768",
+          "locked": true
+        },
+        {
+          "playerId": "2135",
+          "gamesPlayed": 4,
+          "countedPoints": 27.0,
+          "countedGameId": "1393285930353184768",
+          "locked": true
+        },
+        {
+          "playerId": "4882",
+          "gamesPlayed": 3,
+          "countedPoints": 21.5,
+          "countedGameId": "1393723771277279232",
+          "locked": true
+        },
+        {
+          "playerId": "1637",
+          "gamesPlayed": 3,
+          "countedPoints": 21.0,
+          "countedGameId": "1393723766449635328",
+          "locked": true
+        },
+        {
+          "playerId": "2136",
+          "gamesPlayed": 4,
+          "countedPoints": 21.0,
+          "countedGameId": "1393723769662472192",
+          "locked": true
+        },
+        {
+          "playerId": "1997",
+          "gamesPlayed": 3,
+          "countedPoints": 19.0,
+          "countedGameId": "1393723787106582528",
+          "locked": true
+        },
+        {
+          "playerId": "2449",
+          "gamesPlayed": 4,
+          "countedPoints": 15.0,
+          "countedGameId": "1393723794505334784",
+          "locked": false
+        }
+      ]
+    },
+    {
+      "teamId": "9",
+      "officialPoints": 271.5,
+      "computedPoints": 273.5,
+      "residual": 2.0,
+      "status": "estimated-foul-residual",
+      "evidenceComplete": true,
+      "players": [
+        {
+          "playerId": "4760",
+          "gamesPlayed": 3,
+          "countedPoints": 44.5,
+          "countedGameId": "1393723767636623360",
+          "locked": true
+        },
+        {
+          "playerId": "4873",
+          "gamesPlayed": 3,
+          "countedPoints": 36.0,
+          "countedGameId": "1393723790998896640",
+          "locked": true
+        },
+        {
+          "playerId": "1362",
+          "gamesPlayed": 2,
+          "countedPoints": 30.0,
+          "countedGameId": "1393285928771932160",
+          "locked": true
+        },
+        {
+          "playerId": "1945",
+          "gamesPlayed": 3,
+          "countedPoints": 30.0,
+          "countedGameId": "1393285925051584512",
+          "locked": true
+        },
+        {
+          "playerId": "2445",
+          "gamesPlayed": 4,
+          "countedPoints": 30.0,
+          "countedGameId": "1393723769662472192",
+          "locked": true
+        },
+        {
+          "playerId": "4754",
+          "gamesPlayed": 3,
+          "countedPoints": 26.5,
+          "countedGameId": "1393723796111753216",
+          "locked": true
+        },
+        {
+          "playerId": "1934",
+          "gamesPlayed": 3,
+          "countedPoints": 23.5,
+          "countedGameId": "1393723767997333504",
+          "locked": true
+        },
+        {
+          "playerId": "2463",
+          "gamesPlayed": 3,
+          "countedPoints": 15.0,
+          "countedGameId": "1393723794631163904",
+          "locked": true
+        },
+        {
+          "playerId": "2447",
+          "gamesPlayed": 4,
+          "countedPoints": 14.0,
+          "countedGameId": "1393723797357461504",
+          "locked": true
+        },
+        {
+          "playerId": "2749",
+          "gamesPlayed": 3,
+          "countedPoints": 13.0,
+          "countedGameId": "1393723792970219520",
+          "locked": true
+        },
+        {
+          "playerId": "1450",
+          "gamesPlayed": 4,
+          "countedPoints": 11.0,
+          "countedGameId": "1393723794505334784",
+          "locked": true
+        }
+      ]
+    },
+    {
+      "teamId": "10",
+      "officialPoints": 266.5,
+      "computedPoints": 268.5,
+      "residual": 2.0,
+      "status": "estimated-foul-residual",
+      "evidenceComplete": true,
+      "players": [
+        {
+          "playerId": "1747",
+          "gamesPlayed": 3,
+          "countedPoints": 35.0,
+          "countedGameId": "1393285932274176000",
+          "locked": false
+        },
+        {
+          "playerId": "2422",
+          "gamesPlayed": 2,
+          "countedPoints": 32.0,
+          "countedGameId": "1393285932274176000",
+          "locked": false
+        },
+        {
+          "playerId": "2441",
+          "gamesPlayed": 4,
+          "countedPoints": 31.0,
+          "countedGameId": "1393723801048449024",
+          "locked": false
+        },
+        {
+          "playerId": "1272",
+          "gamesPlayed": 3,
+          "countedPoints": 29.0,
+          "countedGameId": "1393723765749186560",
+          "locked": true
+        },
+        {
+          "playerId": "1846",
+          "gamesPlayed": 3,
+          "countedPoints": 27.0,
+          "countedGameId": "1393723777451294720",
+          "locked": true
+        },
+        {
+          "playerId": "4862",
+          "gamesPlayed": 3,
+          "countedPoints": 26.5,
+          "countedGameId": "1393723784023769088",
+          "locked": true
+        },
+        {
+          "playerId": "1975",
+          "gamesPlayed": 3,
+          "countedPoints": 19.0,
+          "countedGameId": "1393285928771932160",
+          "locked": false
+        },
+        {
+          "playerId": "2565",
+          "gamesPlayed": 3,
+          "countedPoints": 19.0,
+          "countedGameId": "1393723776029425664",
+          "locked": true
+        },
+        {
+          "playerId": "1648",
+          "gamesPlayed": 2,
+          "countedPoints": 18.5,
+          "countedGameId": "1393285932274176000",
+          "locked": false
+        },
+        {
+          "playerId": "1711",
+          "gamesPlayed": 2,
+          "countedPoints": 17.0,
+          "countedGameId": "1393723792970219520",
+          "locked": false
+        },
+        {
+          "playerId": "2583",
+          "gamesPlayed": 3,
+          "countedPoints": 14.5,
+          "countedGameId": "1393723794631163904",
+          "locked": false
+        }
+      ]
+    }
+  ]
+}

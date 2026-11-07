@@ -255,6 +255,39 @@ counted row ever rested on his presence — but under the old parser he
 was recorded as present, and a lock on his game would have certified a
 zero from nothing.
 
+## Week 2 generation receipts
+
+Week 2 window: `startsAt` **2026-10-26T23:00:00Z** (Week 2's first tip)
+to `endsAt` **2026-11-03T00:00:00Z** (Week 3's first tip, the exclusive
+bound). The receipt was first generated 2026-11-02T14:08:41Z, after
+Sunday Nov 1's games went final, and regenerated 2026-11-07T00:43:23Z
+for the roll-forward PR: every team total, status, player row and
+counted game reproduces exactly — only `generatedAt` differs.
+
+Per-team reconciliation against the leg's official totals:
+
+| Roster | Official | Computed | Residual | Status |
+| ------ | -------- | -------- | -------- | ------ |
+| 1 | 290.5 | 290.5 | 0.0 | verified |
+| 2 | 291.0 | 291.0 | 0.0 | verified |
+| 3 | 286.0 | 288.0 | +2.0 | estimated-foul-residual |
+| 4 | 320.5 | 324.5 | +4.0 | estimated-foul-residual |
+| 5 | 296.5 | 296.5 | 0.0 | verified |
+| 6 | 230.0 | 232.0 | +2.0 | estimated-foul-residual |
+| 7 | 298.5 | 298.5 | 0.0 | verified |
+| 8 | 284.0 | 284.0 | 0.0 | verified |
+| 9 | 271.5 | 273.5 | +2.0 | estimated-foul-residual |
+| 10 | 266.5 | 268.5 | +2.0 | estimated-foul-residual |
+
+Five teams reconcile exactly and serve as actuals; five carry residuals
+fully inside the technical/flagrant band and serve only as labeled
+estimates through the showcase contract. No team is `unreconciled` —
+every team's evidence is complete. Team awards read the official leg
+totals regardless of player-evidence status: roster 4's 320.5 is the
+week's high total and roster 6's 230.0 the low, so both stand as the
+Week 2 Stud/Chud teams even though their player breakdowns are
+estimates, not actuals.
+
 ## Weekly operation
 
 After each week closes (the next week's first tip has passed), rerun the

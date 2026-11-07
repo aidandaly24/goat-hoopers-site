@@ -44,7 +44,7 @@ function team(teamId: string, players: { playerId: string; gamesPlayed: number; 
 
 describe("committed week 1 receipt", () => {
   it("loads and validates with honest per-team statuses", () => {
-    expect(WEEKLY_EVIDENCE_RECEIPTS).toHaveLength(1);
+    expect(WEEKLY_EVIDENCE_RECEIPTS).toHaveLength(2);
     const receipt = WEEKLY_EVIDENCE_RECEIPTS[0];
     expect(receipt.season).toBe("2026");
     expect(receipt.week).toBe(1);
@@ -84,7 +84,8 @@ describe("committed week 1 receipt", () => {
     expect(getPreviousCompletedPlayerWeek(WEEKLY_EVIDENCE_RECEIPTS, { season: "2026", currentWeek: 2, teamId: "5" })?.week).toBe(1);
     expect(getPreviousCompletedPlayerWeek(WEEKLY_EVIDENCE_RECEIPTS, { season: "2026", currentWeek: 1, teamId: "5" })).toBeNull();
     expect(getPreviousCompletedPlayerWeek(WEEKLY_EVIDENCE_RECEIPTS, { season: "2026", currentWeek: null, teamId: "5" })).toBeNull();
-    expect(getPreviousCompletedPlayerWeek(WEEKLY_EVIDENCE_RECEIPTS, { season: "2026", currentWeek: 3, teamId: "5" })).toBeNull();
+    expect(getPreviousCompletedPlayerWeek(WEEKLY_EVIDENCE_RECEIPTS, { season: "2026", currentWeek: 3, teamId: "5" })?.week).toBe(2);
+    expect(getPreviousCompletedPlayerWeek(WEEKLY_EVIDENCE_RECEIPTS, { season: "2026", currentWeek: 4, teamId: "5" })).toBeNull();
   });
 
   it("showcase separates verified actuals from explicitly estimated teams", () => {
@@ -116,7 +117,75 @@ describe("committed week 1 receipt", () => {
     if (aidan?.basis === "estimated-foul-residual") {
       expect(aidan.residual).toBe(4.0);
     }
-    expect(getWeekShowcase(WEEKLY_EVIDENCE_RECEIPTS, { season: "2026", week: 2 })).toBeNull();
+    expect(getWeekShowcase(WEEKLY_EVIDENCE_RECEIPTS, { season: "2026", week: 3 })).toBeNull();
+  });
+});
+
+describe("committed week 2 receipt", () => {
+  it("loads and validates with honest per-team statuses", () => {
+    const receipt = WEEKLY_EVIDENCE_RECEIPTS.find((r) => r.week === 2);
+    expect(receipt).toBeDefined();
+    expect(receipt?.season).toBe("2026");
+    expect(receipt?.startsAt).toBe("2026-10-26T23:00:00Z");
+    expect(receipt?.endsAt).toBe("2026-11-03T00:00:00Z");
+    expect(receipt?.teams).toHaveLength(10);
+    const byStatus = (status: string) => receipt?.teams.filter((t) => t.status === status).map((t) => t.teamId);
+    expect(byStatus("verified")).toEqual(["1", "2", "5", "7", "8"]);
+    expect(byStatus("estimated-foul-residual")).toEqual(["3", "4", "6", "9", "10"]);
+    expect(byStatus("unreconciled")).toEqual([]);
+    expect(receipt?.teams.every((t) => t.evidenceComplete)).toBe(true);
+    // Official leg totals only (never public matchup points): roster 4's
+    // 320.5 is the week's high, roster 6's 230.0 the low.
+    const totals = new Map(receipt?.teams.map((t) => [t.teamId, t.officialPoints]));
+    expect(totals.get("4")).toBe(320.5);
+    expect(totals.get("6")).toBe(230.0);
+  });
+
+  it("serves a verified team's actuals through the exact-points contract", () => {
+    const week = getCompletedPlayerWeek(WEEKLY_EVIDENCE_RECEIPTS, { season: "2026", week: 2, teamId: "8" });
+    expect(week).not.toBeNull();
+    expect(week?.complete).toBe(true);
+    const byId = new Map(week?.players.map((p) => [p.playerId, p]));
+    expect(byId.get("1380")?.fantasyPoints).toBe(40.5); // Giannis, locked
+    expect(week?.players).toHaveLength(11);
+  });
+
+  it("fails residual teams closed in the exact-points contract — estimates are never actuals", () => {
+    for (const teamId of ["3", "4", "6", "9", "10"]) {
+      expect(getCompletedPlayerWeek(WEEKLY_EVIDENCE_RECEIPTS, { season: "2026", week: 2, teamId })).toBeNull();
+    }
+  });
+
+  it("previous-week lookup reaches week 2 from week 3, still failing residual teams closed", () => {
+    expect(getPreviousCompletedPlayerWeek(WEEKLY_EVIDENCE_RECEIPTS, { season: "2026", currentWeek: 3, teamId: "5" })?.week).toBe(2);
+    expect(getPreviousCompletedPlayerWeek(WEEKLY_EVIDENCE_RECEIPTS, { season: "2026", currentWeek: 3, teamId: "4" })).toBeNull();
+  });
+
+  it("showcase separates verified actuals from explicitly estimated teams", () => {
+    const showcase = getWeekShowcase(WEEKLY_EVIDENCE_RECEIPTS, { season: "2026", week: 2 });
+    expect(showcase).not.toBeNull();
+    expect(showcase?.teams).toHaveLength(10);
+    expect(showcase?.unavailableTeamIds).toEqual([]);
+
+    const papichooter = showcase?.teams.find((t) => t.teamId === "7");
+    expect(papichooter?.basis).toBe("verified");
+    if (papichooter?.basis === "verified") {
+      expect(papichooter.topPlayers[0].fantasyPoints).toBe(55.5); // Dončić
+      expect(papichooter.topPlayers).toHaveLength(3);
+    }
+
+    // Roster 4 posted the week's official high (320.5) but carries a +4
+    // foul residual: its values arrive as estimatedPoints with the
+    // residual disclosed, and no actual-points field exists.
+    const weekHigh = showcase?.teams.find((t) => t.teamId === "4");
+    expect(weekHigh?.basis).toBe("estimated-foul-residual");
+    if (weekHigh?.basis === "estimated-foul-residual") {
+      expect(weekHigh.officialPoints).toBe(320.5);
+      expect(weekHigh.computedPoints).toBe(324.5);
+      expect(weekHigh.residual).toBe(4.0);
+      expect(weekHigh.topPlayers.map((p) => p.estimatedPoints)).toEqual([41.5, 34.0, 33.5]);
+      expect(weekHigh.topPlayers.every((p) => !("fantasyPoints" in p))).toBe(true);
+    }
   });
 });
 
