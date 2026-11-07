@@ -108,24 +108,56 @@ describe("weekly editorial calendar", () => {
     expect(
       selectWeeklyEdition(weeklyEditions, new Date("2026-10-20"))?.id,
     ).toBe("2026-W41");
+    expect(
+      selectWeeklyEdition(weeklyEditions, new Date("2026-10-28"))?.id,
+    ).toBe("2026-W44");
+    expect(
+      selectWeeklyEdition(weeklyEditions, new Date("2026-11-06"))?.id,
+    ).toBe("2026-W44");
+  });
+  it("serves the published Week 2 edition as current, with computed player awards", () => {
+    const current = selectWeeklyEdition(weeklyEditions, new Date("2026-11-06"));
+    expect(current).toMatchObject({
+      id: "2026-W44",
+      status: "published",
+      game: { leagueWeek: 2, state: "final", scores: [298.5, 296.5] },
+    });
+    expect(
+      current?.playerSpotlights.find(
+        (spotlight) => spotlight.role === "player-of-week",
+      ),
+    ).toMatchObject({ playerId: "1970", name: "Luka Dončić", teamId: "7" });
+    expect(
+      current?.playerSpotlights.find(
+        (spotlight) => spotlight.role === "underperformer",
+      ),
+    ).toMatchObject({ playerId: "2574", name: "Amen Thompson", teamId: "6" });
+    // The preseason samples are never the current edition again.
+    expect(current?.id).not.toBe("2026-W41");
+    expect(current?.id).not.toBe("2026-W40");
   });
   it("keeps proposed drafts, upcoming empty scores and verified historical finals distinct", () => {
     const archive = getWeeklyArchive();
     expect(archive.map((edition) => edition.id)).toEqual([
+      "2026-W44",
       "2026-W41",
       "2026-W40",
     ]);
     expect(archive[0]).toMatchObject({
+      status: "published",
+      game: { state: "final", scores: [298.5, 296.5] },
+    });
+    expect(archive[1]).toMatchObject({
       status: "draft",
       publishedAt: null,
       game: { state: "upcoming", scores: null },
     });
-    expect(archive[1].game).toMatchObject({
+    expect(archive[2].game).toMatchObject({
       state: "final",
       scores: [326, 251.5],
     });
     expect(
-      archive[0].playerSpotlights.find(
+      archive[1].playerSpotlights.find(
         (spotlight) => spotlight.playerId === "4866",
       )?.statPeriod,
     ).toContain("college");

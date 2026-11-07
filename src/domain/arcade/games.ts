@@ -79,12 +79,13 @@ export const GAMES: Game[] = [
     icon: "Season",
     status: "coming-soon",
     howToPlay:
-      "Lock in your season predictions before opening night: champion, " +
+      "Lock in your season predictions: champion, " +
       "finalists, and regular-season win totals. Scoring runs all season — " +
       "the most prophetic manager takes home 10 FAAB.",
     launchNote:
-      "Not playable yet — the prediction ballot opens before opening night, " +
-      "so nobody gets an edge from watching the first tip.",
+      "Not playable yet — the prediction ballot was set to open before " +
+      "opening night and never did. It stays closed rather than hand " +
+      "anyone an edge from games already played.",
   },
 ];
 
