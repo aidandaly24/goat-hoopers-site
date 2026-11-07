@@ -195,6 +195,23 @@ gates; chart rendering and the bounded sampling fix remain separately owned.
 
 ### Courtside homepage and weekly archive
 
+`domain/home-weekly-recap.ts` distinguishes official team totals from exact,
+estimated and unavailable counted-player breakdowns. The pure
+`data/home-weekly-context.ts` joins injected, validated weekly receipts to the
+homepage's already-loaded season/current matchups; it selects only the previous
+source week, checks the receipt window against `checkedAt`, and supplies only
+the weekly adapter's exact contract to the existing member guide. The guide
+continues to intersect current membership and exclude missing participation.
+No source loader, network read, database operation or shared private cache is
+added. `season-hub/WeeklyLeagueRecap` uses native team disclosures with every
+counted starter, GP and lock labels; official totals determine shared Stud/Chud
+ties only with full league coverage. The earlier editorial spotlights remain
+in their own dated disclosure. Live recap/Power props are ignored in archive
+mode. `HomePowerRankings` keeps legal-lineup Power explicitly unavailable until
+Muse's prospective 11-slot producer lands (#190 comment 6433681384); the old
+retrospective standings composite is never used as a substitute. See
+`docs/home-weekly-recap.md` for integration and verification boundaries.
+
 The accepted opening tip constant and pure `openingPhase` gate live in
 `domain/season-opening.ts`, shared by the server homepage/feature and the
 client countdown. Server Components import only the rendered `TipCountdown`
@@ -1437,10 +1454,18 @@ evidence); otherwise the team is `unavailable` with a null total — a
 partial sum is never emitted, so no team is estimated into a rank. The
 next week's public matchup leg does not exist at production time, so
 the live loader carries no locked/final slot values; the builder
-honors them if a future source can prove them. No persistence, route
-or surface consumes the snapshot yet — the homepage `HomePowerRankings`
-wiring is a deliberate follow-up; until then the compact
-Power-unavailable state stands.
+honors them if a future source can prove them. No persistence is added.
+`data/home-lineup-power.ts` consumes the producer with the same injected state
+read, captures season/leg provenance, validates the snapshot and joins all ten
+already-loaded team identities via the `domain/home-lineup-power.ts` envelope.
+The thin homepage loads this public source in parallel and passes it to
+`season-hub/HomePowerRankings`: legal full-11 projections use the shared rank
+helper; prior-season fallback and missing totals remain explicit, ties share a
+rank, and no stored prior means no movement. Source TTLs stay in Sleeper; no DB,
+publisher, polling or player-directory load is introduced. The recap composition
+renders Power once on live pages and ignores it in archives. The consumer is
+reusable by a future arena reader; no arena files are changed. See
+`docs/home-lineup-power.md` for provenance, test cases and review dependencies.
 
 `src/surfaces/ai-decides/AiDecides.tsx` owns the editable frontend and its native
 team dialog. The thin `/ai-decides` page loads cached AI data, slim team identities

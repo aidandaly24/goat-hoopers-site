@@ -41,18 +41,48 @@ try {
   }
   assert.ok(origin, logs.join(''));
   const checks = [];
-  for (const state of ['public', 'member', 'missing-edition', 'archived']) {
+  for (const state of ['public', 'member', 'missing-edition', 'archived', 'weekly-public', 'weekly-member', 'weekly-estimate-member', 'weekly-missing-edition', 'weekly-unavailable', 'weekly-archived', 'power-public', 'power-member', 'power-unavailable', 'power-malformed', 'power-no-totals', 'power-missing-edition', 'power-archived']) {
     for (const flight of [false, true]) {
       const response = await fetch(`${origin}/?state=${state}`, { headers: flight ? { RSC: '1' } : {} });
       const body = await response.text();
       assert.equal(response.status, 200, `${state}/${flight}: HTTP ${response.status}\n${logs.join('')}`);
       assert.ok(!/Attempted to call|Application error:|"digest":/.test(body), `${state}/${flight}: Next.js error payload\n${logs.join('')}`);
-      assert.ok(body.includes(state === 'missing-edition' ? 'The next weekly story is on its way.' : 'Synthetic home anchor fixture'), `${state}/${flight}: missing rendered homepage\n${logs.join('')}`);
+      assert.ok(body.includes(state.includes('missing-edition') ? 'The next weekly story is on its way.' : 'Synthetic home anchor fixture'), `${state}/${flight}: missing rendered homepage\n${logs.join('')}`);
+      if (state.startsWith('weekly-')) {
+        if (state === 'weekly-archived') {
+          assert.ok(!body.includes('data-weekly-recap') && !body.includes('data-home-power'), `${state}/${flight}: today's recap leaked into archive`);
+        } else {
+          assert.ok(body.includes('data-weekly-recap') && body.includes('data-home-power'), `${state}/${flight}: missing weekly composition`);
+          if (state !== 'weekly-unavailable') assert.ok(body.includes('Every player value below is an estimate') && body.includes('Player breakdown unavailable'), `${state}/${flight}: missing evidence states`);
+          if (state === 'weekly-member') assert.ok(body.includes('Actual recorded fantasy points for current roster players'), `${state}/${flight}: exact guide not wired`);
+          if (state === 'weekly-estimate-member') assert.ok(!body.includes('Actual recorded fantasy points for current roster players'), `${state}/${flight}: estimate entered exact guide`);
+        }
+      }
+      if (state.startsWith('power-')) {
+        if (state === 'power-archived') assert.ok(!body.includes('data-home-power') && !body.includes('data-weekly-recap'), 'Power leaked into archive');
+        else if (['power-unavailable', 'power-malformed'].includes(state)) assert.ok(!body.includes('data-power-team'), 'Unverified source was ranked');
+        else {
+          assert.ok(body.includes('data-power-team') && body.includes('Projected Week 3'), 'Missing Power rows/week');
+          assert.ok(body.includes('no stored comparable prior snapshot'), 'Missing movement provenance');
+          if (state === 'power-no-totals') assert.ok(!body.includes('projected pts') && body.includes('Every team remains unranked'), 'Unavailable points were invented');
+          else assert.ok(body.includes('prior-season statistics') && body.includes('no total or rank inferred'), 'Missing partial/unavailable coverage');
+        }
+      }
       if (flight) assert.match(response.headers.get('content-type') ?? '', /text\/x-component/);
       checks.push({ state, transport: flight ? 'RSC' : 'HTML', status: response.status });
     }
   }
   assert.ok(!logs.join('').includes('Attempted to call'), logs.join(''));
+  if (process.env.HOME_WEEKLY_BROWSER === '1') {
+    const browser = spawnSync(process.execPath, [path.join(here, 'weekly-browser.mjs'), origin], { cwd: repo, env: { ...process.env, HOME_WEEKLY_EVIDENCE: process.env.HOME_WEEKLY_EVIDENCE ?? '/tmp/goat-home-weekly-evidence' }, encoding: 'utf8', maxBuffer: 2 * 1024 * 1024 });
+    assert.equal(browser.status, 0, browser.stdout + browser.stderr);
+    console.log(browser.stdout);
+  }
+  if (process.env.HOME_POWER_BROWSER === '1') {
+    const browser = spawnSync(process.execPath, [path.join(here, 'power-browser.mjs'), origin], { cwd: repo, env: process.env, encoding: 'utf8', maxBuffer: 2 * 1024 * 1024 });
+    assert.equal(browser.status, 0, browser.stdout + browser.stderr);
+    console.log(browser.stdout);
+  }
   console.log(JSON.stringify({ source, checks, credentials: 'absent', externalFetches: 'blocked', writes: 'none' }, null, 2));
 } finally {
   if (server && server.exitCode === null) {

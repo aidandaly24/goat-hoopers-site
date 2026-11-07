@@ -2,19 +2,21 @@ import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { personalizedFixture } from '@/test/personalized-home-fixture';
-const mocks = vi.hoisted(() => ({ member: vi.fn(), account: vi.fn(), linked: vi.fn(), home: vi.fn(), ai: vi.fn(), market: vi.fn(), news: vi.fn(), guide: vi.fn(), snapshotHistory: vi.fn(async () => ({})) }));
+import { homeLineupPowerFixture } from '@/test/home-lineup-power-fixture';
+const mocks = vi.hoisted(() => ({ member: vi.fn(), account: vi.fn(), linked: vi.fn(), home: vi.fn(), ai: vi.fn(), power: vi.fn(), market: vi.fn(), news: vi.fn(), guide: vi.fn(), snapshotHistory: vi.fn(async () => ({})) }));
 vi.mock('@/app/actions', () => ({ getCurrentUser: mocks.member }));
 vi.mock('next/headers', () => ({ headers: async () => new Headers() }));
 vi.mock('@/data/friends-auth/config', () => ({ friendsAuthEnabled: () => true }));
 vi.mock('@/data/friends-auth/runtime', () => ({ getVerifiedAccount: mocks.account }));
 vi.mock('@/data/home-viewer', async importOriginal => ({ ...await importOriginal<typeof import('@/data/home-viewer')>(), hasHomeMembership: mocks.linked }));
-vi.mock('@/data/league', () => ({ getCourtsideHomeData: mocks.home, getAiDecidesData: mocks.ai, getStockMarketData: mocks.market, getLeagueNewsEdition: mocks.news, getHomePlayerGuideSources: mocks.guide, getRosterSnapshotHistory: mocks.snapshotHistory, getWeeklyArchive: () => [], getCourtsidePortraits: () => ({}) }));
+vi.mock('@/data/league', async () => ({ getCourtsideHomeData: mocks.home, getAiDecidesData: mocks.ai, getHomeLineupPowerSource: mocks.power, buildHomeLineupPower: (await import('@/data/home-lineup-power')).buildHomeLineupPower, getStockMarketData: mocks.market, getLeagueNewsEdition: mocks.news, getHomePlayerGuideSources: mocks.guide, getRosterSnapshotHistory: mocks.snapshotHistory, getWeeklyArchive: () => [], getCourtsidePortraits: () => ({}) }));
 vi.mock('@/data/team-value-history', () => ({ getTeamValueHistory: async () => null }));
 import Home, { dynamic } from './page';
 beforeEach(() => {
   vi.resetAllMocks(); const fixture = personalizedFixture();
   mocks.member.mockResolvedValue(null); mocks.account.mockResolvedValue(null); mocks.linked.mockResolvedValue(false);
   mocks.home.mockResolvedValue(fixture.home); mocks.ai.mockResolvedValue({ weekly: fixture.weekly }); mocks.market.mockResolvedValue(fixture.market); mocks.news.mockResolvedValue(null); mocks.guide.mockResolvedValue(null);
+  mocks.power.mockResolvedValue(homeLineupPowerFixture());
 });
 const deskOf = (html: string) => html.match(/<aside[^>]*data-team-desk[^]*?<\/aside>/)?.[0] ?? '';
 it('renders two concurrent server identities independently and ignores client team selectors', async () => {
@@ -27,6 +29,12 @@ it('renders two concurrent server identities independently and ignores client te
   expect(html[1]).toContain('data-team-desk'); expect(deskOf(html[1])).toContain('Fixture Club 4'); expect(deskOf(html[1])).toContain('Fixture Club 3'); expect(deskOf(html[1])).not.toContain('Fixture Club 9');
   expect(mocks.account).not.toHaveBeenCalled(); expect(mocks.linked).not.toHaveBeenCalled();
   const signedOut = renderToStaticMarkup(await Home()); expect(signedOut).not.toContain('data-team-desk'); expect(signedOut).toContain('data-league-desk'); expect(signedOut).not.toContain('data-home-notice');
+  for (const output of [...html, signedOut]) {
+    expect(output).toContain('data-home-power="available"');
+    expect(output.match(/data-power-team=/g)).toHaveLength(10);
+  }
+  expect(mocks.power).toHaveBeenCalledTimes(3);
+  for (const args of mocks.power.mock.calls) expect(args).toEqual([]);
 });
 it('offers the account claim path only for a verified account with no existing identity mapping', async () => {
   mocks.account.mockResolvedValue({ subject: 'private-fixture-subject', sessionId: 'private-fixture-session' });
