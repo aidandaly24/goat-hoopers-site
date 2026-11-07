@@ -13,6 +13,12 @@ export type WeeklyEdition = {
   game: {
     title: string;
     note: string;
+    /** The season the game itself belongs to, when it differs from the
+     * edition's (editorial) season — e.g. a look-back edition published
+     * in 2026 whose game is the 2025 final. Labels about the game (the
+     * historical-final badge, the final-score caption) name this
+     * season, never the edition's. Absent = the edition's season. */
+    season?: string;
     leagueWeek: number | null;
     teamIds: [string, string] | null;
     state: "upcoming" | "final" | "unavailable";
