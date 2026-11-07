@@ -1,0 +1,29 @@
+.section, .power { margin-block: var(--gh-s8); color: var(--gh-text); }
+.section p, .power p { line-height: 1.5; margin-block: var(--gh-s3); }
+.note { display: block; color: var(--gh-text-dim); font-size: 0.875rem; overflow-wrap: anywhere; }
+.highlights { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gh-s6); margin-block: var(--gh-s6); }
+.highlights h3 { font-size: 1.25rem; font-weight: 700; }
+.highlights a, .profile, .player a { display: inline-flex; align-items: center; min-height: 44px; overflow-wrap: anywhere; }
+.section a { color: var(--gh-accent); }
+.section a:hover { text-decoration: underline; }
+.section a:focus-visible, .section summary:focus-visible { outline: 2px solid var(--gh-focus); outline-offset: 4px; }
+.team { border-bottom: 1px solid var(--gh-border); }
+.team summary { cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--gh-s2) var(--gh-s4); padding-block: var(--gh-s4); min-height: 44px; }
+.team summary::after { content: 'Show players +'; grid-column: 2; color: var(--gh-accent); font-size: 0.875rem; text-align: right; }
+.team[open] summary::after { content: 'Hide players −'; }
+.identity { display: flex; align-items: center; gap: var(--gh-s3); min-width: 0; }
+.identity strong { overflow-wrap: anywhere; }
+.total { text-align: right; }
+.score { font-family: var(--gh-font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.status { color: var(--gh-text-dim); font-size: 0.875rem; }
+.detail { padding-block: var(--gh-s2) var(--gh-s4); }
+.players { list-style: none; padding: 0; margin: 0; }
+.player { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: var(--gh-s3); padding-block: var(--gh-s2); }
+.sources { margin-top: var(--gh-s4); font-size: 0.875rem; color: var(--gh-text-dim); }
+.sources summary { min-height: 44px; cursor: pointer; align-content: center; }
+.sources p { overflow-wrap: anywhere; }
+@media (max-width: 40rem) {
+  .highlights { grid-template-columns: 1fr; gap: var(--gh-s4); }
+  .team summary { gap: var(--gh-s2) var(--gh-s3); }
+  .player { grid-template-columns: minmax(0, 1fr); gap: 0; }
+}
